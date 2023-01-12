@@ -3,7 +3,7 @@ import {
   createTheme,
   CssBaseline,
   Grow,
-  ThemeProvider
+  ThemeProvider,
 } from "@mui/material";
 import { SnackbarProvider } from "notistack";
 import { createContext } from "react";
@@ -56,6 +56,8 @@ function App({ context = defaultContext }: { context?: AppContext }) {
               <ErrorSnackbar />
               <Routes>
                 <Route path="/" element={<Home />} />
+                <Route path="/active" element={<Home />} />
+                <Route path="/completed" element={<Home />} />
 
                 <Route path="*" element={<NotFound />} />
               </Routes>

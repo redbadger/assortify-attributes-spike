@@ -36,6 +36,7 @@ import {
 const fragment = graphql`
   fragment TodoListItemFragment on Todo {
     id
+    ownId
     completed
     ...TodoEditInputFragment
   }
@@ -62,7 +63,7 @@ const deleteMutation = graphql`
 
 const TodoListItem = ({ todo }: { todo: TodoListItemFragment$key }) => {
   const todoData = useFragment(fragment, todo);
-  const { id, completed } = todoData;
+  const { id, ownId, completed } = todoData;
   const { getConnectionRecord, invalidateConnectionRecords } =
     useConnectionContext(TodosConnectionContext);
 
@@ -87,7 +88,7 @@ const TodoListItem = ({ todo }: { todo: TodoListItemFragment$key }) => {
 
       commitToggle({
         variables: {
-          id: +id,
+          id: ownId,
           completed: event.target.checked,
         },
         optimisticResponse: {
@@ -99,6 +100,7 @@ const TodoListItem = ({ todo }: { todo: TodoListItemFragment$key }) => {
     },
     [
       commitToggle,
+      ownId,
       id,
       getConnectionRecord,
       completed,
@@ -133,12 +135,13 @@ const TodoListItem = ({ todo }: { todo: TodoListItemFragment$key }) => {
     };
 
     commitDelete({
-      variables: { id: +id },
+      variables: { id: ownId },
       optimisticUpdater: updater,
       updater,
     });
   }, [
     commitDelete,
+    ownId,
     getConnectionRecord,
     id,
     completed,

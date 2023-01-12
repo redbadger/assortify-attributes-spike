@@ -16,6 +16,7 @@ import { TodoEditInputFragment$key } from "./__generated__/TodoEditInputFragment
 const fragment = graphql`
   fragment TodoEditInputFragment on Todo {
     id
+    ownId
     text
     completed
   }
@@ -30,7 +31,7 @@ const editMutation = graphql`
 `;
 
 const TodoEditInput = ({ todo }: { todo: TodoEditInputFragment$key }) => {
-  const { id, text, completed } = useFragment(fragment, todo);
+  const { id, ownId, text, completed } = useFragment(fragment, todo);
 
   const [value, setValue] = useState(text);
   const ref = useRef<HTMLInputElement | null>(null);
@@ -51,7 +52,7 @@ const TodoEditInput = ({ todo }: { todo: TodoEditInputFragment$key }) => {
     } else {
       setValue(text);
     }
-  }, [commit, id, text, value]);
+  }, [commit, id, ownId, text, value]);
 
   const handleChange = useCallback((e: ChangeEvent<HTMLInputElement>) => {
     setValue(e.target.value);

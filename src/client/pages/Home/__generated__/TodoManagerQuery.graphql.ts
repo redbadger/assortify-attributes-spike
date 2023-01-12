@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<f21c64895f4b17615b7ccd85b19c995d>>
+ * @generated SignedSource<<49f256bc3a928d46a0a6c1c10e2955ee>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -187,6 +187,13 @@ return {
                         "alias": null,
                         "args": null,
                         "kind": "ScalarField",
+                        "name": "ownId",
+                        "storageKey": null
+                      },
+                      {
+                        "alias": null,
+                        "args": null,
+                        "kind": "ScalarField",
                         "name": "completed",
                         "storageKey": null
                       },
@@ -228,12 +235,12 @@ return {
     ]
   },
   "params": {
-    "cacheID": "bcf56a340a830624345745031a34b6fe",
+    "cacheID": "138cecf99f2e1778461fe94006ce91bb",
     "id": null,
     "metadata": {},
     "name": "TodoManagerQuery",
     "operationKind": "query",
-    "text": "query TodoManagerQuery(\n  $filter: Filter\n) {\n  viewer {\n    todos(first: 50, filter: $filter) {\n      edges {\n        node {\n          id\n          ...TodoListItemFragment\n        }\n      }\n      ...ToggleAllFragment\n      ...TodoFooterFragment\n    }\n    id\n  }\n}\n\nfragment TodoEditInputFragment on Todo {\n  id\n  text\n  completed\n}\n\nfragment TodoFooterFragment on UserTodos_Connection {\n  totalCount\n  completedCount\n}\n\nfragment TodoListItemFragment on Todo {\n  id\n  completed\n  ...TodoEditInputFragment\n}\n\nfragment ToggleAllFragment on UserTodos_Connection {\n  totalCount\n  completedCount\n}\n"
+    "text": "query TodoManagerQuery(\n  $filter: Filter\n) {\n  viewer {\n    todos(first: 50, filter: $filter) {\n      edges {\n        node {\n          id\n          ...TodoListItemFragment\n        }\n      }\n      ...ToggleAllFragment\n      ...TodoFooterFragment\n    }\n    id\n  }\n}\n\nfragment TodoEditInputFragment on Todo {\n  id\n  ownId\n  text\n  completed\n}\n\nfragment TodoFooterFragment on UserTodos_Connection {\n  totalCount\n  completedCount\n}\n\nfragment TodoListItemFragment on Todo {\n  id\n  ownId\n  completed\n  ...TodoEditInputFragment\n}\n\nfragment ToggleAllFragment on UserTodos_Connection {\n  totalCount\n  completedCount\n}\n"
   }
 };
 })();

@@ -33,7 +33,7 @@ const AppBar = () => {
             href="/"
           >
             <Typography variant="h5" component="h1">
-              Hello, world!
+              Dan&apos;s Todos
             </Typography>
           </a>
         </Toolbar>

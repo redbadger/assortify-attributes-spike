@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<a43d31dc8c4794897caba23317c531c3>>
+ * @generated SignedSource<<6ec495e6f9af7551d3fc9090827e355f>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -13,6 +13,7 @@ import { FragmentRefs } from "relay-runtime";
 export type TodoEditInputFragment$data = {
   readonly completed: boolean;
   readonly id: string;
+  readonly ownId: number;
   readonly text: string;
   readonly " $fragmentType": "TodoEditInputFragment";
 };
@@ -38,6 +39,13 @@ const node: ReaderFragment = {
       "alias": null,
       "args": null,
       "kind": "ScalarField",
+      "name": "ownId",
+      "storageKey": null
+    },
+    {
+      "alias": null,
+      "args": null,
+      "kind": "ScalarField",
       "name": "text",
       "storageKey": null
     },
@@ -53,6 +61,6 @@ const node: ReaderFragment = {
   "abstractKey": null
 };
 
-(node as any).hash = "fc85bf6f93f73aaca7ccfc75b80a17c0";
+(node as any).hash = "bd15f9bd712042d4745dc32a9de084e7";
 
 export default node;
