@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<2f36fb44c0c44c6110e0c15c1522db54>>
+ * @generated SignedSource<<b9722cbb91a7154e970adc64adcfb26e>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -10,12 +10,12 @@
 
 import { ConcreteRequest, Mutation } from 'relay-runtime';
 export type TodoListItemDeleteMutation$variables = {
-  id: string;
+  id?: number | null;
 };
 export type TodoListItemDeleteMutation$data = {
   readonly deleteOneTodo: {
     readonly id: string;
-  };
+  } | null;
 };
 export type TodoListItemDeleteMutation = {
   response: TodoListItemDeleteMutation$data;
@@ -35,9 +35,15 @@ v1 = [
     "alias": null,
     "args": [
       {
-        "kind": "Variable",
-        "name": "id",
-        "variableName": "id"
+        "fields": [
+          {
+            "kind": "Variable",
+            "name": "id",
+            "variableName": "id"
+          }
+        ],
+        "kind": "ObjectValue",
+        "name": "where"
       }
     ],
     "concreteType": "Todo",
@@ -74,16 +80,16 @@ return {
     "selections": (v1/*: any*/)
   },
   "params": {
-    "cacheID": "78c845ecab926888062bcb1db71c708d",
+    "cacheID": "7ef985c882afc60debffa29a961e9ce5",
     "id": null,
     "metadata": {},
     "name": "TodoListItemDeleteMutation",
     "operationKind": "mutation",
-    "text": "mutation TodoListItemDeleteMutation(\n  $id: ID!\n) {\n  deleteOneTodo(id: $id) {\n    id\n  }\n}\n"
+    "text": "mutation TodoListItemDeleteMutation(\n  $id: Int\n) {\n  deleteOneTodo(where: {id: $id}) {\n    id\n  }\n}\n"
   }
 };
 })();
 
-(node as any).hash = "a37924075160da57b336fa969662ca89";
+(node as any).hash = "2db35513e6dedb68b1376ba5926a3701";
 
 export default node;

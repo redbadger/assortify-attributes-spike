@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<7e7fa4ab19c4bb7526d2a0f05a534e1c>>
+ * @generated SignedSource<<c40895ab04f811e658fd5d6c491c05cc>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -10,13 +10,13 @@
 
 import { ConcreteRequest, Mutation } from 'relay-runtime';
 export type TodoEditInputEditMutation$variables = {
-  id: string;
+  id?: number | null;
   text: string;
 };
 export type TodoEditInputEditMutation$data = {
   readonly updateOneTodo: {
     readonly text: string;
-  };
+  } | null;
 };
 export type TodoEditInputEditMutation = {
   response: TodoEditInputEditMutation$data;
@@ -38,14 +38,32 @@ var v0 = [
 ],
 v1 = [
   {
-    "kind": "Variable",
-    "name": "id",
-    "variableName": "id"
+    "fields": [
+      {
+        "fields": [
+          {
+            "kind": "Variable",
+            "name": "set",
+            "variableName": "text"
+          }
+        ],
+        "kind": "ObjectValue",
+        "name": "text"
+      }
+    ],
+    "kind": "ObjectValue",
+    "name": "data"
   },
   {
-    "kind": "Variable",
-    "name": "text",
-    "variableName": "text"
+    "fields": [
+      {
+        "kind": "Variable",
+        "name": "id",
+        "variableName": "id"
+      }
+    ],
+    "kind": "ObjectValue",
+    "name": "where"
   }
 ],
 v2 = {
@@ -106,16 +124,16 @@ return {
     ]
   },
   "params": {
-    "cacheID": "1f9683f8874fa98e9ee72206c74a22db",
+    "cacheID": "8a733cb9ef1b74236105d1e7f2389d6b",
     "id": null,
     "metadata": {},
     "name": "TodoEditInputEditMutation",
     "operationKind": "mutation",
-    "text": "mutation TodoEditInputEditMutation(\n  $id: ID!\n  $text: String!\n) {\n  updateOneTodo(id: $id, text: $text) {\n    text\n    id\n  }\n}\n"
+    "text": "mutation TodoEditInputEditMutation(\n  $id: Int\n  $text: String!\n) {\n  updateOneTodo(where: {id: $id}, data: {text: {set: $text}}) {\n    text\n    id\n  }\n}\n"
   }
 };
 })();
 
-(node as any).hash = "ba2ba7a1f84527e59cf1b5b3d0be1dff";
+(node as any).hash = "0f61f5f044bf10629a9aa6f34540b5fd";
 
 export default node;

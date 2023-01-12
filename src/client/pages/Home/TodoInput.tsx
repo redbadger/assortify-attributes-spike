@@ -19,7 +19,7 @@ import { TodoInputCreateMutation } from "./__generated__/TodoInputCreateMutation
 
 const createMutation = graphql`
   mutation TodoInputCreateMutation($text: String!) {
-    createOneTodo(text: $text) {
+    createOneTodo(data: { text: $text, completed: false }) {
       id
       text
       completed

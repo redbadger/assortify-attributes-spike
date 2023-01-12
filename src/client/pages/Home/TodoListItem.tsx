@@ -42,16 +42,19 @@ const fragment = graphql`
 `;
 
 const setCompletedMutation = graphql`
-  mutation TodoListItemSetCompletedMutation($id: ID!, $completed: Boolean) {
-    updateOneTodo(id: $id, completed: $completed) {
+  mutation TodoListItemSetCompletedMutation($id: Int, $completed: Boolean) {
+    updateOneTodo(
+      where: { id: $id }
+      data: { completed: { set: $completed } }
+    ) {
       completed
     }
   }
 `;
 
 const deleteMutation = graphql`
-  mutation TodoListItemDeleteMutation($id: ID!) {
-    deleteOneTodo(id: $id) {
+  mutation TodoListItemDeleteMutation($id: Int) {
+    deleteOneTodo(where: { id: $id }) {
       id
     }
   }
@@ -84,7 +87,7 @@ const TodoListItem = ({ todo }: { todo: TodoListItemFragment$key }) => {
 
       commitToggle({
         variables: {
-          id,
+          id: +id,
           completed: event.target.checked,
         },
         optimisticResponse: {
@@ -130,7 +133,7 @@ const TodoListItem = ({ todo }: { todo: TodoListItemFragment$key }) => {
     };
 
     commitDelete({
-      variables: { id },
+      variables: { id: +id },
       optimisticUpdater: updater,
       updater,
     });

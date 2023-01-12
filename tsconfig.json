@@ -1,5 +1,6 @@
 {
   "compilerOptions": {
+    "types": ["./src/server/__generated__/typegen-nexus-plugin-prisma"],
     "target": "ESNext",
     "useDefineForClassFields": true,
     "lib": ["DOM", "DOM.Iterable", "ESNext"],
@@ -14,6 +15,7 @@
     "resolveJsonModule": true,
     "isolatedModules": true,
     "noEmit": true,
+    "noImplicitAny": false,
     "jsx": "react-jsx",
     "jsxImportSource": "@emotion/react"
   },

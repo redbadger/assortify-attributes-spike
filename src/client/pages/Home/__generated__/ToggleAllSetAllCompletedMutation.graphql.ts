@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<5827433d4fa28c7491dcb4caafcafcf2>>
+ * @generated SignedSource<<02b9729d6c438b97ebda94606af72999>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -35,9 +35,21 @@ v1 = [
     "alias": null,
     "args": [
       {
-        "kind": "Variable",
-        "name": "completed",
-        "variableName": "completed"
+        "fields": [
+          {
+            "fields": [
+              {
+                "kind": "Variable",
+                "name": "set",
+                "variableName": "completed"
+              }
+            ],
+            "kind": "ObjectValue",
+            "name": "completed"
+          }
+        ],
+        "kind": "ObjectValue",
+        "name": "data"
       }
     ],
     "concreteType": "AffectedRowsOutput",
@@ -74,16 +86,16 @@ return {
     "selections": (v1/*: any*/)
   },
   "params": {
-    "cacheID": "834763ee62e88b15445310086ee847d8",
+    "cacheID": "15ee70fcef550387b9d4cdbdcf55e050",
     "id": null,
     "metadata": {},
     "name": "ToggleAllSetAllCompletedMutation",
     "operationKind": "mutation",
-    "text": "mutation ToggleAllSetAllCompletedMutation(\n  $completed: Boolean\n) {\n  updateManyTodo(completed: $completed) {\n    count\n  }\n}\n"
+    "text": "mutation ToggleAllSetAllCompletedMutation(\n  $completed: Boolean\n) {\n  updateManyTodo(data: {completed: {set: $completed}}) {\n    count\n  }\n}\n"
   }
 };
 })();
 
-(node as any).hash = "75ab08021a1dce555d1727834b348bd4";
+(node as any).hash = "402adcbe9a31eebcaff01829ddf84a2e";
 
 export default node;

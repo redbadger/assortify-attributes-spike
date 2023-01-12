@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<86682ca9e91f2d7f270590913d3de890>>
+ * @generated SignedSource<<0b7e33887ebc19ee47402049c68244c0>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -11,12 +11,12 @@
 import { ConcreteRequest, Mutation } from 'relay-runtime';
 export type TodoListItemSetCompletedMutation$variables = {
   completed?: boolean | null;
-  id: string;
+  id?: number | null;
 };
 export type TodoListItemSetCompletedMutation$data = {
   readonly updateOneTodo: {
     readonly completed: boolean;
-  };
+  } | null;
 };
 export type TodoListItemSetCompletedMutation = {
   response: TodoListItemSetCompletedMutation$data;
@@ -36,14 +36,32 @@ v1 = {
 },
 v2 = [
   {
-    "kind": "Variable",
-    "name": "completed",
-    "variableName": "completed"
+    "fields": [
+      {
+        "fields": [
+          {
+            "kind": "Variable",
+            "name": "set",
+            "variableName": "completed"
+          }
+        ],
+        "kind": "ObjectValue",
+        "name": "completed"
+      }
+    ],
+    "kind": "ObjectValue",
+    "name": "data"
   },
   {
-    "kind": "Variable",
-    "name": "id",
-    "variableName": "id"
+    "fields": [
+      {
+        "kind": "Variable",
+        "name": "id",
+        "variableName": "id"
+      }
+    ],
+    "kind": "ObjectValue",
+    "name": "where"
   }
 ],
 v3 = {
@@ -110,16 +128,16 @@ return {
     ]
   },
   "params": {
-    "cacheID": "481fc64bf607c4a850893019b16aacac",
+    "cacheID": "1fcb603ad9be16ff35f01906a70123de",
     "id": null,
     "metadata": {},
     "name": "TodoListItemSetCompletedMutation",
     "operationKind": "mutation",
-    "text": "mutation TodoListItemSetCompletedMutation(\n  $id: ID!\n  $completed: Boolean\n) {\n  updateOneTodo(id: $id, completed: $completed) {\n    completed\n    id\n  }\n}\n"
+    "text": "mutation TodoListItemSetCompletedMutation(\n  $id: Int\n  $completed: Boolean\n) {\n  updateOneTodo(where: {id: $id}, data: {completed: {set: $completed}}) {\n    completed\n    id\n  }\n}\n"
   }
 };
 })();
 
-(node as any).hash = "9effb6ce37ea681c634dc513371c7ddd";
+(node as any).hash = "312bab163ffa6f2a2f20161a723a6b40";
 
 export default node;

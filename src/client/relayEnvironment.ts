@@ -9,7 +9,6 @@ import {
   Variables,
 } from "relay-runtime";
 import { AuthenticationError, NetworkError } from "./utils/errors";
-import signOut from "./utils/signOut";
 
 async function fetchFn(params: RequestParameters, variables: Variables) {
   PubSub.publish("FETCH_START");
@@ -36,7 +35,6 @@ async function fetchFn(params: RequestParameters, variables: Variables) {
 
     if (!response.ok || data?.errors?.length) {
       if (data?.errors?.[0]?.extensions?.code === "UNAUTHENTICATED") {
-        signOut();
         throw new AuthenticationError(data.errors[0].message);
       }
 

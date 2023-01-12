@@ -6,7 +6,7 @@ import FilterLink from "./FilterLink";
 import { TodoFooterFragment$key } from "./__generated__/TodoFooterFragment.graphql";
 
 const fragment = graphql`
-  fragment TodoFooterFragment on UserTodosConnection {
+  fragment TodoFooterFragment on UserTodos_Connection {
     totalCount
     completedCount
   }

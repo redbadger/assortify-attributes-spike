@@ -11,7 +11,7 @@ import {
 
 const clearCompletedMutation = graphql`
   mutation ClearCompletedMutation {
-    deleteManyCompletedTodo {
+    deleteManyTodo(where: { completed: { equals: true } }) {
       count
     }
   }

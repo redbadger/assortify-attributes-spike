@@ -22,8 +22,8 @@ const fragment = graphql`
 `;
 
 const editMutation = graphql`
-  mutation TodoEditInputEditMutation($id: ID!, $text: String!) {
-    updateOneTodo(id: $id, text: $text) {
+  mutation TodoEditInputEditMutation($id: Int, $text: String!) {
+    updateOneTodo(where: { id: $id }, data: { text: { set: $text } }) {
       text
     }
   }
@@ -45,7 +45,7 @@ const TodoEditInput = ({ todo }: { todo: TodoEditInputFragment$key }) => {
   const handleBlur = useCallback(() => {
     if (value.length) {
       commit({
-        variables: { id, text: value.trim() },
+        variables: { id: +id, text: value.trim() },
         optimisticResponse: { updateOneTodo: { id, text: value.trim() } },
       });
     } else {

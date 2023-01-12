@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<2e90180483e20415b2806fa3e887636b>>
+ * @generated SignedSource<<f21c64895f4b17615b7ccd85b19c995d>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -10,7 +10,7 @@
 
 import { ConcreteRequest, Query } from 'relay-runtime';
 import { FragmentRefs } from "relay-runtime";
-export type Filter = "active" | "all" | "completed" | "%future added value";
+export type Filter = "ACTIVE" | "ALL" | "COMPLETED" | "%future added value";
 export type TodoManagerQuery$variables = {
   filter?: Filter | null;
 };
@@ -46,6 +46,11 @@ v1 = [
     "kind": "Variable",
     "name": "filter",
     "variableName": "filter"
+  },
+  {
+    "kind": "Literal",
+    "name": "first",
+    "value": 50
   }
 ],
 v2 = {
@@ -85,7 +90,7 @@ return {
           {
             "alias": null,
             "args": (v1/*: any*/),
-            "concreteType": "UserTodosConnection",
+            "concreteType": "UserTodos_Connection",
             "kind": "LinkedField",
             "name": "todos",
             "plural": false,
@@ -93,7 +98,7 @@ return {
               {
                 "alias": null,
                 "args": null,
-                "concreteType": "UserTodosConnectionEdge",
+                "concreteType": "TodoEdge",
                 "kind": "LinkedField",
                 "name": "edges",
                 "plural": true,
@@ -156,7 +161,7 @@ return {
           {
             "alias": null,
             "args": (v1/*: any*/),
-            "concreteType": "UserTodosConnection",
+            "concreteType": "UserTodos_Connection",
             "kind": "LinkedField",
             "name": "todos",
             "plural": false,
@@ -164,7 +169,7 @@ return {
               {
                 "alias": null,
                 "args": null,
-                "concreteType": "UserTodosConnectionEdge",
+                "concreteType": "TodoEdge",
                 "kind": "LinkedField",
                 "name": "edges",
                 "plural": true,
@@ -223,16 +228,16 @@ return {
     ]
   },
   "params": {
-    "cacheID": "1ce752349750d63b246b33942dd9056c",
+    "cacheID": "bcf56a340a830624345745031a34b6fe",
     "id": null,
     "metadata": {},
     "name": "TodoManagerQuery",
     "operationKind": "query",
-    "text": "query TodoManagerQuery(\n  $filter: Filter\n) {\n  viewer {\n    todos(filter: $filter) {\n      edges {\n        node {\n          id\n          ...TodoListItemFragment\n        }\n      }\n      ...ToggleAllFragment\n      ...TodoFooterFragment\n    }\n    id\n  }\n}\n\nfragment TodoEditInputFragment on Todo {\n  id\n  text\n  completed\n}\n\nfragment TodoFooterFragment on UserTodosConnection {\n  totalCount\n  completedCount\n}\n\nfragment TodoListItemFragment on Todo {\n  id\n  completed\n  ...TodoEditInputFragment\n}\n\nfragment ToggleAllFragment on UserTodosConnection {\n  totalCount\n  completedCount\n}\n"
+    "text": "query TodoManagerQuery(\n  $filter: Filter\n) {\n  viewer {\n    todos(first: 50, filter: $filter) {\n      edges {\n        node {\n          id\n          ...TodoListItemFragment\n        }\n      }\n      ...ToggleAllFragment\n      ...TodoFooterFragment\n    }\n    id\n  }\n}\n\nfragment TodoEditInputFragment on Todo {\n  id\n  text\n  completed\n}\n\nfragment TodoFooterFragment on UserTodos_Connection {\n  totalCount\n  completedCount\n}\n\nfragment TodoListItemFragment on Todo {\n  id\n  completed\n  ...TodoEditInputFragment\n}\n\nfragment ToggleAllFragment on UserTodos_Connection {\n  totalCount\n  completedCount\n}\n"
   }
 };
 })();
 
-(node as any).hash = "cd4283c9ebb9846abc5c65f16645966b";
+(node as any).hash = "f72a34d82fab99330bbedf08a4c8c282";
 
 export default node;

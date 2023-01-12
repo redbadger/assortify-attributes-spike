@@ -1,6 +1,6 @@
-import { PrismaClient } from "@prisma/client";
+import prismaModule from "@prisma/client";
 
-const prisma = new PrismaClient();
+const prisma = new prismaModule.PrismaClient();
 
 const userid = process.env.DEV_USER_ID || "parklife";
 

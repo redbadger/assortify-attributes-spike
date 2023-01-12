@@ -1,16 +1,8 @@
 import { Alert, AlertTitle } from "@mui/material";
-import { useEffect } from "react";
 import { FallbackProps } from "react-error-boundary";
 import { AuthenticationError, NetworkError } from "../utils/errors";
-import signOut from "../utils/signOut";
 
 const Error = ({ error }: FallbackProps) => {
-  useEffect(() => {
-    if (error instanceof AuthenticationError) {
-      signOut();
-    }
-  }, [error]);
-
   if (error instanceof AuthenticationError) {
     return null;
   }

@@ -6,9 +6,7 @@ const useClientEffect =
 
 const useDocumentTitle = (pageTitle: string) => {
   const context = useContext(Context);
-  const title = `${pageTitle ? `${pageTitle} · ` : ""}${
-    context.name || "Dan"
-  }'s Todos`;
+  const title = `${pageTitle ? `${pageTitle} · ` : ""}Hello, world!`;
   context.title = title;
 
   useClientEffect(() => {

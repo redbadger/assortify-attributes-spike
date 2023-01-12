@@ -12,7 +12,7 @@ import {
 } from "./__generated__/ToggleAllSetAllCompletedMutation.graphql";
 
 const fragment = graphql`
-  fragment ToggleAllFragment on UserTodosConnection {
+  fragment ToggleAllFragment on UserTodos_Connection {
     totalCount
     completedCount
   }
@@ -20,7 +20,7 @@ const fragment = graphql`
 
 const setAllCompletedMutation = graphql`
   mutation ToggleAllSetAllCompletedMutation($completed: Boolean) {
-    updateManyTodo(completed: $completed) {
+    updateManyTodo(data: { completed: { set: $completed } }) {
       count
     }
   }

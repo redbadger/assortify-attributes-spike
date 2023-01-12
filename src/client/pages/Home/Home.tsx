@@ -12,9 +12,9 @@ const TodoManager = preloadComponent(import("./TodoManager"));
 
 const Home = () => {
   const { pathname } = useLocation();
-  const filter = (pathname.replace("/", "").toLowerCase() || "all") as Filter;
+  const filter = (pathname.replace("/", "").toUpperCase() || "ALL") as Filter;
 
-  useDocumentTitle(filter !== "all" ? capitalize(filter) : "");
+  useDocumentTitle(filter !== "ALL" ? capitalize(filter) : "");
 
   return (
     <Page>

@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<b6857f1fdc0869e64af19866f4040fac>>
+ * @generated SignedSource<<6d328f3545e45fb93138176c0b1c8d03>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -11,7 +11,7 @@
 import { ConcreteRequest, Mutation } from 'relay-runtime';
 export type ClearCompletedMutation$variables = {};
 export type ClearCompletedMutation$data = {
-  readonly deleteManyCompletedTodo: {
+  readonly deleteManyTodo: {
     readonly count: number;
   };
 };
@@ -24,10 +24,20 @@ const node: ConcreteRequest = (function(){
 var v0 = [
   {
     "alias": null,
-    "args": null,
+    "args": [
+      {
+        "kind": "Literal",
+        "name": "where",
+        "value": {
+          "completed": {
+            "equals": true
+          }
+        }
+      }
+    ],
     "concreteType": "AffectedRowsOutput",
     "kind": "LinkedField",
-    "name": "deleteManyCompletedTodo",
+    "name": "deleteManyTodo",
     "plural": false,
     "selections": [
       {
@@ -38,7 +48,7 @@ var v0 = [
         "storageKey": null
       }
     ],
-    "storageKey": null
+    "storageKey": "deleteManyTodo(where:{\"completed\":{\"equals\":true}})"
   }
 ];
 return {
@@ -59,16 +69,16 @@ return {
     "selections": (v0/*: any*/)
   },
   "params": {
-    "cacheID": "4e2ad29e9fd175450c2673261a4e9ee1",
+    "cacheID": "334cd2448ad11ab1bd741e707c43e25d",
     "id": null,
     "metadata": {},
     "name": "ClearCompletedMutation",
     "operationKind": "mutation",
-    "text": "mutation ClearCompletedMutation {\n  deleteManyCompletedTodo {\n    count\n  }\n}\n"
+    "text": "mutation ClearCompletedMutation {\n  deleteManyTodo(where: {completed: {equals: true}}) {\n    count\n  }\n}\n"
   }
 };
 })();
 
-(node as any).hash = "71aa69e160554fafd37bcafae5eae372";
+(node as any).hash = "44c8515860f8e4c2e496bc311573e5cd";
 
 export default node;

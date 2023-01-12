@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<29ac0c537dc0bfc083ff167f1f0fadb5>>
+ * @generated SignedSource<<d45e9a9118728f2fded9ee624152a4df>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -37,9 +37,20 @@ v1 = [
     "alias": null,
     "args": [
       {
-        "kind": "Variable",
-        "name": "text",
-        "variableName": "text"
+        "fields": [
+          {
+            "kind": "Literal",
+            "name": "completed",
+            "value": false
+          },
+          {
+            "kind": "Variable",
+            "name": "text",
+            "variableName": "text"
+          }
+        ],
+        "kind": "ObjectValue",
+        "name": "data"
       }
     ],
     "concreteType": "Todo",
@@ -90,16 +101,16 @@ return {
     "selections": (v1/*: any*/)
   },
   "params": {
-    "cacheID": "7349dd3f4558285ade9d1d4b881865ab",
+    "cacheID": "d735baf0a180acedf575c713b84ddeb4",
     "id": null,
     "metadata": {},
     "name": "TodoInputCreateMutation",
     "operationKind": "mutation",
-    "text": "mutation TodoInputCreateMutation(\n  $text: String!\n) {\n  createOneTodo(text: $text) {\n    id\n    text\n    completed\n  }\n}\n"
+    "text": "mutation TodoInputCreateMutation(\n  $text: String!\n) {\n  createOneTodo(data: {text: $text, completed: false}) {\n    id\n    text\n    completed\n  }\n}\n"
   }
 };
 })();
 
-(node as any).hash = "2b24da9167ba68fc3fd216dd54f18d47";
+(node as any).hash = "2117664640611a2c9de21e64142bb419";
 
 export default node;
