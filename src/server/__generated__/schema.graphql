@@ -38,11 +38,124 @@ input NestedStringFilter {
   startsWith: String
 }
 
+input NestedStringNullableFilter {
+  contains: String
+  endsWith: String
+  equals: String
+  gt: String
+  gte: String
+  in: [String!]
+  lt: String
+  lte: String
+  not: NestedStringNullableFilter
+  notIn: [String!]
+  startsWith: String
+}
+
+"""
+PageInfo cursor, as defined in https://facebook.github.io/relay/graphql/connections.htm#sec-undefined.PageInfo
+"""
+type PageInfo {
+  """
+  The cursor corresponding to the last nodes in edges. Null if the connection is empty.
+  """
+  endCursor: String
+
+  """
+  Used to indicate whether more edges exist following the set defined by the clients arguments.
+  """
+  hasNextPage: Boolean!
+
+  """
+  Used to indicate whether more edges exist prior to the set defined by the clients arguments.
+  """
+  hasPreviousPage: Boolean!
+
+  """
+  The cursor corresponding to the first nodes in edges. Null if the connection is empty.
+  """
+  startCursor: String
+}
+
 type Product {
   colorwayName: String!
-  id: ID!
-  ownId: Int!
+  id: Int!
   pc9: String!
+}
+
+type ProductInProductList {
+  exclusive: String
+  id: Int!
+}
+
+input ProductInProductListListRelationFilter {
+  every: ProductInProductListWhereInput
+  none: ProductInProductListWhereInput
+  some: ProductInProductListWhereInput
+}
+
+input ProductInProductListWhereInput {
+  AND: [ProductInProductListWhereInput!]
+  NOT: [ProductInProductListWhereInput!]
+  OR: [ProductInProductListWhereInput!]
+  exclusive: StringNullableFilter
+  id: IntFilter
+  product: ProductWhereInput
+  productId: IntFilter
+  productList: ProductListWhereInput
+  productListId: IntFilter
+}
+
+type ProductList {
+  id: Int!
+  products(
+    """Returns the elements in the list that come after the specified cursor"""
+    after: String
+
+    """Returns the elements in the list that come before the specified cursor"""
+    before: String
+
+    """Returns the first n elements from the list."""
+    first: Int
+
+    """Returns the last n elements from the list."""
+    last: Int
+  ): ProductListProducts_Connection!
+  title: String!
+}
+
+type ProductListProducts_Connection {
+  """
+  https://facebook.github.io/relay/graphql/connections.htm#sec-Edge-Types
+  """
+  edges: [ProductListProducts_Edge!]!
+
+  """
+  https://facebook.github.io/relay/graphql/connections.htm#sec-undefined.PageInfo
+  """
+  pageInfo: PageInfo!
+}
+
+type ProductListProducts_Edge {
+  """https://facebook.github.io/relay/graphql/connections.htm#sec-Cursor"""
+  cursor: String!
+  exclusive: String!
+
+  """https://facebook.github.io/relay/graphql/connections.htm#sec-Node"""
+  node: Product!
+}
+
+input ProductListWhereInput {
+  AND: [ProductListWhereInput!]
+  NOT: [ProductListWhereInput!]
+  OR: [ProductListWhereInput!]
+  id: IntFilter
+  products: ProductInProductListListRelationFilter
+  title: StringFilter
+}
+
+input ProductListWhereUniqueInput {
+  id: Int
 }
 
 input ProductWhereInput {
@@ -52,6 +165,7 @@ input ProductWhereInput {
   colorwayName: StringFilter
   id: IntFilter
   pc9: StringFilter
+  productLists: ProductInProductListListRelationFilter
 }
 
 input ProductWhereUniqueInput {
@@ -60,6 +174,8 @@ input ProductWhereUniqueInput {
 
 type Query {
   product(where: ProductWhereUniqueInput!): Product
+  productList(where: ProductListWhereUniqueInput!): ProductList
+  productLists(after: ProductListWhereUniqueInput, before: ProductListWhereUniqueInput, first: Int, last: Int, where: ProductListWhereInput): [ProductList!]!
   products(after: ProductWhereUniqueInput, before: ProductWhereUniqueInput, first: Int, last: Int, where: ProductWhereInput): [Product!]!
 }
 
@@ -79,6 +195,21 @@ input StringFilter {
   lte: String
   mode: QueryMode
   not: NestedStringFilter
+  notIn: [String!]
+  startsWith: String
+}
+
+input StringNullableFilter {
+  contains: String
+  endsWith: String
+  equals: String
+  gt: String
+  gte: String
+  in: [String!]
+  lt: String
+  lte: String
+  mode: QueryMode
+  not: NestedStringNullableFilter
   notIn: [String!]
   startsWith: String
 }

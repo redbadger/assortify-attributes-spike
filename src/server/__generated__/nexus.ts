@@ -65,6 +65,46 @@ export interface NexusGenInputs {
     notIn?: string[] | null; // [String!]
     startsWith?: string | null; // String
   }
+  NestedStringNullableFilter: { // input type
+    contains?: string | null; // String
+    endsWith?: string | null; // String
+    equals?: string | null; // String
+    gt?: string | null; // String
+    gte?: string | null; // String
+    in?: string[] | null; // [String!]
+    lt?: string | null; // String
+    lte?: string | null; // String
+    not?: NexusGenInputs['NestedStringNullableFilter'] | null; // NestedStringNullableFilter
+    notIn?: string[] | null; // [String!]
+    startsWith?: string | null; // String
+  }
+  ProductInProductListListRelationFilter: { // input type
+    every?: NexusGenInputs['ProductInProductListWhereInput'] | null; // ProductInProductListWhereInput
+    none?: NexusGenInputs['ProductInProductListWhereInput'] | null; // ProductInProductListWhereInput
+    some?: NexusGenInputs['ProductInProductListWhereInput'] | null; // ProductInProductListWhereInput
+  }
+  ProductInProductListWhereInput: { // input type
+    AND?: NexusGenInputs['ProductInProductListWhereInput'][] | null; // [ProductInProductListWhereInput!]
+    NOT?: NexusGenInputs['ProductInProductListWhereInput'][] | null; // [ProductInProductListWhereInput!]
+    OR?: NexusGenInputs['ProductInProductListWhereInput'][] | null; // [ProductInProductListWhereInput!]
+    exclusive?: NexusGenInputs['StringNullableFilter'] | null; // StringNullableFilter
+    id?: NexusGenInputs['IntFilter'] | null; // IntFilter
+    product?: NexusGenInputs['ProductWhereInput'] | null; // ProductWhereInput
+    productId?: NexusGenInputs['IntFilter'] | null; // IntFilter
+    productList?: NexusGenInputs['ProductListWhereInput'] | null; // ProductListWhereInput
+    productListId?: NexusGenInputs['IntFilter'] | null; // IntFilter
+  }
+  ProductListWhereInput: { // input type
+    AND?: NexusGenInputs['ProductListWhereInput'][] | null; // [ProductListWhereInput!]
+    NOT?: NexusGenInputs['ProductListWhereInput'][] | null; // [ProductListWhereInput!]
+    OR?: NexusGenInputs['ProductListWhereInput'][] | null; // [ProductListWhereInput!]
+    id?: NexusGenInputs['IntFilter'] | null; // IntFilter
+    products?: NexusGenInputs['ProductInProductListListRelationFilter'] | null; // ProductInProductListListRelationFilter
+    title?: NexusGenInputs['StringFilter'] | null; // StringFilter
+  }
+  ProductListWhereUniqueInput: { // input type
+    id?: number | null; // Int
+  }
   ProductWhereInput: { // input type
     AND?: NexusGenInputs['ProductWhereInput'][] | null; // [ProductWhereInput!]
     NOT?: NexusGenInputs['ProductWhereInput'][] | null; // [ProductWhereInput!]
@@ -72,6 +112,7 @@ export interface NexusGenInputs {
     colorwayName?: NexusGenInputs['StringFilter'] | null; // StringFilter
     id?: NexusGenInputs['IntFilter'] | null; // IntFilter
     pc9?: NexusGenInputs['StringFilter'] | null; // StringFilter
+    productLists?: NexusGenInputs['ProductInProductListListRelationFilter'] | null; // ProductInProductListListRelationFilter
   }
   ProductWhereUniqueInput: { // input type
     id?: number | null; // Int
@@ -90,6 +131,20 @@ export interface NexusGenInputs {
     notIn?: string[] | null; // [String!]
     startsWith?: string | null; // String
   }
+  StringNullableFilter: { // input type
+    contains?: string | null; // String
+    endsWith?: string | null; // String
+    equals?: string | null; // String
+    gt?: string | null; // String
+    gte?: string | null; // String
+    in?: string[] | null; // [String!]
+    lt?: string | null; // String
+    lte?: string | null; // String
+    mode?: NexusGenEnums['QueryMode'] | null; // QueryMode
+    not?: NexusGenInputs['NestedStringNullableFilter'] | null; // NestedStringNullableFilter
+    notIn?: string[] | null; // [String!]
+    startsWith?: string | null; // String
+  }
 }
 
 export interface NexusGenEnums {
@@ -105,9 +160,32 @@ export interface NexusGenScalars {
 }
 
 export interface NexusGenObjects {
+  PageInfo: { // root type
+    endCursor?: string | null; // String
+    hasNextPage: boolean; // Boolean!
+    hasPreviousPage: boolean; // Boolean!
+    startCursor?: string | null; // String
+  }
   Product: { // root type
     colorwayName: string; // String!
+    id: number; // Int!
     pc9: string; // String!
+  }
+  ProductInProductList: { // root type
+    exclusive?: string | null; // String
+    id: number; // Int!
+  }
+  ProductList: { // root type
+    id: number; // Int!
+    title: string; // String!
+  }
+  ProductListProducts_Connection: { // root type
+    edges: NexusGenRootTypes['ProductListProducts_Edge'][]; // [ProductListProducts_Edge!]!
+    pageInfo: NexusGenRootTypes['PageInfo']; // PageInfo!
+  }
+  ProductListProducts_Edge: { // root type
+    cursor: string; // String!
+    node: NexusGenRootTypes['Product']; // Product!
   }
   Query: {};
 }
@@ -123,35 +201,103 @@ export type NexusGenRootTypes = NexusGenObjects
 export type NexusGenAllTypes = NexusGenRootTypes & NexusGenScalars & NexusGenEnums
 
 export interface NexusGenFieldTypes {
+  PageInfo: { // field return type
+    endCursor: string | null; // String
+    hasNextPage: boolean; // Boolean!
+    hasPreviousPage: boolean; // Boolean!
+    startCursor: string | null; // String
+  }
   Product: { // field return type
     colorwayName: string; // String!
-    id: string; // ID!
-    ownId: number; // Int!
+    id: number; // Int!
     pc9: string; // String!
+  }
+  ProductInProductList: { // field return type
+    exclusive: string | null; // String
+    id: number; // Int!
+  }
+  ProductList: { // field return type
+    id: number; // Int!
+    products: NexusGenRootTypes['ProductListProducts_Connection']; // ProductListProducts_Connection!
+    title: string; // String!
+  }
+  ProductListProducts_Connection: { // field return type
+    edges: NexusGenRootTypes['ProductListProducts_Edge'][]; // [ProductListProducts_Edge!]!
+    pageInfo: NexusGenRootTypes['PageInfo']; // PageInfo!
+  }
+  ProductListProducts_Edge: { // field return type
+    cursor: string; // String!
+    exclusive: string; // String!
+    node: NexusGenRootTypes['Product']; // Product!
   }
   Query: { // field return type
     product: NexusGenRootTypes['Product'] | null; // Product
+    productList: NexusGenRootTypes['ProductList'] | null; // ProductList
+    productLists: NexusGenRootTypes['ProductList'][]; // [ProductList!]!
     products: NexusGenRootTypes['Product'][]; // [Product!]!
   }
 }
 
 export interface NexusGenFieldTypeNames {
+  PageInfo: { // field return type name
+    endCursor: 'String'
+    hasNextPage: 'Boolean'
+    hasPreviousPage: 'Boolean'
+    startCursor: 'String'
+  }
   Product: { // field return type name
     colorwayName: 'String'
-    id: 'ID'
-    ownId: 'Int'
+    id: 'Int'
     pc9: 'String'
+  }
+  ProductInProductList: { // field return type name
+    exclusive: 'String'
+    id: 'Int'
+  }
+  ProductList: { // field return type name
+    id: 'Int'
+    products: 'ProductListProducts_Connection'
+    title: 'String'
+  }
+  ProductListProducts_Connection: { // field return type name
+    edges: 'ProductListProducts_Edge'
+    pageInfo: 'PageInfo'
+  }
+  ProductListProducts_Edge: { // field return type name
+    cursor: 'String'
+    exclusive: 'String'
+    node: 'Product'
   }
   Query: { // field return type name
     product: 'Product'
+    productList: 'ProductList'
+    productLists: 'ProductList'
     products: 'Product'
   }
 }
 
 export interface NexusGenArgTypes {
+  ProductList: {
+    products: { // args
+      after?: string | null; // String
+      before?: string | null; // String
+      first?: number | null; // Int
+      last?: number | null; // Int
+    }
+  }
   Query: {
     product: { // args
       where: NexusGenInputs['ProductWhereUniqueInput']; // ProductWhereUniqueInput!
+    }
+    productList: { // args
+      where: NexusGenInputs['ProductListWhereUniqueInput']; // ProductListWhereUniqueInput!
+    }
+    productLists: { // args
+      after?: NexusGenInputs['ProductListWhereUniqueInput'] | null; // ProductListWhereUniqueInput
+      before?: NexusGenInputs['ProductListWhereUniqueInput'] | null; // ProductListWhereUniqueInput
+      first?: number | null; // Int
+      last?: number | null; // Int
+      where?: NexusGenInputs['ProductListWhereInput'] | null; // ProductListWhereInput
     }
     products: { // args
       after?: NexusGenInputs['ProductWhereUniqueInput'] | null; // ProductWhereUniqueInput

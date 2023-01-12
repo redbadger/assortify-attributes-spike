@@ -19,6 +19,20 @@ const main = async () => {
       },
     ],
   });
+
+  const products = await prisma.product.findMany();
+
+  await prisma.productList.create({
+    data: {
+      title: "My new Assortment",
+      products: {
+        create: products.map(({ id }) => ({
+          product: { connect: { id } },
+          exclusive: `${id}`,
+        })),
+      },
+    },
+  });
 };
 
 main()

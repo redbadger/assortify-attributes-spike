@@ -8,7 +8,25 @@ datasource db {
 }
 
 model Product {
-  id           Int    @id @default(autoincrement())
+  id           Int                    @id @default(autoincrement())
   pc9          String
   colorwayName String
+  productLists ProductInProductList[]
+}
+
+model ProductList {
+  id       Int                    @id @default(autoincrement())
+  title    String
+  products ProductInProductList[]
+}
+
+model ProductInProductList {
+  id            Int          @id @default(autoincrement())
+  product       Product      @relation(fields: [productId], references: [id])
+  productId     Int
+  productList   ProductList? @relation(fields: [productListId], references: [id])
+  productListId Int
+  exclusive     String?
+
+  @@unique([productId, productListId])
 }
