@@ -1,14 +1,11 @@
 import { createServer } from "@graphql-yoga/node";
-import compression from "compression";
 import express from "express";
 import "express-async-errors";
 import helmet from "helmet";
 import path from "path";
-import authRouter from "./auth.js";
 import context from "./context.js";
 import errorHandler from "./errorHandler.js";
 import schema from "./schema.js";
-import session from "./session.js";
 import uiRouter from "./ui.js";
 import plugins from "./yogaPlugins.js";
 
@@ -27,15 +24,9 @@ const getApp = async () => {
     );
   }
 
-  app.use(compression());
-
   if (isProd) {
     app.use(express.static(path.resolve("dist/client/")));
   }
-
-  app.use(session);
-
-  app.use(authRouter);
 
   const graphQLServer = createServer({ schema, context, plugins });
 

@@ -1,17 +1,12 @@
-import { GraphQLYogaError, YogaInitialContext } from "@graphql-yoga/node";
+import { YogaInitialContext } from "@graphql-yoga/node";
 
 export interface Context extends YogaInitialContext {
   userid: string;
 }
 
-const context = ({ req }: { req: { session?: { userid?: string } } }) => {
-  const userid = req.session?.userid;
+const userid = process.env.DEV_USER_ID;
 
-  if (!userid)
-    throw new GraphQLYogaError("You must be signed in", {
-      code: "UNAUTHENTICATED",
-    });
-
+const context = () => {
   return { userid };
 };
 

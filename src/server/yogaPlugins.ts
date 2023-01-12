@@ -1,7 +1,5 @@
-import { authZEnvelopPlugin } from "@graphql-authz/envelop-plugin";
 import { useLogger } from "@graphql-yoga/node";
 import logger from "./logger.js";
-import * as rules from "./rules.js";
 
 const plugins = [
   useLogger({
@@ -17,7 +15,6 @@ const plugins = [
       }
     },
   }),
-  authZEnvelopPlugin({ rules }),
 ];
 
 export default plugins;

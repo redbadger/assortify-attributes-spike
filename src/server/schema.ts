@@ -8,7 +8,6 @@ import { lexicographicSortSchema, printSchema } from "graphql";
 import { isNil, omitBy } from "lodash-es";
 import { Context } from "./context";
 import prisma from "./prismaClient.js";
-import * as rules from "./rules.js";
 
 const isProd = process.env.NODE_ENV === "production";
 
@@ -16,7 +15,6 @@ const builder = new SchemaBuilder<{
   PrismaTypes: PrismaTypes;
   DefaultEdgesNullability: false;
   Context: Context;
-  AuthZRules: keyof typeof rules;
 }>({
   plugins: [AuthzPlugin, PrismaPlugin, RelayPlugin],
   prisma: {
@@ -91,7 +89,10 @@ builder.queryType({
     viewer: t.prismaField({
       type: "User",
       resolve: async (query, _parent, _args, { userid }) =>
-        prisma.user.findUniqueOrThrow({ ...query, where: { id: userid } }),
+        prisma.user.findUniqueOrThrow({
+          ...query,
+          where: { id: userid },
+        }),
     }),
   }),
 });
@@ -110,7 +111,6 @@ builder.mutationField("createOneTodo", (t) =>
 builder.mutationField("updateOneTodo", (t) =>
   t.field({
     type: Todo,
-    authz: { rules: ["IsTodoOwner"] },
     args: {
       id: t.arg.id({ required: true }),
       text: t.arg.string(),
@@ -139,7 +139,6 @@ builder.mutationField("updateManyTodo", (t) =>
 builder.mutationField("deleteOneTodo", (t) =>
   t.field({
     type: Todo,
-    authz: { rules: ["IsTodoOwner"] },
     args: { id: t.arg.id({ required: true }) },
     resolve: (_parent, args) =>
       prisma.todo.delete({
