@@ -2,31 +2,22 @@ import prismaModule from "@prisma/client";
 
 const prisma = new prismaModule.PrismaClient();
 
-const userid = process.env.DEV_USER_ID || "parklife";
-
 const main = async () => {
-  await prisma.user.upsert({
-    where: { id: userid },
-    update: {},
-    create: {
-      id: userid,
-      todos: {
-        create: [
-          {
-            text: "Put trousers on",
-            completed: true,
-          },
-          {
-            text: "Have a cup of tea",
-            completed: false,
-          },
-          {
-            text: "Think about leaving the house",
-            completed: false,
-          },
-        ],
+  await prisma.product.createMany({
+    data: [
+      {
+        pc9: "38004-0257",
+        colorwayName: "38004-0257 REGULAR BLACK",
       },
-    },
+      {
+        pc9: "38004-0278",
+        colorwayName: "38004-0278 NAVY BLUE",
+      },
+      {
+        pc9: "D5465-0010",
+        colorwayName: "D5465-0010 ROYAL BLUE",
+      },
+    ],
   });
 };
 

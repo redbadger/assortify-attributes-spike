@@ -10,33 +10,22 @@ type Pagination = {
 }
 
 // Prisma custom scalar names
-type CustomScalars = 'DateTime'
+type CustomScalars = 'No custom scalars are used in your Prisma Schema.'
 
 // Prisma model type definitions
 interface PrismaModels {
-  User: Prisma.User
-  Todo: Prisma.Todo
+  Product: Prisma.Product
 }
 
 // Prisma input types metadata
 interface NexusPrismaInputs {
   Query: {
-    users: {
-      filtering: 'AND' | 'OR' | 'NOT' | 'id' | 'todos'
-      ordering: 'id'
-    }
-    todos: {
-      filtering: 'AND' | 'OR' | 'NOT' | 'id' | 'createdat' | 'text' | 'completed' | 'userid' | 'user'
-      ordering: 'id' | 'createdat' | 'text' | 'completed' | 'userid'
+    products: {
+      filtering: 'AND' | 'OR' | 'NOT' | 'id' | 'pc9' | 'colorwayName'
+      ordering: 'id' | 'pc9' | 'colorwayName'
     }
   },
-  User: {
-    todos: {
-      filtering: 'AND' | 'OR' | 'NOT' | 'id' | 'createdat' | 'text' | 'completed' | 'userid' | 'user'
-      ordering: 'id' | 'createdat' | 'text' | 'completed' | 'userid'
-    }
-  }
-  Todo: {
+  Product: {
 
   }
 }
@@ -44,43 +33,27 @@ interface NexusPrismaInputs {
 // Prisma output types metadata
 interface NexusPrismaOutputs {
   Query: {
-    user: 'User'
-    users: 'User'
-    todo: 'Todo'
-    todos: 'Todo'
+    product: 'Product'
+    products: 'Product'
   },
   Mutation: {
-    createOneUser: 'User'
-    updateOneUser: 'User'
-    updateManyUser: 'AffectedRowsOutput'
-    deleteOneUser: 'User'
-    deleteManyUser: 'AffectedRowsOutput'
-    upsertOneUser: 'User'
-    createOneTodo: 'Todo'
-    updateOneTodo: 'Todo'
-    updateManyTodo: 'AffectedRowsOutput'
-    deleteOneTodo: 'Todo'
-    deleteManyTodo: 'AffectedRowsOutput'
-    upsertOneTodo: 'Todo'
+    createOneProduct: 'Product'
+    updateOneProduct: 'Product'
+    updateManyProduct: 'AffectedRowsOutput'
+    deleteOneProduct: 'Product'
+    deleteManyProduct: 'AffectedRowsOutput'
+    upsertOneProduct: 'Product'
   },
-  User: {
-    id: 'String'
-    todos: 'Todo'
-  }
-  Todo: {
+  Product: {
     id: 'Int'
-    createdat: 'DateTime'
-    text: 'String'
-    completed: 'Boolean'
-    userid: 'String'
-    user: 'User'
+    pc9: 'String'
+    colorwayName: 'String'
   }
 }
 
 // Helper to gather all methods relative to a model
 interface NexusPrismaMethods {
-  User: Typegen.NexusPrismaFields<'User'>
-  Todo: Typegen.NexusPrismaFields<'Todo'>
+  Product: Typegen.NexusPrismaFields<'Product'>
   Query: Typegen.NexusPrismaFields<'Query'>
   Mutation: Typegen.NexusPrismaFields<'Mutation'>
 }
