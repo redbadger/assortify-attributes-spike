@@ -108,7 +108,7 @@ input ProductInProductListWhereInput {
 
 type ProductList {
   id: Int!
-  products(
+  productListProductConnection(
     """Returns the elements in the list that come after the specified cursor"""
     after: String
 
@@ -120,15 +120,20 @@ type ProductList {
 
     """Returns the last n elements from the list."""
     last: Int
-  ): ProductListProducts_Connection!
+  ): ProductListProductConnection!
   title: String!
 }
 
-type ProductListProducts_Connection {
+type ProductListProduct {
+  product: Product!
+  productInProductList: ProductInProductList!
+}
+
+type ProductListProductConnection {
   """
   https://facebook.github.io/relay/graphql/connections.htm#sec-Edge-Types
   """
-  edges: [ProductListProducts_Edge!]!
+  edges: [ProductListProductEdge!]!
 
   """
   https://facebook.github.io/relay/graphql/connections.htm#sec-undefined.PageInfo
@@ -136,13 +141,12 @@ type ProductListProducts_Connection {
   pageInfo: PageInfo!
 }
 
-type ProductListProducts_Edge {
+type ProductListProductEdge {
   """https://facebook.github.io/relay/graphql/connections.htm#sec-Cursor"""
   cursor: String!
-  exclusive: String!
 
   """https://facebook.github.io/relay/graphql/connections.htm#sec-Node"""
-  node: Product!
+  node: ProductListProduct!
 }
 
 input ProductListWhereInput {

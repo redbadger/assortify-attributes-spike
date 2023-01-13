@@ -179,13 +179,17 @@ export interface NexusGenObjects {
     id: number; // Int!
     title: string; // String!
   }
-  ProductListProducts_Connection: { // root type
-    edges: NexusGenRootTypes['ProductListProducts_Edge'][]; // [ProductListProducts_Edge!]!
+  ProductListProduct: { // root type
+    product: NexusGenRootTypes['Product']; // Product!
+    productInProductList: NexusGenRootTypes['ProductInProductList']; // ProductInProductList!
+  }
+  ProductListProductConnection: { // root type
+    edges: NexusGenRootTypes['ProductListProductEdge'][]; // [ProductListProductEdge!]!
     pageInfo: NexusGenRootTypes['PageInfo']; // PageInfo!
   }
-  ProductListProducts_Edge: { // root type
+  ProductListProductEdge: { // root type
     cursor: string; // String!
-    node: NexusGenRootTypes['Product']; // Product!
+    node: NexusGenRootTypes['ProductListProduct']; // ProductListProduct!
   }
   Query: {};
 }
@@ -218,17 +222,20 @@ export interface NexusGenFieldTypes {
   }
   ProductList: { // field return type
     id: number; // Int!
-    products: NexusGenRootTypes['ProductListProducts_Connection']; // ProductListProducts_Connection!
+    productListProductConnection: NexusGenRootTypes['ProductListProductConnection']; // ProductListProductConnection!
     title: string; // String!
   }
-  ProductListProducts_Connection: { // field return type
-    edges: NexusGenRootTypes['ProductListProducts_Edge'][]; // [ProductListProducts_Edge!]!
+  ProductListProduct: { // field return type
+    product: NexusGenRootTypes['Product']; // Product!
+    productInProductList: NexusGenRootTypes['ProductInProductList']; // ProductInProductList!
+  }
+  ProductListProductConnection: { // field return type
+    edges: NexusGenRootTypes['ProductListProductEdge'][]; // [ProductListProductEdge!]!
     pageInfo: NexusGenRootTypes['PageInfo']; // PageInfo!
   }
-  ProductListProducts_Edge: { // field return type
+  ProductListProductEdge: { // field return type
     cursor: string; // String!
-    exclusive: string; // String!
-    node: NexusGenRootTypes['Product']; // Product!
+    node: NexusGenRootTypes['ProductListProduct']; // ProductListProduct!
   }
   Query: { // field return type
     product: NexusGenRootTypes['Product'] | null; // Product
@@ -256,17 +263,20 @@ export interface NexusGenFieldTypeNames {
   }
   ProductList: { // field return type name
     id: 'Int'
-    products: 'ProductListProducts_Connection'
+    productListProductConnection: 'ProductListProductConnection'
     title: 'String'
   }
-  ProductListProducts_Connection: { // field return type name
-    edges: 'ProductListProducts_Edge'
+  ProductListProduct: { // field return type name
+    product: 'Product'
+    productInProductList: 'ProductInProductList'
+  }
+  ProductListProductConnection: { // field return type name
+    edges: 'ProductListProductEdge'
     pageInfo: 'PageInfo'
   }
-  ProductListProducts_Edge: { // field return type name
+  ProductListProductEdge: { // field return type name
     cursor: 'String'
-    exclusive: 'String'
-    node: 'Product'
+    node: 'ProductListProduct'
   }
   Query: { // field return type name
     product: 'Product'
@@ -278,7 +288,7 @@ export interface NexusGenFieldTypeNames {
 
 export interface NexusGenArgTypes {
   ProductList: {
-    products: { // args
+    productListProductConnection: { // args
       after?: string | null; // String
       before?: string | null; // String
       first?: number | null; // Int

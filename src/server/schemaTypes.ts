@@ -12,43 +12,44 @@ export const Product = objectType({
   },
 });
 
+export const ProductInProductList = objectType({
+  name: "ProductInProductList",
+  definition: (t) => {
+    t.model.id();
+    t.model.exclusive();
+  },
+});
+
+export const ProductListProduct = objectType({
+  name: "ProductListProduct",
+  definition: (t) => {
+    t.field("product", { type: Product });
+    t.field("productInProductList", { type: ProductInProductList });
+  },
+});
+
 export const ProductList = objectType({
   name: "ProductList",
   definition: (t) => {
     t.model.id();
     t.model.title();
 
-    t.connectionField("products", {
-      type: Product,
-      resolve: async ({ id }, args, { prisma }) => {
+    t.connectionField("productListProductConnection", {
+      type: ProductListProduct,
+      nodes: async ({ id }, _args, { prisma }) => {
         const result = await prisma.productInProductList.findMany({
           where: { productListId: { equals: id } },
-          select: { product: true, exclusive: true },
+          select: { product: true, exclusive: true, id: true },
         });
 
-        const connection = connectionFromArray(result, args);
+        const output = result.map((_) => ({
+          product: _.product,
+          productInProductList: omit(_, "product"),
+        }));
 
-        return {
-          ...connection,
-          edges: connection.edges.map((_) => ({
-            ..._,
-            node: _.node.product,
-            ...omit(_.node, "product"),
-          })),
-        };
-      },
-      extendEdge: (t) => {
-        t.string("exclusive", { resolve: (root) => root["exclusive"] });
+        return output;
       },
     });
-  },
-});
-
-export const ProductInProductList = objectType({
-  name: "ProductInProductList",
-  definition: (t) => {
-    t.model.id();
-    t.model.exclusive();
   },
 });
 
