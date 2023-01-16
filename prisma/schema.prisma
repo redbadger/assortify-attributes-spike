@@ -21,12 +21,14 @@ model ProductList {
 }
 
 model ProductInProductList {
-  id            Int          @id @default(autoincrement())
-  product       Product      @relation(fields: [productId], references: [id])
-  productId     Int
-  productList   ProductList? @relation(fields: [productListId], references: [id])
-  productListId Int
-  exclusive     String?
+  id                   Int          @id @default(autoincrement())
+  product              Product      @relation(fields: [productId], references: [id])
+  productId            Int
+  productList          ProductList? @relation(fields: [productListId], references: [id])
+  productListId        Int
+  exclusive            String?
+  exclusiveComments    String?
+  minimumOrderQuantity Int?
 
   @@unique([productId, productListId])
 }

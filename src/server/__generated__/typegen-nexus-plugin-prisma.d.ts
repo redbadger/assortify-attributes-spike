@@ -31,20 +31,20 @@ interface NexusPrismaInputs {
       ordering: 'id' | 'title'
     }
     productInProductLists: {
-      filtering: 'AND' | 'OR' | 'NOT' | 'id' | 'product' | 'productId' | 'productList' | 'productListId' | 'exclusive'
-      ordering: 'id' | 'productId' | 'productListId' | 'exclusive'
+      filtering: 'AND' | 'OR' | 'NOT' | 'id' | 'product' | 'productId' | 'productList' | 'productListId' | 'exclusive' | 'exclusiveComments' | 'minimumOrderQuantity'
+      ordering: 'id' | 'productId' | 'productListId' | 'exclusive' | 'exclusiveComments' | 'minimumOrderQuantity'
     }
   },
   Product: {
     productLists: {
-      filtering: 'AND' | 'OR' | 'NOT' | 'id' | 'product' | 'productId' | 'productList' | 'productListId' | 'exclusive'
-      ordering: 'id' | 'productId' | 'productListId' | 'exclusive'
+      filtering: 'AND' | 'OR' | 'NOT' | 'id' | 'product' | 'productId' | 'productList' | 'productListId' | 'exclusive' | 'exclusiveComments' | 'minimumOrderQuantity'
+      ordering: 'id' | 'productId' | 'productListId' | 'exclusive' | 'exclusiveComments' | 'minimumOrderQuantity'
     }
   }
   ProductList: {
     products: {
-      filtering: 'AND' | 'OR' | 'NOT' | 'id' | 'product' | 'productId' | 'productList' | 'productListId' | 'exclusive'
-      ordering: 'id' | 'productId' | 'productListId' | 'exclusive'
+      filtering: 'AND' | 'OR' | 'NOT' | 'id' | 'product' | 'productId' | 'productList' | 'productListId' | 'exclusive' | 'exclusiveComments' | 'minimumOrderQuantity'
+      ordering: 'id' | 'productId' | 'productListId' | 'exclusive' | 'exclusiveComments' | 'minimumOrderQuantity'
     }
   }
   ProductInProductList: {
@@ -100,6 +100,8 @@ interface NexusPrismaOutputs {
     productList: 'ProductList'
     productListId: 'Int'
     exclusive: 'String'
+    exclusiveComments: 'String'
+    minimumOrderQuantity: 'Int'
   }
 }
 

@@ -22,6 +22,8 @@ export const ProductInProductList = objectType({
       resolve: ({ id }: any) => toGlobalId("ProductInProductList", String(id)),
     });
     t.model.exclusive();
+    t.model.exclusiveComments();
+    t.model.minimumOrderQuantity();
   },
 });
 

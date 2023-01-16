@@ -42,6 +42,16 @@ export interface NexusGenInputs {
     not?: NexusGenInputs['NestedIntFilter'] | null; // NestedIntFilter
     notIn?: number[] | null; // [Int!]
   }
+  IntNullableFilter: { // input type
+    equals?: number | null; // Int
+    gt?: number | null; // Int
+    gte?: number | null; // Int
+    in?: number[] | null; // [Int!]
+    lt?: number | null; // Int
+    lte?: number | null; // Int
+    not?: NexusGenInputs['NestedIntNullableFilter'] | null; // NestedIntNullableFilter
+    notIn?: number[] | null; // [Int!]
+  }
   NestedIntFilter: { // input type
     equals?: number | null; // Int
     gt?: number | null; // Int
@@ -50,6 +60,16 @@ export interface NexusGenInputs {
     lt?: number | null; // Int
     lte?: number | null; // Int
     not?: NexusGenInputs['NestedIntFilter'] | null; // NestedIntFilter
+    notIn?: number[] | null; // [Int!]
+  }
+  NestedIntNullableFilter: { // input type
+    equals?: number | null; // Int
+    gt?: number | null; // Int
+    gte?: number | null; // Int
+    in?: number[] | null; // [Int!]
+    lt?: number | null; // Int
+    lte?: number | null; // Int
+    not?: NexusGenInputs['NestedIntNullableFilter'] | null; // NestedIntNullableFilter
     notIn?: number[] | null; // [Int!]
   }
   NestedStringFilter: { // input type
@@ -88,7 +108,9 @@ export interface NexusGenInputs {
     NOT?: NexusGenInputs['ProductInProductListWhereInput'][] | null; // [ProductInProductListWhereInput!]
     OR?: NexusGenInputs['ProductInProductListWhereInput'][] | null; // [ProductInProductListWhereInput!]
     exclusive?: NexusGenInputs['StringNullableFilter'] | null; // StringNullableFilter
+    exclusiveComments?: NexusGenInputs['StringNullableFilter'] | null; // StringNullableFilter
     id?: NexusGenInputs['IntFilter'] | null; // IntFilter
+    minimumOrderQuantity?: NexusGenInputs['IntNullableFilter'] | null; // IntNullableFilter
     product?: NexusGenInputs['ProductWhereInput'] | null; // ProductWhereInput
     productId?: NexusGenInputs['IntFilter'] | null; // IntFilter
     productList?: NexusGenInputs['ProductListWhereInput'] | null; // ProductListWhereInput
@@ -172,6 +194,8 @@ export interface NexusGenObjects {
   }
   ProductInProductList: { // root type
     exclusive?: string | null; // String
+    exclusiveComments?: string | null; // String
+    minimumOrderQuantity?: number | null; // Int
   }
   ProductList: { // root type
     id: number; // Int!
@@ -216,7 +240,9 @@ export interface NexusGenFieldTypes {
   }
   ProductInProductList: { // field return type
     exclusive: string | null; // String
+    exclusiveComments: string | null; // String
     id: string; // ID!
+    minimumOrderQuantity: number | null; // Int
   }
   ProductList: { // field return type
     id: number; // Int!
@@ -258,7 +284,9 @@ export interface NexusGenFieldTypeNames {
   }
   ProductInProductList: { // field return type name
     exclusive: 'String'
+    exclusiveComments: 'String'
     id: 'ID'
+    minimumOrderQuantity: 'Int'
   }
   ProductList: { // field return type name
     id: 'Int'
