@@ -24,6 +24,10 @@ input IntNullableFilter {
   notIn: [Int!]
 }
 
+type Mutation {
+  updateOneProductInProductList(data: ProductInProductListUpdateInput!, where: ProductInProductListWhereUniqueInput!): ProductInProductList
+}
+
 input NestedIntFilter {
   equals: Int
   gt: Int
@@ -74,6 +78,18 @@ input NestedStringNullableFilter {
   startsWith: String
 }
 
+input NullableIntFieldUpdateOperationsInput {
+  decrement: Int
+  divide: Int
+  increment: Int
+  multiply: Int
+  set: Int
+}
+
+input NullableStringFieldUpdateOperationsInput {
+  set: String
+}
+
 """
 PageInfo cursor, as defined in https://facebook.github.io/relay/graphql/connections.htm#sec-undefined.PageInfo
 """
@@ -102,6 +118,17 @@ type PageInfo {
 type Product {
   colorwayName: String!
   id: ID!
+  ownId: Int!
+  pc9: String!
+}
+
+input ProductCreateOrConnectWithoutProductListsInput {
+  create: ProductCreateWithoutProductListsInput!
+  where: ProductWhereUniqueInput!
+}
+
+input ProductCreateWithoutProductListsInput {
+  colorwayName: String!
   pc9: String!
 }
 
@@ -110,12 +137,26 @@ type ProductInProductList {
   exclusiveComments: String
   id: ID!
   minimumOrderQuantity: Int
+  ownId: Int!
 }
 
 input ProductInProductListListRelationFilter {
   every: ProductInProductListWhereInput
   none: ProductInProductListWhereInput
   some: ProductInProductListWhereInput
+}
+
+input ProductInProductListProductIdProductListIdCompoundUniqueInput {
+  productId: Int!
+  productListId: Int!
+}
+
+input ProductInProductListUpdateInput {
+  exclusive: NullableStringFieldUpdateOperationsInput
+  exclusiveComments: NullableStringFieldUpdateOperationsInput
+  minimumOrderQuantity: NullableIntFieldUpdateOperationsInput
+  product: ProductUpdateOneRequiredWithoutProductListsInput
+  productList: ProductListUpdateOneWithoutProductsInput
 }
 
 input ProductInProductListWhereInput {
@@ -132,8 +173,14 @@ input ProductInProductListWhereInput {
   productListId: IntFilter
 }
 
+input ProductInProductListWhereUniqueInput {
+  id: Int
+  productId_productListId: ProductInProductListProductIdProductListIdCompoundUniqueInput
+}
+
 type ProductList {
-  id: Int!
+  id: ID!
+  ownId: Int!
   productListProductConnection(
     """Returns the elements in the list that come after the specified cursor"""
     after: String
@@ -147,6 +194,15 @@ type ProductList {
     """Returns the last n elements from the list."""
     last: Int
   ): ProductListProductConnection!
+  title: String!
+}
+
+input ProductListCreateOrConnectWithoutProductsInput {
+  create: ProductListCreateWithoutProductsInput!
+  where: ProductListWhereUniqueInput!
+}
+
+input ProductListCreateWithoutProductsInput {
   title: String!
 }
 
@@ -176,6 +232,25 @@ type ProductListProductEdge {
   node: ProductListProduct!
 }
 
+input ProductListUpdateOneWithoutProductsInput {
+  connect: ProductListWhereUniqueInput
+  connectOrCreate: ProductListCreateOrConnectWithoutProductsInput
+  create: ProductListCreateWithoutProductsInput
+  delete: Boolean
+  disconnect: Boolean
+  update: ProductListUpdateWithoutProductsInput
+  upsert: ProductListUpsertWithoutProductsInput
+}
+
+input ProductListUpdateWithoutProductsInput {
+  title: StringFieldUpdateOperationsInput
+}
+
+input ProductListUpsertWithoutProductsInput {
+  create: ProductListCreateWithoutProductsInput!
+  update: ProductListUpdateWithoutProductsInput!
+}
+
 input ProductListWhereInput {
   AND: [ProductListWhereInput!]
   NOT: [ProductListWhereInput!]
@@ -187,6 +262,24 @@ input ProductListWhereInput {
 
 input ProductListWhereUniqueInput {
   id: Int
+}
+
+input ProductUpdateOneRequiredWithoutProductListsInput {
+  connect: ProductWhereUniqueInput
+  connectOrCreate: ProductCreateOrConnectWithoutProductListsInput
+  create: ProductCreateWithoutProductListsInput
+  update: ProductUpdateWithoutProductListsInput
+  upsert: ProductUpsertWithoutProductListsInput
+}
+
+input ProductUpdateWithoutProductListsInput {
+  colorwayName: StringFieldUpdateOperationsInput
+  pc9: StringFieldUpdateOperationsInput
+}
+
+input ProductUpsertWithoutProductListsInput {
+  create: ProductCreateWithoutProductListsInput!
+  update: ProductUpdateWithoutProductListsInput!
 }
 
 input ProductWhereInput {
@@ -213,6 +306,10 @@ type Query {
 enum QueryMode {
   default
   insensitive
+}
+
+input StringFieldUpdateOperationsInput {
+  set: String
 }
 
 input StringFilter {

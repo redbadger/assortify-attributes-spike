@@ -24,10 +24,10 @@ const fragment = graphql`
       edges {
         node {
           product {
-            id
             ...TableProductFragment @relay(mask: false)
           }
           productInProductList {
+            ownId
             exclusive
             exclusiveComments
             minimumOrderQuantity
@@ -66,16 +66,18 @@ const Table = ({ productList }: { productList: TableFragment$key }) => {
 
   const gridRef = useRef<AgGridReact<typeof rowData[0]>>(null);
 
-  const [edits, setEdits] = useState<{ [id: string]: { [key: string]: any } }>(
-    {}
-  );
+  const [edits, setEdits] = useState<{
+    [ownId: string]: { [key: string]: any };
+  }>({});
 
   const handleCellValueChanged = useCallback(
     (_: CellValueChangedEvent<typeof rowData[0]>) => {
       setEdits(
         produce((edits) => {
           _.api.forEachNode((node) => {
-            const nodeOnServer = rowData.find((_) => _.id === node.data?.id);
+            const nodeOnServer = rowData.find(
+              (_) => _.ownId === node.data?.ownId
+            );
 
             Object.entries(node.data ?? []).map(([key, value]) => {
               const isEditable = _.columnApi
@@ -83,18 +85,18 @@ const Table = ({ productList }: { productList: TableFragment$key }) => {
                 ?.getColDef().editable;
 
               if (isEditable) {
-                const id = node.data?.id;
+                const ownId = node.data?.ownId;
 
-                if (id) {
+                if (ownId) {
                   const valueEdited = value !== nodeOnServer?.[key];
 
                   if (valueEdited) {
-                    if (!edits[id]) edits[id] = {};
-                    edits[id][key] = value;
-                  } else if (edits[id]) {
-                    delete edits[id][key];
-                    if (!Object.keys(edits[id]).length) {
-                      delete edits[id];
+                    if (!edits[ownId]) edits[ownId] = {};
+                    edits[ownId][key] = value;
+                  } else if (edits[ownId]) {
+                    delete edits[ownId][key];
+                    if (!Object.keys(edits[ownId]).length) {
+                      delete edits[ownId];
                     }
                   }
                 }
@@ -117,7 +119,7 @@ const Table = ({ productList }: { productList: TableFragment$key }) => {
     () => ({
       resizable: true,
       cellStyle: (_) =>
-        edits[_.data.id]?.[_.column.colId] !== undefined
+        edits[_.data.ownId]?.[_.column.colId] !== undefined
           ? { backgroundColor: "rgba(25, 118, 210, 0.2)" }
           : null,
     }),

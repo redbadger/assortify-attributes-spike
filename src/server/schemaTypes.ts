@@ -1,7 +1,7 @@
 import { PrismaSelect } from "@paljs/plugins";
 import { toGlobalId } from "graphql-relay";
 import { pick } from "lodash-es";
-import { objectType, queryType } from "nexus";
+import { mutationType, objectType, queryType } from "nexus";
 import "./__generated__/nexus.js";
 
 export const Product = objectType({
@@ -10,6 +10,7 @@ export const Product = objectType({
     t.nonNull.id("id", {
       resolve: ({ id }: any) => toGlobalId("Product", String(id)),
     });
+    t.model.id({ alias: "ownId" });
     t.model.pc9();
     t.model.colorwayName();
   },
@@ -21,6 +22,7 @@ export const ProductInProductList = objectType({
     t.nonNull.id("id", {
       resolve: ({ id }: any) => toGlobalId("ProductInProductList", String(id)),
     });
+    t.model.id({ alias: "ownId" });
     t.model.exclusive();
     t.model.exclusiveComments();
     t.model.minimumOrderQuantity();
@@ -41,12 +43,15 @@ export const ProductListProduct = objectType({
 export const ProductList = objectType({
   name: "ProductList",
   definition: (t) => {
-    t.model.id();
+    t.nonNull.id("id", {
+      resolve: ({ id }: any) => toGlobalId("ProductList", String(id)),
+    });
+    t.model.id({ alias: "ownId" });
     t.model.title();
 
     t.connectionField("productListProductConnection", {
       type: ProductListProduct,
-      nodes: async ({ id }, _args, { prisma }, info) => {
+      nodes: async ({ id }: any, _args, { prisma }, info) => {
         const nodeSelect = new PrismaSelect(info).value.select.edges.select.node
           .select;
 
@@ -89,5 +94,11 @@ export const Query = queryType({
 
     t.crud.productList();
     t.crud.productLists({ filtering: true });
+  },
+});
+
+export const Mutation = mutationType({
+  definition: (t) => {
+    t.crud.updateOneProductInProductList();
   },
 });
