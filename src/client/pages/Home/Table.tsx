@@ -25,6 +25,18 @@ export const productInProductListFragment = graphql`
   }
 `;
 
+const columnDefs = [
+  { field: "pc9" },
+  { field: "colorwayName" },
+  { field: "exclusive", editable: true },
+  { field: "exclusiveComments", editable: true },
+  {
+    field: "minimumOrderQuantity",
+    editable: true,
+    valueParser: (_) => Number(_.newValue),
+  },
+];
+
 const fragment = graphql`
   fragment TableFragment on ProductList {
     productListProductConnection(first: 10) {
@@ -54,24 +66,13 @@ const mutation = graphql`
   }
 `;
 
-const columnDefs = [
-  { field: "pc9" },
-  { field: "colorwayName" },
-  { field: "exclusive", editable: true },
-  { field: "exclusiveComments", editable: true },
-  {
-    field: "minimumOrderQuantity",
-    editable: true,
-    valueParser: (_) => Number(_.newValue),
-  },
-];
-
 const Table = ({ productList }: { productList: TableFragment$key }) => {
   const {
     productListProductConnection: { edges },
   } = useFragment(fragment, productList);
 
   const [commit] = useMutation(mutation);
+
   const [resetCount, setResetCount] = useState(0);
 
   const rowData = useMemo(
@@ -89,7 +90,7 @@ const Table = ({ productList }: { productList: TableFragment$key }) => {
     [ownId: string]: { [key: string]: any };
   }>({});
 
-  const handleCellValueChanged = useCallback(
+  const updateEdits = useCallback(
     (_: AgGridCommon<typeof rowData[0]>) => {
       setEdits(
         produce((edits) => {
@@ -131,7 +132,7 @@ const Table = ({ productList }: { productList: TableFragment$key }) => {
 
   useEffect(() => {
     if (gridRef.current?.api?.forEachNode) {
-      handleCellValueChanged(gridRef.current);
+      updateEdits(gridRef.current);
     }
   }, [edges, resetCount]);
 
@@ -147,9 +148,7 @@ const Table = ({ productList }: { productList: TableFragment$key }) => {
       data: value,
     }));
 
-    commit({
-      variables: { data },
-    });
+    commit({ variables: { data } });
   }, [edits]);
 
   const defaultColDef = useMemo(
@@ -178,7 +177,7 @@ const Table = ({ productList }: { productList: TableFragment$key }) => {
         columnDefs={columnDefs}
         rowData={rowData}
         onFirstDataRendered={handleFirstDataRendered}
-        onCellValueChanged={handleCellValueChanged}
+        onCellValueChanged={updateEdits}
       />
       <pre tw="p-4 bg-gray-200">{JSON.stringify(edits, null, 2)}</pre>
       <Button
