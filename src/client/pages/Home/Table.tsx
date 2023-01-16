@@ -1,3 +1,7 @@
+import "ag-grid-community/styles/ag-grid.css";
+import "ag-grid-community/styles/ag-theme-alpine.css";
+import { AgGridReact } from "ag-grid-react";
+import { useCallback, useMemo, useRef } from "react";
 import { graphql, useFragment } from "react-relay";
 import "twin.macro";
 import { TableFragment$key } from "./__generated__/TableFragment.graphql";
@@ -28,13 +32,51 @@ const fragment = graphql`
   }
 `;
 
+const defaultColDef = {
+  resizable: true,
+};
+
+const columnDefs = [
+  { field: "pc9" },
+  { field: "colorwayName" },
+  { field: "exclusive", editable: true },
+  { field: "exclusiveComments", editable: true },
+  {
+    field: "minimumOrderQuantity",
+    editable: true,
+    valueParser: (_) => Number(_.newValue),
+  },
+];
+
 const Table = ({ productList }: { productList: TableFragment$key }) => {
-  const data = useFragment(fragment, productList);
+  const {
+    productListProductConnection: { edges },
+  } = useFragment(fragment, productList);
+
+  const rowData = useMemo(
+    () =>
+      edges.map(({ node }) => ({
+        ...node.product,
+        ...node.productInProductList,
+      })),
+    [edges]
+  );
+
+  const gridRef = useRef<AgGridReact<typeof rowData[0]>>(null);
 
   return (
-    <pre tw="overflow-auto bg-gray-200 p-4 text-sm">
-      {JSON.stringify(data, null, 2)}
-    </pre>
+    <div className="ag-theme-alpine" tw="w-full h-96">
+      <AgGridReact
+        ref={gridRef}
+        defaultColDef={defaultColDef}
+        columnDefs={columnDefs}
+        rowData={rowData}
+        onFirstDataRendered={useCallback(
+          (_) => _.columnApi.autoSizeAllColumns(),
+          []
+        )}
+      />
+    </div>
   );
 };
 

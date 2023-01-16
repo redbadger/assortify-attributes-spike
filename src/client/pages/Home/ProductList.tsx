@@ -18,7 +18,7 @@ const ProductList = () => {
 
   return productList ? (
     <>
-      <Typography variant="h6" component="h2">
+      <Typography variant="h6" component="h2" tw="mb-3">
         {productList.title}
       </Typography>
       <Table productList={productList} />
