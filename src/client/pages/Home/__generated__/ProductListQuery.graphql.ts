@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<29b5a153368182d0f26478e130a1da12>>
+ * @generated SignedSource<<be0a34a1c3abcb0013d5f608376f6c4f>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -140,6 +140,7 @@ return {
                         "name": "product",
                         "plural": false,
                         "selections": [
+                          (v3/*: any*/),
                           {
                             "alias": null,
                             "args": null,
@@ -153,8 +154,7 @@ return {
                             "kind": "ScalarField",
                             "name": "colorwayName",
                             "storageKey": null
-                          },
-                          (v3/*: any*/)
+                          }
                         ],
                         "storageKey": null
                       },
@@ -207,12 +207,12 @@ return {
     ]
   },
   "params": {
-    "cacheID": "3fbe1fa03de81430305bccf1834ef110",
+    "cacheID": "afa5813ded027ec01d245cbf971b9cb4",
     "id": null,
     "metadata": {},
     "name": "ProductListQuery",
     "operationKind": "query",
-    "text": "query ProductListQuery(\n  $id: Int\n) {\n  productList(where: {id: $id}) {\n    title\n    ...TableFragment\n  }\n}\n\nfragment TableFragment on ProductList {\n  productListProductConnection(first: 10) {\n    edges {\n      node {\n        product {\n          pc9\n          colorwayName\n          id\n        }\n        productInProductList {\n          exclusive\n          exclusiveComments\n          minimumOrderQuantity\n          id\n        }\n        id\n      }\n    }\n  }\n}\n"
+    "text": "query ProductListQuery(\n  $id: Int\n) {\n  productList(where: {id: $id}) {\n    title\n    ...TableFragment\n  }\n}\n\nfragment TableFragment on ProductList {\n  productListProductConnection(first: 10) {\n    edges {\n      node {\n        product {\n          id\n          pc9\n          colorwayName\n        }\n        productInProductList {\n          exclusive\n          exclusiveComments\n          minimumOrderQuantity\n          id\n        }\n        id\n      }\n    }\n  }\n}\n"
   }
 };
 })();

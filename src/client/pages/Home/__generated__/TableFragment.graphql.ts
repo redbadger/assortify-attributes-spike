@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<2771b6949597f657439ac6fb9115a8b6>>
+ * @generated SignedSource<<a7f63a6af920c6e88a01b32ed04bf728>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -16,6 +16,7 @@ export type TableFragment$data = {
       readonly node: {
         readonly product: {
           readonly colorwayName: string;
+          readonly id: string;
           readonly pc9: string;
         };
         readonly productInProductList: {
@@ -81,6 +82,13 @@ const node: ReaderFragment = {
                       "alias": null,
                       "args": null,
                       "kind": "ScalarField",
+                      "name": "id",
+                      "storageKey": null
+                    },
+                    {
+                      "alias": null,
+                      "args": null,
+                      "kind": "ScalarField",
                       "name": "pc9",
                       "storageKey": null
                     },
@@ -140,6 +148,6 @@ const node: ReaderFragment = {
   "abstractKey": null
 };
 
-(node as any).hash = "d1cfcca224106bd93463370dae69489a";
+(node as any).hash = "0f9c95a38d6caf7a02a3d007f1b60676";
 
 export default node;
