@@ -132,6 +132,10 @@ export interface NexusGenInputs {
     product?: NexusGenInputs['ProductUpdateOneRequiredWithoutProductListsInput'] | null; // ProductUpdateOneRequiredWithoutProductListsInput
     productList?: NexusGenInputs['ProductListUpdateOneWithoutProductsInput'] | null; // ProductListUpdateOneWithoutProductsInput
   }
+  ProductInProductListUpdateRowInput: { // input type
+    data: NexusGenInputs['ProductInProductListUpdateInput']; // ProductInProductListUpdateInput!
+    where: NexusGenInputs['ProductInProductListWhereUniqueInput']; // ProductInProductListWhereUniqueInput!
+  }
   ProductInProductListWhereInput: { // input type
     AND?: NexusGenInputs['ProductInProductListWhereInput'][] | null; // [ProductInProductListWhereInput!]
     NOT?: NexusGenInputs['ProductInProductListWhereInput'][] | null; // [ProductInProductListWhereInput!]
@@ -302,6 +306,7 @@ export type NexusGenAllTypes = NexusGenRootTypes & NexusGenScalars & NexusGenEnu
 
 export interface NexusGenFieldTypes {
   Mutation: { // field return type
+    updateManyProductInProductList: NexusGenRootTypes['ProductInProductList'][]; // [ProductInProductList!]!
     updateOneProductInProductList: NexusGenRootTypes['ProductInProductList'] | null; // ProductInProductList
   }
   PageInfo: { // field return type
@@ -352,6 +357,7 @@ export interface NexusGenFieldTypes {
 
 export interface NexusGenFieldTypeNames {
   Mutation: { // field return type name
+    updateManyProductInProductList: 'ProductInProductList'
     updateOneProductInProductList: 'ProductInProductList'
   }
   PageInfo: { // field return type name
@@ -402,6 +408,9 @@ export interface NexusGenFieldTypeNames {
 
 export interface NexusGenArgTypes {
   Mutation: {
+    updateManyProductInProductList: { // args
+      data?: NexusGenInputs['ProductInProductListUpdateRowInput'][] | null; // [ProductInProductListUpdateRowInput!]
+    }
     updateOneProductInProductList: { // args
       data: NexusGenInputs['ProductInProductListUpdateInput']; // ProductInProductListUpdateInput!
       where: NexusGenInputs['ProductInProductListWhereUniqueInput']; // ProductInProductListWhereUniqueInput!

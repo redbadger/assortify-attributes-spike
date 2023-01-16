@@ -1,7 +1,15 @@
 import { PrismaSelect } from "@paljs/plugins";
+import { Prisma } from "@prisma/client";
 import { toGlobalId } from "graphql-relay";
 import { pick } from "lodash-es";
-import { mutationType, objectType, queryType } from "nexus";
+import {
+  inputObjectType,
+  list,
+  mutationType,
+  nonNull,
+  objectType,
+  queryType,
+} from "nexus";
 import "./__generated__/nexus.js";
 
 export const Product = objectType({
@@ -97,8 +105,33 @@ export const Query = queryType({
   },
 });
 
+export const ProductInProductListUpdateRowInput = inputObjectType({
+  name: "ProductInProductListUpdateRowInput",
+  definition: (t) => {
+    t.nonNull.field("data", { type: "ProductInProductListUpdateInput" });
+    t.nonNull.field("where", { type: "ProductInProductListWhereUniqueInput" });
+  },
+});
+
 export const Mutation = mutationType({
   definition: (t) => {
     t.crud.updateOneProductInProductList();
+
+    t.field("updateManyProductInProductList", {
+      type: list(nonNull("ProductInProductList")),
+      args: { data: list(nonNull("ProductInProductListUpdateRowInput")) },
+      resolve: (_root, args, { prisma }) => {
+        if (!args.data) throw new Error("Missing args");
+
+        return prisma.$transaction(
+          args.data.map((_) =>
+            prisma.productInProductList.update({
+              where: _.where as Prisma.ProductInProductListWhereUniqueInput,
+              data: _.data as Prisma.ProductInProductListUpdateInput,
+            })
+          )
+        );
+      },
+    });
   },
 });

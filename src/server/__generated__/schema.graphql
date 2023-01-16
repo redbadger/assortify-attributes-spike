@@ -25,6 +25,7 @@ input IntNullableFilter {
 }
 
 type Mutation {
+  updateManyProductInProductList(data: [ProductInProductListUpdateRowInput!]): [ProductInProductList!]!
   updateOneProductInProductList(data: ProductInProductListUpdateInput!, where: ProductInProductListWhereUniqueInput!): ProductInProductList
 }
 
@@ -157,6 +158,11 @@ input ProductInProductListUpdateInput {
   minimumOrderQuantity: NullableIntFieldUpdateOperationsInput
   product: ProductUpdateOneRequiredWithoutProductListsInput
   productList: ProductListUpdateOneWithoutProductsInput
+}
+
+input ProductInProductListUpdateRowInput {
+  data: ProductInProductListUpdateInput!
+  where: ProductInProductListWhereUniqueInput!
 }
 
 input ProductInProductListWhereInput {
