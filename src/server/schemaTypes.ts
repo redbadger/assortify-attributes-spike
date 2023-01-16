@@ -33,8 +33,8 @@ export const ProductListProduct = objectType({
     t.nonNull.id("id", {
       resolve: ({ id }: any) => toGlobalId("ProductListProduct", String(id)),
     });
-    t.field("product", { type: Product });
-    t.field("productInProductList", { type: ProductInProductList });
+    t.nonNull.field("product", { type: Product });
+    t.nonNull.field("productInProductList", { type: ProductInProductList });
   },
 });
 

@@ -1,5 +1,4 @@
 import { Global } from "@emotion/react";
-import { Container } from "@mui/material";
 import { ReactNode } from "react";
 import { ErrorBoundary } from "react-error-boundary";
 import { css } from "twin.macro";
@@ -22,16 +21,9 @@ const Page = ({ children }: { children: ReactNode }) => {
         `}
       />
       <AppBar />
-      <Container maxWidth="sm">
-        <main
-          tw="my-4 sm:my-10"
-          css={css`
-            min-width: 300px;
-          `}
-        >
-          <ErrorBoundary FallbackComponent={Error}>{children}</ErrorBoundary>
-        </main>
-      </Container>
+      <main tw="p-4 min-w-[300px]">
+        <ErrorBoundary FallbackComponent={Error}>{children}</ErrorBoundary>
+      </main>
     </>
   );
 };

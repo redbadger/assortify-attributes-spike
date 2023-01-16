@@ -1,16 +1,17 @@
-import { Card } from "@mui/material";
 import "twin.macro";
 import Page from "../../components/Page";
+import Suspense from "../../components/Suspense";
 import useDocumentTitle from "../../hooks/useDocumentTitle";
+import ProductList from "./ProductList";
 
 const Home = () => {
   useDocumentTitle();
 
   return (
     <Page>
-      <Card tw="px-4">
-        <p>Hello, world!</p>
-      </Card>
+      <Suspense fallback={<p tw="text-center">Am load...</p>}>
+        <ProductList />
+      </Suspense>
     </Page>
   );
 };

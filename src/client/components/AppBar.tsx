@@ -20,7 +20,7 @@ const AppBar = () => {
           background-color: ${theme.palette.primary.dark};
         `}
       />
-      <Container maxWidth="sm">
+      <Container>
         <Toolbar tw="justify-between">
           <a
             css={[
@@ -33,7 +33,7 @@ const AppBar = () => {
             href="/"
           >
             <Typography variant="h5" component="h1">
-              Dan&apos;s Todos
+              Assortify Attributes Spike
             </Typography>
           </a>
         </Toolbar>
