@@ -1,14 +1,15 @@
 import { PrismaSelect } from "@paljs/plugins";
-import prismaModule from "@prisma/client";
-import { connectionFromArray } from "graphql-relay";
-import { omit, pick } from "lodash-es";
-import { objectType, queryType, unionType } from "nexus";
+import { toGlobalId } from "graphql-relay";
+import { pick } from "lodash-es";
+import { objectType, queryType } from "nexus";
 import "./__generated__/nexus.js";
 
 export const Product = objectType({
   name: "Product",
   definition: (t) => {
-    t.model.id();
+    t.nonNull.id("id", {
+      resolve: ({ id }: any) => toGlobalId("Product", String(id)),
+    });
     t.model.pc9();
     t.model.colorwayName();
   },
@@ -17,7 +18,9 @@ export const Product = objectType({
 export const ProductInProductList = objectType({
   name: "ProductInProductList",
   definition: (t) => {
-    t.model.id();
+    t.nonNull.id("id", {
+      resolve: ({ id }: any) => toGlobalId("ProductInProductList", String(id)),
+    });
     t.model.exclusive();
   },
 });
@@ -25,19 +28,13 @@ export const ProductInProductList = objectType({
 export const ProductListProduct = objectType({
   name: "ProductListProduct",
   definition: (t) => {
+    t.nonNull.id("id", {
+      resolve: ({ id }: any) => toGlobalId("ProductListProduct", String(id)),
+    });
     t.field("product", { type: Product });
     t.field("productInProductList", { type: ProductInProductList });
   },
 });
-
-// export const ProductListProduct = unionType({
-//   name: "ProductListProduct",
-//   definition: (t) => {
-//     t.members("Product", "ProductInProductList");
-//   },
-//   resolveType: (item) =>
-//     "pc9" in item ? Product.name : ProductInProductList.name,
-// });
 
 export const ProductList = objectType({
   name: "ProductList",
@@ -48,52 +45,36 @@ export const ProductList = objectType({
     t.connectionField("productListProductConnection", {
       type: ProductListProduct,
       nodes: async ({ id }, _args, { prisma }, info) => {
-        const select = new PrismaSelect(info).value;
+        const nodeSelect = new PrismaSelect(info).value.select.edges.select.node
+          .select;
 
-        const productFieldNames = Object.keys(
-          select.select.edges.select.node.select.product.select
-        );
-
+        const productFieldNames = Object.keys(nodeSelect.product.select);
         const productInProductListFieldNames = Object.keys(
-          select.select.edges.select.node.select.productInProductList.select
+          nodeSelect.productInProductList.select
         );
 
-        console.log(productFieldNames, productInProductListFieldNames);
-
-        // console.log(
-        //   prismaModule.Prisma.sql`${[
-        //     ...productFieldNames,
-        //     ...productInProductListFieldNames,
-        //   ]
-        //     .map((_) => `"${_}"`)
-        //     .join(", ")}`
-        // );
-
-        const rawResult = await prisma.$queryRaw`
+        const result = await prisma.$queryRaw`
           SELECT
-            j.id jid,
+            pipl.id piplid,
             p.id pid,
             *
           FROM
-            "ProductInProductList" j
+            "ProductInProductList" pipl
           INNER JOIN "Product" p
-            ON p.id = j."productId"
+            ON p.id = pipl."productId"
           WHERE "productListId" = ${id}
         `;
 
-        console.log(rawResult);
-
-        const rawOutput = rawResult.map((_) => ({
+        const output = result.map((_) => ({
+          id: _.piplid,
           product: { ...pick(_, productFieldNames), id: _.pid },
           productInProductList: {
             ...pick(_, productInProductListFieldNames),
-            id: _.jid,
+            id: _.piplid,
           },
         }));
 
-        console.log(rawOutput);
-
-        return rawOutput;
+        return output;
       },
     });
   },

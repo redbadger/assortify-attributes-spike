@@ -79,13 +79,13 @@ type PageInfo {
 
 type Product {
   colorwayName: String!
-  id: Int!
+  id: ID!
   pc9: String!
 }
 
 type ProductInProductList {
   exclusive: String
-  id: Int!
+  id: ID!
 }
 
 input ProductInProductListListRelationFilter {
@@ -125,6 +125,7 @@ type ProductList {
 }
 
 type ProductListProduct {
+  id: ID!
   product: Product!
   productInProductList: ProductInProductList!
 }

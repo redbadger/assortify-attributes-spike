@@ -168,12 +168,10 @@ export interface NexusGenObjects {
   }
   Product: { // root type
     colorwayName: string; // String!
-    id: number; // Int!
     pc9: string; // String!
   }
   ProductInProductList: { // root type
     exclusive?: string | null; // String
-    id: number; // Int!
   }
   ProductList: { // root type
     id: number; // Int!
@@ -213,12 +211,12 @@ export interface NexusGenFieldTypes {
   }
   Product: { // field return type
     colorwayName: string; // String!
-    id: number; // Int!
+    id: string; // ID!
     pc9: string; // String!
   }
   ProductInProductList: { // field return type
     exclusive: string | null; // String
-    id: number; // Int!
+    id: string; // ID!
   }
   ProductList: { // field return type
     id: number; // Int!
@@ -226,6 +224,7 @@ export interface NexusGenFieldTypes {
     title: string; // String!
   }
   ProductListProduct: { // field return type
+    id: string; // ID!
     product: NexusGenRootTypes['Product']; // Product!
     productInProductList: NexusGenRootTypes['ProductInProductList']; // ProductInProductList!
   }
@@ -254,12 +253,12 @@ export interface NexusGenFieldTypeNames {
   }
   Product: { // field return type name
     colorwayName: 'String'
-    id: 'Int'
+    id: 'ID'
     pc9: 'String'
   }
   ProductInProductList: { // field return type name
     exclusive: 'String'
-    id: 'Int'
+    id: 'ID'
   }
   ProductList: { // field return type name
     id: 'Int'
@@ -267,6 +266,7 @@ export interface NexusGenFieldTypeNames {
     title: 'String'
   }
   ProductListProduct: { // field return type name
+    id: 'ID'
     product: 'Product'
     productInProductList: 'ProductInProductList'
   }
