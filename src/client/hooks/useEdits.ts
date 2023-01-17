@@ -48,8 +48,10 @@ const useEdits = <
                     if (!edits[ownId][key]) edits[ownId][key] = {};
 
                     if (colDef?.field === "distributions") {
+                      const singular = colDef?.field.slice(0, -1);
+
                       const create = JSON.parse(value).map((_) => ({
-                        distribution: { connect: _.distribution },
+                        [singular]: { connect: _[singular] },
                       }));
 
                       edits[ownId][key].create = create;
