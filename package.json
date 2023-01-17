@@ -62,6 +62,7 @@
     "winston": "^3.8.2"
   },
   "devDependencies": {
+    "@mermaid-js/mermaid-cli": "^9.3.0",
     "@playwright/test": "^1.26.1",
     "@types/express": "^4.17.14",
     "@types/express-session": "^1.17.5",
@@ -87,6 +88,7 @@
     "nodemon": "^2.0.20",
     "prettier": "^2.7.1",
     "prisma": "^2.21.2",
+    "prisma-erd-generator": "^1.2.5",
     "relay-compiler": "^14.1.0",
     "relay-compiler-language-typescript": "^15.0.1",
     "rimraf": "^3.0.2",
