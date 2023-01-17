@@ -51,10 +51,12 @@ const columnDefsStatic: ColDef<any>[] = [
     cellEditor: MultiSelectCellEditor,
     cellEditorPopup: true,
     valueFormatter: ({ value }) =>
-      JSON.parse(value)
-        .map((_) => _.distribution.name)
-        .sort()
-        .join(", "),
+      value
+        ? JSON.parse(value)
+            .map((_) => _.distribution.name)
+            .sort()
+            .join(", ")
+        : null,
   },
   {
     field: "minimumOrderQuantity",

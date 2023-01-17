@@ -55,7 +55,7 @@ const useEdits = <
                     ) {
                       const singular = colDef?.field.slice(0, -1);
 
-                      const create = JSON.parse(value).map((_) => ({
+                      const create = JSON.parse(value ?? "[]").map((_) => ({
                         [singular]: { connect: _[singular] },
                       }));
 
