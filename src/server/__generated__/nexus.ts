@@ -398,6 +398,8 @@ export interface NexusGenFieldTypes {
   }
   Query: { // field return type
     product: NexusGenRootTypes['Product'] | null; // Product
+    productLifecycleGroup: NexusGenRootTypes['ProductLifecycleGroup'] | null; // ProductLifecycleGroup
+    productLifecycleGroups: NexusGenRootTypes['ProductLifecycleGroup'][]; // [ProductLifecycleGroup!]!
     productList: NexusGenRootTypes['ProductList'] | null; // ProductList
     productLists: NexusGenRootTypes['ProductList'][]; // [ProductList!]!
     products: NexusGenRootTypes['Product'][]; // [Product!]!
@@ -454,6 +456,8 @@ export interface NexusGenFieldTypeNames {
   }
   Query: { // field return type name
     product: 'Product'
+    productLifecycleGroup: 'ProductLifecycleGroup'
+    productLifecycleGroups: 'ProductLifecycleGroup'
     productList: 'ProductList'
     productLists: 'ProductList'
     products: 'Product'
@@ -481,6 +485,16 @@ export interface NexusGenArgTypes {
   Query: {
     product: { // args
       where: NexusGenInputs['ProductWhereUniqueInput']; // ProductWhereUniqueInput!
+    }
+    productLifecycleGroup: { // args
+      where: NexusGenInputs['ProductLifecycleGroupWhereUniqueInput']; // ProductLifecycleGroupWhereUniqueInput!
+    }
+    productLifecycleGroups: { // args
+      after?: NexusGenInputs['ProductLifecycleGroupWhereUniqueInput'] | null; // ProductLifecycleGroupWhereUniqueInput
+      before?: NexusGenInputs['ProductLifecycleGroupWhereUniqueInput'] | null; // ProductLifecycleGroupWhereUniqueInput
+      first?: number | null; // Int
+      last?: number | null; // Int
+      where?: NexusGenInputs['ProductLifecycleGroupWhereInput'] | null; // ProductLifecycleGroupWhereInput
     }
     productList: { // args
       where: NexusGenInputs['ProductListWhereUniqueInput']; // ProductListWhereUniqueInput!

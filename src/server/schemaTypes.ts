@@ -87,6 +87,7 @@ export const ProductList = objectType({
           INNER JOIN "Product" p
             ON p.id = pipl."productId"
           WHERE "productListId" = ${id}
+          ORDER BY p.id
         `;
 
         const output = result.map((_) => ({
@@ -111,6 +112,9 @@ export const Query = queryType({
 
     t.crud.productList();
     t.crud.productLists({ filtering: true });
+
+    t.crud.productLifecycleGroup();
+    t.crud.productLifecycleGroups({ filtering: true });
   },
 });
 

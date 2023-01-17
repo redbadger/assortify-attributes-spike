@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<c5e188c95a32230c119a34bf129c75fe>>
+ * @generated SignedSource<<2af391bda7e5c70b044c64f567043076>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -16,8 +16,9 @@ export type ProductListQuery$variables = {
 export type ProductListQuery$data = {
   readonly productList: {
     readonly title: string;
-    readonly " $fragmentSpreads": FragmentRefs<"TableFragment">;
+    readonly " $fragmentSpreads": FragmentRefs<"TableDataFragment">;
   } | null;
+  readonly " $fragmentSpreads": FragmentRefs<"TableLookupValuesFragment">;
 };
 export type ProductListQuery = {
   response: ProductListQuery$data;
@@ -52,7 +53,16 @@ v2 = {
   "name": "title",
   "storageKey": null
 },
-v3 = {
+v3 = [
+  {
+    "alias": null,
+    "args": null,
+    "kind": "ScalarField",
+    "name": "displayName",
+    "storageKey": null
+  }
+],
+v4 = {
   "alias": null,
   "args": null,
   "kind": "ScalarField",
@@ -67,6 +77,11 @@ return {
     "name": "ProductListQuery",
     "selections": [
       {
+        "args": null,
+        "kind": "FragmentSpread",
+        "name": "TableLookupValuesFragment"
+      },
+      {
         "alias": null,
         "args": (v1/*: any*/),
         "concreteType": "ProductList",
@@ -78,7 +93,7 @@ return {
           {
             "args": null,
             "kind": "FragmentSpread",
-            "name": "TableFragment"
+            "name": "TableDataFragment"
           }
         ],
         "storageKey": null
@@ -93,6 +108,16 @@ return {
     "kind": "Operation",
     "name": "ProductListQuery",
     "selections": [
+      {
+        "alias": null,
+        "args": null,
+        "concreteType": "ProductLifecycleGroup",
+        "kind": "LinkedField",
+        "name": "productLifecycleGroups",
+        "plural": true,
+        "selections": (v3/*: any*/),
+        "storageKey": null
+      },
       {
         "alias": null,
         "args": (v1/*: any*/),
@@ -154,7 +179,7 @@ return {
                             "name": "colorwayName",
                             "storageKey": null
                           },
-                          (v3/*: any*/)
+                          (v4/*: any*/)
                         ],
                         "storageKey": null
                       },
@@ -201,22 +226,14 @@ return {
                             "kind": "LinkedField",
                             "name": "productLifecycleGroup",
                             "plural": false,
-                            "selections": [
-                              {
-                                "alias": null,
-                                "args": null,
-                                "kind": "ScalarField",
-                                "name": "displayName",
-                                "storageKey": null
-                              }
-                            ],
+                            "selections": (v3/*: any*/),
                             "storageKey": null
                           },
-                          (v3/*: any*/)
+                          (v4/*: any*/)
                         ],
                         "storageKey": null
                       },
-                      (v3/*: any*/)
+                      (v4/*: any*/)
                     ],
                     "storageKey": null
                   }
@@ -226,23 +243,23 @@ return {
             ],
             "storageKey": "productListProductConnection(first:10)"
           },
-          (v3/*: any*/)
+          (v4/*: any*/)
         ],
         "storageKey": null
       }
     ]
   },
   "params": {
-    "cacheID": "ab647797c4360b146363d605725954b6",
+    "cacheID": "df39f74db8d1a99184f8bd94fb136858",
     "id": null,
     "metadata": {},
     "name": "ProductListQuery",
     "operationKind": "query",
-    "text": "query ProductListQuery(\n  $id: Int\n) {\n  productList(where: {id: $id}) {\n    title\n    ...TableFragment\n    id\n  }\n}\n\nfragment TableFragment on ProductList {\n  productListProductConnection(first: 10) {\n    edges {\n      node {\n        product {\n          pc9\n          colorwayName\n          id\n        }\n        productInProductList {\n          ownId\n          exclusive\n          exclusiveComments\n          minimumOrderQuantity\n          productLifecycleGroup {\n            displayName\n          }\n          id\n        }\n        id\n      }\n    }\n  }\n}\n"
+    "text": "query ProductListQuery(\n  $id: Int\n) {\n  ...TableLookupValuesFragment\n  productList(where: {id: $id}) {\n    title\n    ...TableDataFragment\n    id\n  }\n}\n\nfragment TableDataFragment on ProductList {\n  productListProductConnection(first: 10) {\n    edges {\n      node {\n        product {\n          pc9\n          colorwayName\n          id\n        }\n        productInProductList {\n          ownId\n          exclusive\n          exclusiveComments\n          minimumOrderQuantity\n          productLifecycleGroup {\n            displayName\n          }\n          id\n        }\n        id\n      }\n    }\n  }\n}\n\nfragment TableLookupValuesFragment on Query {\n  productLifecycleGroups {\n    displayName\n  }\n}\n"
   }
 };
 })();
 
-(node as any).hash = "51f27af2707bcb642fbf1ed50f7dbef4";
+(node as any).hash = "aa05587f46d28218c62aa6577fe03f73";
 
 export default node;

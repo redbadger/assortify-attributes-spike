@@ -6,22 +6,24 @@ import { ProductListQuery } from "./__generated__/ProductListQuery.graphql";
 
 const query = graphql`
   query ProductListQuery($id: Int) {
+    ...TableLookupValuesFragment
     productList(where: { id: $id }) {
       title
-      ...TableFragment
+      ...TableDataFragment
     }
   }
 `;
 
 const ProductList = () => {
-  const { productList } = useLazyLoadQuery<ProductListQuery>(query, { id: 1 });
+  const data = useLazyLoadQuery<ProductListQuery>(query, { id: 1 });
+  const { productList } = data;
 
   return productList ? (
     <>
       <Typography variant="h6" component="h2" tw="mb-3">
         {productList.title}
       </Typography>
-      <Table productList={productList} />
+      <Table root={data} productList={productList} />
     </>
   ) : null;
 };

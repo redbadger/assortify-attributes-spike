@@ -357,6 +357,8 @@ input ProductWhereUniqueInput {
 
 type Query {
   product(where: ProductWhereUniqueInput!): Product
+  productLifecycleGroup(where: ProductLifecycleGroupWhereUniqueInput!): ProductLifecycleGroup
+  productLifecycleGroups(after: ProductLifecycleGroupWhereUniqueInput, before: ProductLifecycleGroupWhereUniqueInput, first: Int, last: Int, where: ProductLifecycleGroupWhereInput): [ProductLifecycleGroup!]!
   productList(where: ProductListWhereUniqueInput!): ProductList
   productLists(after: ProductListWhereUniqueInput, before: ProductListWhereUniqueInput, first: Int, last: Int, where: ProductListWhereInput): [ProductList!]!
   products(after: ProductWhereUniqueInput, before: ProductWhereUniqueInput, first: Int, last: Int, where: ProductWhereInput): [Product!]!

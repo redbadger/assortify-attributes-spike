@@ -1,5 +1,5 @@
 import { Button } from "@mui/material";
-import { FirstDataRenderedEvent } from "ag-grid-community";
+import { ColDef, FirstDataRenderedEvent } from "ag-grid-community";
 import "ag-grid-community/styles/ag-grid.css";
 import "ag-grid-community/styles/ag-theme-alpine.css";
 import { AgGridReact } from "ag-grid-react";
@@ -9,7 +9,8 @@ import { graphql, useFragment, useMutation } from "react-relay";
 import "twin.macro";
 import useEdits from "../../hooks/useEdits";
 import flattenLookups from "../../utils/flattenLookups";
-import { TableFragment$key } from "./__generated__/TableFragment.graphql";
+import { TableDataFragment$key } from "./__generated__/TableDataFragment.graphql";
+import { TableLookupValuesFragment$key } from "./__generated__/TableLookupValuesFragment.graphql";
 
 export const productFragment = graphql`
   fragment TableProductFragment on Product {
@@ -29,7 +30,7 @@ export const productInProductListFragment = graphql`
   }
 `;
 
-const columnDefs = [
+const columnDefsStatic: ColDef<any>[] = [
   { field: "pc9" },
   { field: "colorwayName" },
   { field: "exclusive", editable: true },
@@ -43,14 +44,19 @@ const columnDefs = [
     field: "productLifecycleGroup",
     editable: true,
     cellEditor: "agSelectCellEditor",
-    cellEditorParams: {
-      values: ["Seasonal", "Core", "Fashion", "Seasonal Core"],
-    },
   },
 ];
 
-const fragment = graphql`
-  fragment TableFragment on ProductList {
+const lookupValuesFragment = graphql`
+  fragment TableLookupValuesFragment on Query {
+    productLifecycleGroups {
+      displayName
+    }
+  }
+`;
+
+const tableDataFragment = graphql`
+  fragment TableDataFragment on ProductList {
     productListProductConnection(first: 10) {
       edges {
         node {
@@ -78,10 +84,18 @@ const mutation = graphql`
   }
 `;
 
-const Table = ({ productList }: { productList: TableFragment$key }) => {
+const Table = ({
+  root,
+  productList,
+}: {
+  root: TableLookupValuesFragment$key;
+  productList: TableDataFragment$key;
+}) => {
+  const lookupValues = useFragment(lookupValuesFragment, root);
+
   const {
     productListProductConnection: { edges },
-  } = useFragment(fragment, productList);
+  } = useFragment(tableDataFragment, productList);
 
   const [commit] = useMutation(mutation);
 
@@ -131,6 +145,20 @@ const Table = ({ productList }: { productList: TableFragment$key }) => {
           : null,
     }),
     [edits]
+  );
+
+  const columnDefs = useMemo(
+    () =>
+      produce(columnDefsStatic, (draft) => {
+        for (const col of draft) {
+          if (lookupValues?.[`${col.field}s`]) {
+            col.cellEditorParams = {
+              values: lookupValues?.[`${col.field}s`].map((_) => _.displayName),
+            };
+          }
+        }
+      }),
+    [lookupValues]
   );
 
   const handleCancel = useCallback(
