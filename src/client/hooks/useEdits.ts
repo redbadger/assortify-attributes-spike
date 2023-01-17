@@ -40,14 +40,19 @@ const useEdits = <
                 const ownId = node.data?.ownId;
 
                 if (ownId) {
-                  const valueEdited = value !== flattenedNodeOnServer?.[key];
+                  const serverValue = flattenedNodeOnServer?.[key];
+                  const valueEdited = value !== serverValue;
 
                   if (valueEdited) {
                     if (!edits[ownId]) edits[ownId] = {};
                     if (!edits[ownId][key]) edits[ownId][key] = {};
 
                     if (colDef?.cellEditor === "agSelectCellEditor") {
-                      edits[ownId][key].connect = { displayName: value };
+                      if (value) {
+                        edits[ownId][key].connect = { displayName: value };
+                      } else if (serverValue) {
+                        edits[ownId][key].disconnect = true;
+                      }
                     } else {
                       edits[ownId][key].set = value;
                     }

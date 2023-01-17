@@ -163,9 +163,10 @@ const Table = ({
     () =>
       produce(columnDefsStatic, (draft) => {
         for (const col of draft) {
-          if (lookupValues?.[`${col.field}s`]) {
+          const options = lookupValues?.[`${col.field}s`];
+          if (options) {
             col.cellEditorParams = {
-              values: lookupValues?.[`${col.field}s`].map((_) => _.displayName),
+              values: ["", ...options.map((_) => _.displayName)],
             };
           }
         }
