@@ -47,11 +47,45 @@ export const ChannelInProductListUpdateManyMutationInput = inputObjectType({
   definition: (t) => {
     t.int("_dummy_field", {
       // See: https://github.com/graphql-nexus/nexus-plugin-prisma/issues/801
-      description:
-        "Dummy field to avoid Error: Input Object type ChannelInProductListUpdateManyMutationInput must define one or more fields.",
+      description: "Dummy field to avoid Error",
     });
   },
 });
+
+export const Distribution = objectType({
+  name: "Distribution",
+  definition: (t) => {
+    t.nonNull.id("id", {
+      resolve: ({ id }: any) => toGlobalId("Distribution", String(id)),
+    });
+    t.model.id({ alias: "ownId" });
+    t.model.name();
+    t.model.channel();
+  },
+});
+
+export const DistributionForProductInProductList = objectType({
+  name: "DistributionForProductInProductList",
+  definition: (t) => {
+    t.nonNull.id("id", {
+      resolve: ({ id }: any) =>
+        toGlobalId("DistributionForProductInProductList", String(id)),
+    });
+    t.model.id({ alias: "ownId" });
+    t.model.distribution();
+  },
+});
+
+export const DistributionForProductInProductListUpdateManyMutationInput =
+  inputObjectType({
+    name: "DistributionForProductInProductListUpdateManyMutationInput",
+    definition: (t) => {
+      t.int("_dummy_field", {
+        // See: https://github.com/graphql-nexus/nexus-plugin-prisma/issues/801
+        description: "Dummy field to avoid Error",
+      });
+    },
+  });
 
 export const Product = objectType({
   name: "Product",
@@ -76,6 +110,7 @@ export const ProductInProductList = objectType({
     t.model.exclusiveComments();
     t.model.minimumOrderQuantity();
     t.model.productLifecycleGroup();
+    t.model.distributions();
   },
 });
 

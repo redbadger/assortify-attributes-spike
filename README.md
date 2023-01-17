@@ -38,9 +38,23 @@ erDiagram
     Int id PK 
     }
   
+
+  Distribution {
+    Int id PK 
+    String name  
+    }
+  
+
+  DistributionForProductInProductList {
+    Int id PK 
+    }
+  
     ProductInProductList o{--|| Product : "product"
     ProductInProductList o{--|| ProductList : "productList"
     ProductInProductList o{--|o ProductLifecycleGroup : "productLifecycleGroup"
     ChannelInProductList o{--|| Channel : "channel"
     ChannelInProductList o{--|| ProductList : "productList"
+    Distribution o{--|| Channel : "channel"
+    DistributionForProductInProductList o{--|| Distribution : "distribution"
+    DistributionForProductInProductList o{--|| ProductInProductList : "productInProductList"
 ```

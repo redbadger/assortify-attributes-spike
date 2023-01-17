@@ -13,6 +13,12 @@ const data = [
       productLifecycleGroup: {
         connect: { displayName: "Seasonal" },
       },
+      distributions: {
+        create: [
+          { distribution: { connect: { name: "HOT_V1" } } },
+          { distribution: { connect: { name: "MENS_CORE_V1" } } },
+        ],
+      },
     },
   },
   {
@@ -45,6 +51,24 @@ const main = async () => {
   await prisma.channel.createMany({
     data: [{ name: "Mainline" }, { name: "Outlet" }, { name: "Wholesale" }],
   });
+
+  await Promise.all([
+    prisma.distribution.create({
+      data: { name: "HOT_V1", channel: { connect: { name: "Mainline" } } },
+    }),
+    prisma.distribution.create({
+      data: {
+        name: "MENS_CORE_V1",
+        channel: { connect: { name: "Mainline" } },
+      },
+    }),
+    prisma.distribution.create({
+      data: {
+        name: "WOMENS_CORE_PLUS_V1",
+        channel: { connect: { name: "Outlet" } },
+      },
+    }),
+  ]);
 
   await prisma.productLifecycleGroup.createMany({
     data: [

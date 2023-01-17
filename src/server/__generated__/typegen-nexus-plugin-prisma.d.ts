@@ -20,6 +20,8 @@ interface PrismaModels {
   ProductLifecycleGroup: Prisma.ProductLifecycleGroup
   Channel: Prisma.Channel
   ChannelInProductList: Prisma.ChannelInProductList
+  Distribution: Prisma.Distribution
+  DistributionForProductInProductList: Prisma.DistributionForProductInProductList
 }
 
 // Prisma input types metadata
@@ -34,7 +36,7 @@ interface NexusPrismaInputs {
       ordering: 'id' | 'title'
     }
     productInProductLists: {
-      filtering: 'AND' | 'OR' | 'NOT' | 'id' | 'product' | 'productId' | 'productList' | 'productListId' | 'exclusive' | 'exclusiveComments' | 'minimumOrderQuantity' | 'productLifecycleGroupName' | 'productLifecycleGroup'
+      filtering: 'AND' | 'OR' | 'NOT' | 'id' | 'product' | 'productId' | 'productList' | 'productListId' | 'exclusive' | 'exclusiveComments' | 'minimumOrderQuantity' | 'productLifecycleGroupName' | 'productLifecycleGroup' | 'distributions'
       ordering: 'id' | 'productId' | 'productListId' | 'exclusive' | 'exclusiveComments' | 'minimumOrderQuantity' | 'productLifecycleGroupName'
     }
     productLifecycleGroups: {
@@ -42,23 +44,31 @@ interface NexusPrismaInputs {
       ordering: 'name' | 'displayName'
     }
     channels: {
-      filtering: 'AND' | 'OR' | 'NOT' | 'id' | 'name' | 'productLists'
+      filtering: 'AND' | 'OR' | 'NOT' | 'id' | 'name' | 'productLists' | 'Distribution'
       ordering: 'id' | 'name'
     }
     channelInProductLists: {
       filtering: 'AND' | 'OR' | 'NOT' | 'id' | 'channel' | 'channelId' | 'productList' | 'productListId'
       ordering: 'id' | 'channelId' | 'productListId'
     }
+    distributions: {
+      filtering: 'AND' | 'OR' | 'NOT' | 'id' | 'name' | 'channel' | 'channelId' | 'productInProductLists'
+      ordering: 'id' | 'name' | 'channelId'
+    }
+    distributionForProductInProductLists: {
+      filtering: 'AND' | 'OR' | 'NOT' | 'id' | 'distribution' | 'distributionId' | 'productInProductList' | 'productInProductListId'
+      ordering: 'id' | 'distributionId' | 'productInProductListId'
+    }
   },
   Product: {
     productLists: {
-      filtering: 'AND' | 'OR' | 'NOT' | 'id' | 'product' | 'productId' | 'productList' | 'productListId' | 'exclusive' | 'exclusiveComments' | 'minimumOrderQuantity' | 'productLifecycleGroupName' | 'productLifecycleGroup'
+      filtering: 'AND' | 'OR' | 'NOT' | 'id' | 'product' | 'productId' | 'productList' | 'productListId' | 'exclusive' | 'exclusiveComments' | 'minimumOrderQuantity' | 'productLifecycleGroupName' | 'productLifecycleGroup' | 'distributions'
       ordering: 'id' | 'productId' | 'productListId' | 'exclusive' | 'exclusiveComments' | 'minimumOrderQuantity' | 'productLifecycleGroupName'
     }
   }
   ProductList: {
     products: {
-      filtering: 'AND' | 'OR' | 'NOT' | 'id' | 'product' | 'productId' | 'productList' | 'productListId' | 'exclusive' | 'exclusiveComments' | 'minimumOrderQuantity' | 'productLifecycleGroupName' | 'productLifecycleGroup'
+      filtering: 'AND' | 'OR' | 'NOT' | 'id' | 'product' | 'productId' | 'productList' | 'productListId' | 'exclusive' | 'exclusiveComments' | 'minimumOrderQuantity' | 'productLifecycleGroupName' | 'productLifecycleGroup' | 'distributions'
       ordering: 'id' | 'productId' | 'productListId' | 'exclusive' | 'exclusiveComments' | 'minimumOrderQuantity' | 'productLifecycleGroupName'
     }
     channels: {
@@ -67,11 +77,14 @@ interface NexusPrismaInputs {
     }
   }
   ProductInProductList: {
-
+    distributions: {
+      filtering: 'AND' | 'OR' | 'NOT' | 'id' | 'distribution' | 'distributionId' | 'productInProductList' | 'productInProductListId'
+      ordering: 'id' | 'distributionId' | 'productInProductListId'
+    }
   }
   ProductLifecycleGroup: {
     ProductInProductList: {
-      filtering: 'AND' | 'OR' | 'NOT' | 'id' | 'product' | 'productId' | 'productList' | 'productListId' | 'exclusive' | 'exclusiveComments' | 'minimumOrderQuantity' | 'productLifecycleGroupName' | 'productLifecycleGroup'
+      filtering: 'AND' | 'OR' | 'NOT' | 'id' | 'product' | 'productId' | 'productList' | 'productListId' | 'exclusive' | 'exclusiveComments' | 'minimumOrderQuantity' | 'productLifecycleGroupName' | 'productLifecycleGroup' | 'distributions'
       ordering: 'id' | 'productId' | 'productListId' | 'exclusive' | 'exclusiveComments' | 'minimumOrderQuantity' | 'productLifecycleGroupName'
     }
   }
@@ -80,8 +93,21 @@ interface NexusPrismaInputs {
       filtering: 'AND' | 'OR' | 'NOT' | 'id' | 'channel' | 'channelId' | 'productList' | 'productListId'
       ordering: 'id' | 'channelId' | 'productListId'
     }
+    Distribution: {
+      filtering: 'AND' | 'OR' | 'NOT' | 'id' | 'name' | 'channel' | 'channelId' | 'productInProductLists'
+      ordering: 'id' | 'name' | 'channelId'
+    }
   }
   ChannelInProductList: {
+
+  }
+  Distribution: {
+    productInProductLists: {
+      filtering: 'AND' | 'OR' | 'NOT' | 'id' | 'distribution' | 'distributionId' | 'productInProductList' | 'productInProductListId'
+      ordering: 'id' | 'distributionId' | 'productInProductListId'
+    }
+  }
+  DistributionForProductInProductList: {
 
   }
 }
@@ -101,6 +127,10 @@ interface NexusPrismaOutputs {
     channels: 'Channel'
     channelInProductList: 'ChannelInProductList'
     channelInProductLists: 'ChannelInProductList'
+    distribution: 'Distribution'
+    distributions: 'Distribution'
+    distributionForProductInProductList: 'DistributionForProductInProductList'
+    distributionForProductInProductLists: 'DistributionForProductInProductList'
   },
   Mutation: {
     createOneProduct: 'Product'
@@ -139,6 +169,18 @@ interface NexusPrismaOutputs {
     deleteOneChannelInProductList: 'ChannelInProductList'
     deleteManyChannelInProductList: 'AffectedRowsOutput'
     upsertOneChannelInProductList: 'ChannelInProductList'
+    createOneDistribution: 'Distribution'
+    updateOneDistribution: 'Distribution'
+    updateManyDistribution: 'AffectedRowsOutput'
+    deleteOneDistribution: 'Distribution'
+    deleteManyDistribution: 'AffectedRowsOutput'
+    upsertOneDistribution: 'Distribution'
+    createOneDistributionForProductInProductList: 'DistributionForProductInProductList'
+    updateOneDistributionForProductInProductList: 'DistributionForProductInProductList'
+    updateManyDistributionForProductInProductList: 'AffectedRowsOutput'
+    deleteOneDistributionForProductInProductList: 'DistributionForProductInProductList'
+    deleteManyDistributionForProductInProductList: 'AffectedRowsOutput'
+    upsertOneDistributionForProductInProductList: 'DistributionForProductInProductList'
   },
   Product: {
     id: 'Int'
@@ -163,6 +205,7 @@ interface NexusPrismaOutputs {
     minimumOrderQuantity: 'Int'
     productLifecycleGroupName: 'String'
     productLifecycleGroup: 'ProductLifecycleGroup'
+    distributions: 'DistributionForProductInProductList'
   }
   ProductLifecycleGroup: {
     name: 'String'
@@ -173,6 +216,7 @@ interface NexusPrismaOutputs {
     id: 'Int'
     name: 'String'
     productLists: 'ChannelInProductList'
+    Distribution: 'Distribution'
   }
   ChannelInProductList: {
     id: 'Int'
@@ -180,6 +224,20 @@ interface NexusPrismaOutputs {
     channelId: 'Int'
     productList: 'ProductList'
     productListId: 'Int'
+  }
+  Distribution: {
+    id: 'Int'
+    name: 'String'
+    channel: 'Channel'
+    channelId: 'Int'
+    productInProductLists: 'DistributionForProductInProductList'
+  }
+  DistributionForProductInProductList: {
+    id: 'Int'
+    distribution: 'Distribution'
+    distributionId: 'Int'
+    productInProductList: 'ProductInProductList'
+    productInProductListId: 'Int'
   }
 }
 
@@ -191,6 +249,8 @@ interface NexusPrismaMethods {
   ProductLifecycleGroup: Typegen.NexusPrismaFields<'ProductLifecycleGroup'>
   Channel: Typegen.NexusPrismaFields<'Channel'>
   ChannelInProductList: Typegen.NexusPrismaFields<'ChannelInProductList'>
+  Distribution: Typegen.NexusPrismaFields<'Distribution'>
+  DistributionForProductInProductList: Typegen.NexusPrismaFields<'DistributionForProductInProductList'>
   Query: Typegen.NexusPrismaFields<'Query'>
   Mutation: Typegen.NexusPrismaFields<'Mutation'>
 }

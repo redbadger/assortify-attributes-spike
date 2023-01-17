@@ -8,10 +8,21 @@ type Channel {
   ownId: Int!
 }
 
+input ChannelCreateNestedOneWithoutDistributionInput {
+  connect: ChannelWhereUniqueInput
+  connectOrCreate: ChannelCreateOrConnectWithoutDistributionInput
+  create: ChannelCreateWithoutDistributionInput
+}
+
 input ChannelCreateNestedOneWithoutProductListsInput {
   connect: ChannelWhereUniqueInput
   connectOrCreate: ChannelCreateOrConnectWithoutProductListsInput
   create: ChannelCreateWithoutProductListsInput
+}
+
+input ChannelCreateOrConnectWithoutDistributionInput {
+  create: ChannelCreateWithoutDistributionInput!
+  where: ChannelWhereUniqueInput!
 }
 
 input ChannelCreateOrConnectWithoutProductListsInput {
@@ -19,7 +30,13 @@ input ChannelCreateOrConnectWithoutProductListsInput {
   where: ChannelWhereUniqueInput!
 }
 
+input ChannelCreateWithoutDistributionInput {
+  name: String!
+  productLists: ChannelInProductListCreateNestedManyWithoutChannelInput
+}
+
 input ChannelCreateWithoutProductListsInput {
+  Distribution: DistributionCreateNestedManyWithoutChannelInput
   name: String!
 }
 
@@ -34,6 +51,16 @@ input ChannelInProductListChannelIdProductListIdCompoundUniqueInput {
   productListId: Int!
 }
 
+input ChannelInProductListCreateManyChannelInput {
+  id: Int
+  productListId: Int!
+}
+
+input ChannelInProductListCreateManyChannelInputEnvelope {
+  data: [ChannelInProductListCreateManyChannelInput!]
+  skipDuplicates: Boolean
+}
+
 input ChannelInProductListCreateManyProductListInput {
   channelId: Int!
   id: Int
@@ -44,6 +71,13 @@ input ChannelInProductListCreateManyProductListInputEnvelope {
   skipDuplicates: Boolean
 }
 
+input ChannelInProductListCreateNestedManyWithoutChannelInput {
+  connect: [ChannelInProductListWhereUniqueInput!]
+  connectOrCreate: [ChannelInProductListCreateOrConnectWithoutChannelInput!]
+  create: [ChannelInProductListCreateWithoutChannelInput!]
+  createMany: ChannelInProductListCreateManyChannelInputEnvelope
+}
+
 input ChannelInProductListCreateNestedManyWithoutProductListInput {
   connect: [ChannelInProductListWhereUniqueInput!]
   connectOrCreate: [ChannelInProductListCreateOrConnectWithoutProductListInput!]
@@ -51,9 +85,18 @@ input ChannelInProductListCreateNestedManyWithoutProductListInput {
   createMany: ChannelInProductListCreateManyProductListInputEnvelope
 }
 
+input ChannelInProductListCreateOrConnectWithoutChannelInput {
+  create: ChannelInProductListCreateWithoutChannelInput!
+  where: ChannelInProductListWhereUniqueInput!
+}
+
 input ChannelInProductListCreateOrConnectWithoutProductListInput {
   create: ChannelInProductListCreateWithoutProductListInput!
   where: ChannelInProductListWhereUniqueInput!
+}
+
+input ChannelInProductListCreateWithoutChannelInput {
+  productList: ProductListCreateNestedOneWithoutChannelsInput!
 }
 
 input ChannelInProductListCreateWithoutProductListInput {
@@ -76,15 +119,32 @@ input ChannelInProductListScalarWhereInput {
 }
 
 input ChannelInProductListUpdateManyMutationInput {
-  """
-  Dummy field to avoid Error: Input Object type ChannelInProductListUpdateManyMutationInput must define one or more fields.
-  """
+  """Dummy field to avoid Error"""
   _dummy_field: Int
+}
+
+input ChannelInProductListUpdateManyWithWhereWithoutChannelInput {
+  data: ChannelInProductListUpdateManyMutationInput!
+  where: ChannelInProductListScalarWhereInput!
 }
 
 input ChannelInProductListUpdateManyWithWhereWithoutProductListInput {
   data: ChannelInProductListUpdateManyMutationInput!
   where: ChannelInProductListScalarWhereInput!
+}
+
+input ChannelInProductListUpdateManyWithoutChannelInput {
+  connect: [ChannelInProductListWhereUniqueInput!]
+  connectOrCreate: [ChannelInProductListCreateOrConnectWithoutChannelInput!]
+  create: [ChannelInProductListCreateWithoutChannelInput!]
+  createMany: ChannelInProductListCreateManyChannelInputEnvelope
+  delete: [ChannelInProductListWhereUniqueInput!]
+  deleteMany: [ChannelInProductListScalarWhereInput!]
+  disconnect: [ChannelInProductListWhereUniqueInput!]
+  set: [ChannelInProductListWhereUniqueInput!]
+  update: [ChannelInProductListUpdateWithWhereUniqueWithoutChannelInput!]
+  updateMany: [ChannelInProductListUpdateManyWithWhereWithoutChannelInput!]
+  upsert: [ChannelInProductListUpsertWithWhereUniqueWithoutChannelInput!]
 }
 
 input ChannelInProductListUpdateManyWithoutProductListInput {
@@ -101,13 +161,28 @@ input ChannelInProductListUpdateManyWithoutProductListInput {
   upsert: [ChannelInProductListUpsertWithWhereUniqueWithoutProductListInput!]
 }
 
+input ChannelInProductListUpdateWithWhereUniqueWithoutChannelInput {
+  data: ChannelInProductListUpdateWithoutChannelInput!
+  where: ChannelInProductListWhereUniqueInput!
+}
+
 input ChannelInProductListUpdateWithWhereUniqueWithoutProductListInput {
   data: ChannelInProductListUpdateWithoutProductListInput!
   where: ChannelInProductListWhereUniqueInput!
 }
 
+input ChannelInProductListUpdateWithoutChannelInput {
+  productList: ProductListUpdateOneRequiredWithoutChannelsInput
+}
+
 input ChannelInProductListUpdateWithoutProductListInput {
   channel: ChannelUpdateOneRequiredWithoutProductListsInput
+}
+
+input ChannelInProductListUpsertWithWhereUniqueWithoutChannelInput {
+  create: ChannelInProductListCreateWithoutChannelInput!
+  update: ChannelInProductListUpdateWithoutChannelInput!
+  where: ChannelInProductListWhereUniqueInput!
 }
 
 input ChannelInProductListUpsertWithWhereUniqueWithoutProductListInput {
@@ -132,6 +207,14 @@ input ChannelInProductListWhereUniqueInput {
   id: Int
 }
 
+input ChannelUpdateOneRequiredWithoutDistributionInput {
+  connect: ChannelWhereUniqueInput
+  connectOrCreate: ChannelCreateOrConnectWithoutDistributionInput
+  create: ChannelCreateWithoutDistributionInput
+  update: ChannelUpdateWithoutDistributionInput
+  upsert: ChannelUpsertWithoutDistributionInput
+}
+
 input ChannelUpdateOneRequiredWithoutProductListsInput {
   connect: ChannelWhereUniqueInput
   connectOrCreate: ChannelCreateOrConnectWithoutProductListsInput
@@ -140,8 +223,19 @@ input ChannelUpdateOneRequiredWithoutProductListsInput {
   upsert: ChannelUpsertWithoutProductListsInput
 }
 
-input ChannelUpdateWithoutProductListsInput {
+input ChannelUpdateWithoutDistributionInput {
   name: StringFieldUpdateOperationsInput
+  productLists: ChannelInProductListUpdateManyWithoutChannelInput
+}
+
+input ChannelUpdateWithoutProductListsInput {
+  Distribution: DistributionUpdateManyWithoutChannelInput
+  name: StringFieldUpdateOperationsInput
+}
+
+input ChannelUpsertWithoutDistributionInput {
+  create: ChannelCreateWithoutDistributionInput!
+  update: ChannelUpdateWithoutDistributionInput!
 }
 
 input ChannelUpsertWithoutProductListsInput {
@@ -151,6 +245,7 @@ input ChannelUpsertWithoutProductListsInput {
 
 input ChannelWhereInput {
   AND: [ChannelWhereInput!]
+  Distribution: DistributionListRelationFilter
   NOT: [ChannelWhereInput!]
   OR: [ChannelWhereInput!]
   id: IntFilter
@@ -161,6 +256,317 @@ input ChannelWhereInput {
 input ChannelWhereUniqueInput {
   id: Int
   name: String
+}
+
+type Distribution {
+  channel: Channel!
+  id: ID!
+  name: String!
+  ownId: Int!
+}
+
+input DistributionCreateManyChannelInput {
+  id: Int
+  name: String!
+}
+
+input DistributionCreateManyChannelInputEnvelope {
+  data: [DistributionCreateManyChannelInput!]
+  skipDuplicates: Boolean
+}
+
+input DistributionCreateNestedManyWithoutChannelInput {
+  connect: [DistributionWhereUniqueInput!]
+  connectOrCreate: [DistributionCreateOrConnectWithoutChannelInput!]
+  create: [DistributionCreateWithoutChannelInput!]
+  createMany: DistributionCreateManyChannelInputEnvelope
+}
+
+input DistributionCreateNestedOneWithoutProductInProductListsInput {
+  connect: DistributionWhereUniqueInput
+  connectOrCreate: DistributionCreateOrConnectWithoutProductInProductListsInput
+  create: DistributionCreateWithoutProductInProductListsInput
+}
+
+input DistributionCreateOrConnectWithoutChannelInput {
+  create: DistributionCreateWithoutChannelInput!
+  where: DistributionWhereUniqueInput!
+}
+
+input DistributionCreateOrConnectWithoutProductInProductListsInput {
+  create: DistributionCreateWithoutProductInProductListsInput!
+  where: DistributionWhereUniqueInput!
+}
+
+input DistributionCreateWithoutChannelInput {
+  name: String!
+  productInProductLists: DistributionForProductInProductListCreateNestedManyWithoutDistributionInput
+}
+
+input DistributionCreateWithoutProductInProductListsInput {
+  channel: ChannelCreateNestedOneWithoutDistributionInput!
+  name: String!
+}
+
+type DistributionForProductInProductList {
+  distribution: Distribution!
+  id: ID!
+  ownId: Int!
+}
+
+input DistributionForProductInProductListCreateManyDistributionInput {
+  id: Int
+  productInProductListId: Int!
+}
+
+input DistributionForProductInProductListCreateManyDistributionInputEnvelope {
+  data: [DistributionForProductInProductListCreateManyDistributionInput!]
+  skipDuplicates: Boolean
+}
+
+input DistributionForProductInProductListCreateManyProductInProductListInput {
+  distributionId: Int!
+  id: Int
+}
+
+input DistributionForProductInProductListCreateManyProductInProductListInputEnvelope {
+  data: [DistributionForProductInProductListCreateManyProductInProductListInput!]
+  skipDuplicates: Boolean
+}
+
+input DistributionForProductInProductListCreateNestedManyWithoutDistributionInput {
+  connect: [DistributionForProductInProductListWhereUniqueInput!]
+  connectOrCreate: [DistributionForProductInProductListCreateOrConnectWithoutDistributionInput!]
+  create: [DistributionForProductInProductListCreateWithoutDistributionInput!]
+  createMany: DistributionForProductInProductListCreateManyDistributionInputEnvelope
+}
+
+input DistributionForProductInProductListCreateNestedManyWithoutProductInProductListInput {
+  connect: [DistributionForProductInProductListWhereUniqueInput!]
+  connectOrCreate: [DistributionForProductInProductListCreateOrConnectWithoutProductInProductListInput!]
+  create: [DistributionForProductInProductListCreateWithoutProductInProductListInput!]
+  createMany: DistributionForProductInProductListCreateManyProductInProductListInputEnvelope
+}
+
+input DistributionForProductInProductListCreateOrConnectWithoutDistributionInput {
+  create: DistributionForProductInProductListCreateWithoutDistributionInput!
+  where: DistributionForProductInProductListWhereUniqueInput!
+}
+
+input DistributionForProductInProductListCreateOrConnectWithoutProductInProductListInput {
+  create: DistributionForProductInProductListCreateWithoutProductInProductListInput!
+  where: DistributionForProductInProductListWhereUniqueInput!
+}
+
+input DistributionForProductInProductListCreateWithoutDistributionInput {
+  productInProductList: ProductInProductListCreateNestedOneWithoutDistributionsInput!
+}
+
+input DistributionForProductInProductListCreateWithoutProductInProductListInput {
+  distribution: DistributionCreateNestedOneWithoutProductInProductListsInput!
+}
+
+input DistributionForProductInProductListDistributionIdProductInProductListIdCompoundUniqueInput {
+  distributionId: Int!
+  productInProductListId: Int!
+}
+
+input DistributionForProductInProductListListRelationFilter {
+  every: DistributionForProductInProductListWhereInput
+  none: DistributionForProductInProductListWhereInput
+  some: DistributionForProductInProductListWhereInput
+}
+
+input DistributionForProductInProductListScalarWhereInput {
+  AND: [DistributionForProductInProductListScalarWhereInput!]
+  NOT: [DistributionForProductInProductListScalarWhereInput!]
+  OR: [DistributionForProductInProductListScalarWhereInput!]
+  distributionId: IntFilter
+  id: IntFilter
+  productInProductListId: IntFilter
+}
+
+input DistributionForProductInProductListUpdateManyMutationInput {
+  """Dummy field to avoid Error"""
+  _dummy_field: Int
+}
+
+input DistributionForProductInProductListUpdateManyWithWhereWithoutDistributionInput {
+  data: DistributionForProductInProductListUpdateManyMutationInput!
+  where: DistributionForProductInProductListScalarWhereInput!
+}
+
+input DistributionForProductInProductListUpdateManyWithWhereWithoutProductInProductListInput {
+  data: DistributionForProductInProductListUpdateManyMutationInput!
+  where: DistributionForProductInProductListScalarWhereInput!
+}
+
+input DistributionForProductInProductListUpdateManyWithoutDistributionInput {
+  connect: [DistributionForProductInProductListWhereUniqueInput!]
+  connectOrCreate: [DistributionForProductInProductListCreateOrConnectWithoutDistributionInput!]
+  create: [DistributionForProductInProductListCreateWithoutDistributionInput!]
+  createMany: DistributionForProductInProductListCreateManyDistributionInputEnvelope
+  delete: [DistributionForProductInProductListWhereUniqueInput!]
+  deleteMany: [DistributionForProductInProductListScalarWhereInput!]
+  disconnect: [DistributionForProductInProductListWhereUniqueInput!]
+  set: [DistributionForProductInProductListWhereUniqueInput!]
+  update: [DistributionForProductInProductListUpdateWithWhereUniqueWithoutDistributionInput!]
+  updateMany: [DistributionForProductInProductListUpdateManyWithWhereWithoutDistributionInput!]
+  upsert: [DistributionForProductInProductListUpsertWithWhereUniqueWithoutDistributionInput!]
+}
+
+input DistributionForProductInProductListUpdateManyWithoutProductInProductListInput {
+  connect: [DistributionForProductInProductListWhereUniqueInput!]
+  connectOrCreate: [DistributionForProductInProductListCreateOrConnectWithoutProductInProductListInput!]
+  create: [DistributionForProductInProductListCreateWithoutProductInProductListInput!]
+  createMany: DistributionForProductInProductListCreateManyProductInProductListInputEnvelope
+  delete: [DistributionForProductInProductListWhereUniqueInput!]
+  deleteMany: [DistributionForProductInProductListScalarWhereInput!]
+  disconnect: [DistributionForProductInProductListWhereUniqueInput!]
+  set: [DistributionForProductInProductListWhereUniqueInput!]
+  update: [DistributionForProductInProductListUpdateWithWhereUniqueWithoutProductInProductListInput!]
+  updateMany: [DistributionForProductInProductListUpdateManyWithWhereWithoutProductInProductListInput!]
+  upsert: [DistributionForProductInProductListUpsertWithWhereUniqueWithoutProductInProductListInput!]
+}
+
+input DistributionForProductInProductListUpdateWithWhereUniqueWithoutDistributionInput {
+  data: DistributionForProductInProductListUpdateWithoutDistributionInput!
+  where: DistributionForProductInProductListWhereUniqueInput!
+}
+
+input DistributionForProductInProductListUpdateWithWhereUniqueWithoutProductInProductListInput {
+  data: DistributionForProductInProductListUpdateWithoutProductInProductListInput!
+  where: DistributionForProductInProductListWhereUniqueInput!
+}
+
+input DistributionForProductInProductListUpdateWithoutDistributionInput {
+  productInProductList: ProductInProductListUpdateOneRequiredWithoutDistributionsInput
+}
+
+input DistributionForProductInProductListUpdateWithoutProductInProductListInput {
+  distribution: DistributionUpdateOneRequiredWithoutProductInProductListsInput
+}
+
+input DistributionForProductInProductListUpsertWithWhereUniqueWithoutDistributionInput {
+  create: DistributionForProductInProductListCreateWithoutDistributionInput!
+  update: DistributionForProductInProductListUpdateWithoutDistributionInput!
+  where: DistributionForProductInProductListWhereUniqueInput!
+}
+
+input DistributionForProductInProductListUpsertWithWhereUniqueWithoutProductInProductListInput {
+  create: DistributionForProductInProductListCreateWithoutProductInProductListInput!
+  update: DistributionForProductInProductListUpdateWithoutProductInProductListInput!
+  where: DistributionForProductInProductListWhereUniqueInput!
+}
+
+input DistributionForProductInProductListWhereInput {
+  AND: [DistributionForProductInProductListWhereInput!]
+  NOT: [DistributionForProductInProductListWhereInput!]
+  OR: [DistributionForProductInProductListWhereInput!]
+  distribution: DistributionWhereInput
+  distributionId: IntFilter
+  id: IntFilter
+  productInProductList: ProductInProductListWhereInput
+  productInProductListId: IntFilter
+}
+
+input DistributionForProductInProductListWhereUniqueInput {
+  distributionId_productInProductListId: DistributionForProductInProductListDistributionIdProductInProductListIdCompoundUniqueInput
+  id: Int
+}
+
+input DistributionListRelationFilter {
+  every: DistributionWhereInput
+  none: DistributionWhereInput
+  some: DistributionWhereInput
+}
+
+input DistributionNameChannelIdCompoundUniqueInput {
+  channelId: Int!
+  name: String!
+}
+
+input DistributionScalarWhereInput {
+  AND: [DistributionScalarWhereInput!]
+  NOT: [DistributionScalarWhereInput!]
+  OR: [DistributionScalarWhereInput!]
+  channelId: IntFilter
+  id: IntFilter
+  name: StringFilter
+}
+
+input DistributionUpdateManyMutationInput {
+  name: StringFieldUpdateOperationsInput
+}
+
+input DistributionUpdateManyWithWhereWithoutChannelInput {
+  data: DistributionUpdateManyMutationInput!
+  where: DistributionScalarWhereInput!
+}
+
+input DistributionUpdateManyWithoutChannelInput {
+  connect: [DistributionWhereUniqueInput!]
+  connectOrCreate: [DistributionCreateOrConnectWithoutChannelInput!]
+  create: [DistributionCreateWithoutChannelInput!]
+  createMany: DistributionCreateManyChannelInputEnvelope
+  delete: [DistributionWhereUniqueInput!]
+  deleteMany: [DistributionScalarWhereInput!]
+  disconnect: [DistributionWhereUniqueInput!]
+  set: [DistributionWhereUniqueInput!]
+  update: [DistributionUpdateWithWhereUniqueWithoutChannelInput!]
+  updateMany: [DistributionUpdateManyWithWhereWithoutChannelInput!]
+  upsert: [DistributionUpsertWithWhereUniqueWithoutChannelInput!]
+}
+
+input DistributionUpdateOneRequiredWithoutProductInProductListsInput {
+  connect: DistributionWhereUniqueInput
+  connectOrCreate: DistributionCreateOrConnectWithoutProductInProductListsInput
+  create: DistributionCreateWithoutProductInProductListsInput
+  update: DistributionUpdateWithoutProductInProductListsInput
+  upsert: DistributionUpsertWithoutProductInProductListsInput
+}
+
+input DistributionUpdateWithWhereUniqueWithoutChannelInput {
+  data: DistributionUpdateWithoutChannelInput!
+  where: DistributionWhereUniqueInput!
+}
+
+input DistributionUpdateWithoutChannelInput {
+  name: StringFieldUpdateOperationsInput
+  productInProductLists: DistributionForProductInProductListUpdateManyWithoutDistributionInput
+}
+
+input DistributionUpdateWithoutProductInProductListsInput {
+  channel: ChannelUpdateOneRequiredWithoutDistributionInput
+  name: StringFieldUpdateOperationsInput
+}
+
+input DistributionUpsertWithWhereUniqueWithoutChannelInput {
+  create: DistributionCreateWithoutChannelInput!
+  update: DistributionUpdateWithoutChannelInput!
+  where: DistributionWhereUniqueInput!
+}
+
+input DistributionUpsertWithoutProductInProductListsInput {
+  create: DistributionCreateWithoutProductInProductListsInput!
+  update: DistributionUpdateWithoutProductInProductListsInput!
+}
+
+input DistributionWhereInput {
+  AND: [DistributionWhereInput!]
+  NOT: [DistributionWhereInput!]
+  OR: [DistributionWhereInput!]
+  channel: ChannelWhereInput
+  channelId: IntFilter
+  id: IntFilter
+  name: StringFilter
+  productInProductLists: DistributionForProductInProductListListRelationFilter
+}
+
+input DistributionWhereUniqueInput {
+  id: Int
+  name: String
+  name_channelId: DistributionNameChannelIdCompoundUniqueInput
 }
 
 input IntFilter {
@@ -284,6 +690,12 @@ type Product {
   pc9: String!
 }
 
+input ProductCreateNestedOneWithoutProductListsInput {
+  connect: ProductWhereUniqueInput
+  connectOrCreate: ProductCreateOrConnectWithoutProductListsInput
+  create: ProductCreateWithoutProductListsInput
+}
+
 input ProductCreateOrConnectWithoutProductListsInput {
   create: ProductCreateWithoutProductListsInput!
   where: ProductWhereUniqueInput!
@@ -295,12 +707,68 @@ input ProductCreateWithoutProductListsInput {
 }
 
 type ProductInProductList {
+  distributions(after: DistributionForProductInProductListWhereUniqueInput, before: DistributionForProductInProductListWhereUniqueInput, first: Int, last: Int): [DistributionForProductInProductList!]!
   exclusive: String
   exclusiveComments: String
   id: ID!
   minimumOrderQuantity: Int
   ownId: Int!
   productLifecycleGroup: ProductLifecycleGroup
+}
+
+input ProductInProductListCreateManyProductListInput {
+  exclusive: String
+  exclusiveComments: String
+  id: Int
+  minimumOrderQuantity: Int
+  productId: Int!
+  productLifecycleGroupName: String
+}
+
+input ProductInProductListCreateManyProductListInputEnvelope {
+  data: [ProductInProductListCreateManyProductListInput!]
+  skipDuplicates: Boolean
+}
+
+input ProductInProductListCreateNestedManyWithoutProductListInput {
+  connect: [ProductInProductListWhereUniqueInput!]
+  connectOrCreate: [ProductInProductListCreateOrConnectWithoutProductListInput!]
+  create: [ProductInProductListCreateWithoutProductListInput!]
+  createMany: ProductInProductListCreateManyProductListInputEnvelope
+}
+
+input ProductInProductListCreateNestedOneWithoutDistributionsInput {
+  connect: ProductInProductListWhereUniqueInput
+  connectOrCreate: ProductInProductListCreateOrConnectWithoutDistributionsInput
+  create: ProductInProductListCreateWithoutDistributionsInput
+}
+
+input ProductInProductListCreateOrConnectWithoutDistributionsInput {
+  create: ProductInProductListCreateWithoutDistributionsInput!
+  where: ProductInProductListWhereUniqueInput!
+}
+
+input ProductInProductListCreateOrConnectWithoutProductListInput {
+  create: ProductInProductListCreateWithoutProductListInput!
+  where: ProductInProductListWhereUniqueInput!
+}
+
+input ProductInProductListCreateWithoutDistributionsInput {
+  exclusive: String
+  exclusiveComments: String
+  minimumOrderQuantity: Int
+  product: ProductCreateNestedOneWithoutProductListsInput!
+  productLifecycleGroup: ProductLifecycleGroupCreateNestedOneWithoutProductInProductListInput
+  productList: ProductListCreateNestedOneWithoutProductsInput!
+}
+
+input ProductInProductListCreateWithoutProductListInput {
+  distributions: DistributionForProductInProductListCreateNestedManyWithoutProductInProductListInput
+  exclusive: String
+  exclusiveComments: String
+  minimumOrderQuantity: Int
+  product: ProductCreateNestedOneWithoutProductListsInput!
+  productLifecycleGroup: ProductLifecycleGroupCreateNestedOneWithoutProductInProductListInput
 }
 
 input ProductInProductListListRelationFilter {
@@ -314,7 +782,21 @@ input ProductInProductListProductIdProductListIdCompoundUniqueInput {
   productListId: Int!
 }
 
+input ProductInProductListScalarWhereInput {
+  AND: [ProductInProductListScalarWhereInput!]
+  NOT: [ProductInProductListScalarWhereInput!]
+  OR: [ProductInProductListScalarWhereInput!]
+  exclusive: StringNullableFilter
+  exclusiveComments: StringNullableFilter
+  id: IntFilter
+  minimumOrderQuantity: IntNullableFilter
+  productId: IntFilter
+  productLifecycleGroupName: StringNullableFilter
+  productListId: IntFilter
+}
+
 input ProductInProductListUpdateInput {
+  distributions: DistributionForProductInProductListUpdateManyWithoutProductInProductListInput
   exclusive: NullableStringFieldUpdateOperationsInput
   exclusiveComments: NullableStringFieldUpdateOperationsInput
   minimumOrderQuantity: NullableIntFieldUpdateOperationsInput
@@ -323,15 +805,83 @@ input ProductInProductListUpdateInput {
   productList: ProductListUpdateOneRequiredWithoutProductsInput
 }
 
+input ProductInProductListUpdateManyMutationInput {
+  exclusive: NullableStringFieldUpdateOperationsInput
+  exclusiveComments: NullableStringFieldUpdateOperationsInput
+  minimumOrderQuantity: NullableIntFieldUpdateOperationsInput
+}
+
+input ProductInProductListUpdateManyWithWhereWithoutProductListInput {
+  data: ProductInProductListUpdateManyMutationInput!
+  where: ProductInProductListScalarWhereInput!
+}
+
+input ProductInProductListUpdateManyWithoutProductListInput {
+  connect: [ProductInProductListWhereUniqueInput!]
+  connectOrCreate: [ProductInProductListCreateOrConnectWithoutProductListInput!]
+  create: [ProductInProductListCreateWithoutProductListInput!]
+  createMany: ProductInProductListCreateManyProductListInputEnvelope
+  delete: [ProductInProductListWhereUniqueInput!]
+  deleteMany: [ProductInProductListScalarWhereInput!]
+  disconnect: [ProductInProductListWhereUniqueInput!]
+  set: [ProductInProductListWhereUniqueInput!]
+  update: [ProductInProductListUpdateWithWhereUniqueWithoutProductListInput!]
+  updateMany: [ProductInProductListUpdateManyWithWhereWithoutProductListInput!]
+  upsert: [ProductInProductListUpsertWithWhereUniqueWithoutProductListInput!]
+}
+
+input ProductInProductListUpdateOneRequiredWithoutDistributionsInput {
+  connect: ProductInProductListWhereUniqueInput
+  connectOrCreate: ProductInProductListCreateOrConnectWithoutDistributionsInput
+  create: ProductInProductListCreateWithoutDistributionsInput
+  update: ProductInProductListUpdateWithoutDistributionsInput
+  upsert: ProductInProductListUpsertWithoutDistributionsInput
+}
+
 input ProductInProductListUpdateRowInput {
   data: ProductInProductListUpdateInput!
   where: ProductInProductListWhereUniqueInput!
+}
+
+input ProductInProductListUpdateWithWhereUniqueWithoutProductListInput {
+  data: ProductInProductListUpdateWithoutProductListInput!
+  where: ProductInProductListWhereUniqueInput!
+}
+
+input ProductInProductListUpdateWithoutDistributionsInput {
+  exclusive: NullableStringFieldUpdateOperationsInput
+  exclusiveComments: NullableStringFieldUpdateOperationsInput
+  minimumOrderQuantity: NullableIntFieldUpdateOperationsInput
+  product: ProductUpdateOneRequiredWithoutProductListsInput
+  productLifecycleGroup: ProductLifecycleGroupUpdateOneWithoutProductInProductListInput
+  productList: ProductListUpdateOneRequiredWithoutProductsInput
+}
+
+input ProductInProductListUpdateWithoutProductListInput {
+  distributions: DistributionForProductInProductListUpdateManyWithoutProductInProductListInput
+  exclusive: NullableStringFieldUpdateOperationsInput
+  exclusiveComments: NullableStringFieldUpdateOperationsInput
+  minimumOrderQuantity: NullableIntFieldUpdateOperationsInput
+  product: ProductUpdateOneRequiredWithoutProductListsInput
+  productLifecycleGroup: ProductLifecycleGroupUpdateOneWithoutProductInProductListInput
+}
+
+input ProductInProductListUpsertWithWhereUniqueWithoutProductListInput {
+  create: ProductInProductListCreateWithoutProductListInput!
+  update: ProductInProductListUpdateWithoutProductListInput!
+  where: ProductInProductListWhereUniqueInput!
+}
+
+input ProductInProductListUpsertWithoutDistributionsInput {
+  create: ProductInProductListCreateWithoutDistributionsInput!
+  update: ProductInProductListUpdateWithoutDistributionsInput!
 }
 
 input ProductInProductListWhereInput {
   AND: [ProductInProductListWhereInput!]
   NOT: [ProductInProductListWhereInput!]
   OR: [ProductInProductListWhereInput!]
+  distributions: DistributionForProductInProductListListRelationFilter
   exclusive: StringNullableFilter
   exclusiveComments: StringNullableFilter
   id: IntFilter
@@ -352,6 +902,12 @@ input ProductInProductListWhereUniqueInput {
 type ProductLifecycleGroup {
   displayName: String!
   name: String!
+}
+
+input ProductLifecycleGroupCreateNestedOneWithoutProductInProductListInput {
+  connect: ProductLifecycleGroupWhereUniqueInput
+  connectOrCreate: ProductLifecycleGroupCreateOrConnectWithoutProductInProductListInput
+  create: ProductLifecycleGroupCreateWithoutProductInProductListInput
 }
 
 input ProductLifecycleGroupCreateOrConnectWithoutProductInProductListInput {
@@ -418,9 +974,31 @@ type ProductList {
   title: String!
 }
 
+input ProductListCreateNestedOneWithoutChannelsInput {
+  connect: ProductListWhereUniqueInput
+  connectOrCreate: ProductListCreateOrConnectWithoutChannelsInput
+  create: ProductListCreateWithoutChannelsInput
+}
+
+input ProductListCreateNestedOneWithoutProductsInput {
+  connect: ProductListWhereUniqueInput
+  connectOrCreate: ProductListCreateOrConnectWithoutProductsInput
+  create: ProductListCreateWithoutProductsInput
+}
+
+input ProductListCreateOrConnectWithoutChannelsInput {
+  create: ProductListCreateWithoutChannelsInput!
+  where: ProductListWhereUniqueInput!
+}
+
 input ProductListCreateOrConnectWithoutProductsInput {
   create: ProductListCreateWithoutProductsInput!
   where: ProductListWhereUniqueInput!
+}
+
+input ProductListCreateWithoutChannelsInput {
+  products: ProductInProductListCreateNestedManyWithoutProductListInput
+  title: String!
 }
 
 input ProductListCreateWithoutProductsInput {
@@ -454,6 +1032,14 @@ type ProductListProductEdge {
   node: ProductListProduct!
 }
 
+input ProductListUpdateOneRequiredWithoutChannelsInput {
+  connect: ProductListWhereUniqueInput
+  connectOrCreate: ProductListCreateOrConnectWithoutChannelsInput
+  create: ProductListCreateWithoutChannelsInput
+  update: ProductListUpdateWithoutChannelsInput
+  upsert: ProductListUpsertWithoutChannelsInput
+}
+
 input ProductListUpdateOneRequiredWithoutProductsInput {
   connect: ProductListWhereUniqueInput
   connectOrCreate: ProductListCreateOrConnectWithoutProductsInput
@@ -462,9 +1048,19 @@ input ProductListUpdateOneRequiredWithoutProductsInput {
   upsert: ProductListUpsertWithoutProductsInput
 }
 
+input ProductListUpdateWithoutChannelsInput {
+  products: ProductInProductListUpdateManyWithoutProductListInput
+  title: StringFieldUpdateOperationsInput
+}
+
 input ProductListUpdateWithoutProductsInput {
   channels: ChannelInProductListUpdateManyWithoutProductListInput
   title: StringFieldUpdateOperationsInput
+}
+
+input ProductListUpsertWithoutChannelsInput {
+  create: ProductListCreateWithoutChannelsInput!
+  update: ProductListUpdateWithoutChannelsInput!
 }
 
 input ProductListUpsertWithoutProductsInput {

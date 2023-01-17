@@ -32,21 +32,43 @@ declare global {
 }
 
 export interface NexusGenInputs {
+  ChannelCreateNestedOneWithoutDistributionInput: { // input type
+    connect?: NexusGenInputs['ChannelWhereUniqueInput'] | null; // ChannelWhereUniqueInput
+    connectOrCreate?: NexusGenInputs['ChannelCreateOrConnectWithoutDistributionInput'] | null; // ChannelCreateOrConnectWithoutDistributionInput
+    create?: NexusGenInputs['ChannelCreateWithoutDistributionInput'] | null; // ChannelCreateWithoutDistributionInput
+  }
   ChannelCreateNestedOneWithoutProductListsInput: { // input type
     connect?: NexusGenInputs['ChannelWhereUniqueInput'] | null; // ChannelWhereUniqueInput
     connectOrCreate?: NexusGenInputs['ChannelCreateOrConnectWithoutProductListsInput'] | null; // ChannelCreateOrConnectWithoutProductListsInput
     create?: NexusGenInputs['ChannelCreateWithoutProductListsInput'] | null; // ChannelCreateWithoutProductListsInput
   }
+  ChannelCreateOrConnectWithoutDistributionInput: { // input type
+    create: NexusGenInputs['ChannelCreateWithoutDistributionInput']; // ChannelCreateWithoutDistributionInput!
+    where: NexusGenInputs['ChannelWhereUniqueInput']; // ChannelWhereUniqueInput!
+  }
   ChannelCreateOrConnectWithoutProductListsInput: { // input type
     create: NexusGenInputs['ChannelCreateWithoutProductListsInput']; // ChannelCreateWithoutProductListsInput!
     where: NexusGenInputs['ChannelWhereUniqueInput']; // ChannelWhereUniqueInput!
   }
+  ChannelCreateWithoutDistributionInput: { // input type
+    name: string; // String!
+    productLists?: NexusGenInputs['ChannelInProductListCreateNestedManyWithoutChannelInput'] | null; // ChannelInProductListCreateNestedManyWithoutChannelInput
+  }
   ChannelCreateWithoutProductListsInput: { // input type
+    Distribution?: NexusGenInputs['DistributionCreateNestedManyWithoutChannelInput'] | null; // DistributionCreateNestedManyWithoutChannelInput
     name: string; // String!
   }
   ChannelInProductListChannelIdProductListIdCompoundUniqueInput: { // input type
     channelId: number; // Int!
     productListId: number; // Int!
+  }
+  ChannelInProductListCreateManyChannelInput: { // input type
+    id?: number | null; // Int
+    productListId: number; // Int!
+  }
+  ChannelInProductListCreateManyChannelInputEnvelope: { // input type
+    data?: NexusGenInputs['ChannelInProductListCreateManyChannelInput'][] | null; // [ChannelInProductListCreateManyChannelInput!]
+    skipDuplicates?: boolean | null; // Boolean
   }
   ChannelInProductListCreateManyProductListInput: { // input type
     channelId: number; // Int!
@@ -56,15 +78,28 @@ export interface NexusGenInputs {
     data?: NexusGenInputs['ChannelInProductListCreateManyProductListInput'][] | null; // [ChannelInProductListCreateManyProductListInput!]
     skipDuplicates?: boolean | null; // Boolean
   }
+  ChannelInProductListCreateNestedManyWithoutChannelInput: { // input type
+    connect?: NexusGenInputs['ChannelInProductListWhereUniqueInput'][] | null; // [ChannelInProductListWhereUniqueInput!]
+    connectOrCreate?: NexusGenInputs['ChannelInProductListCreateOrConnectWithoutChannelInput'][] | null; // [ChannelInProductListCreateOrConnectWithoutChannelInput!]
+    create?: NexusGenInputs['ChannelInProductListCreateWithoutChannelInput'][] | null; // [ChannelInProductListCreateWithoutChannelInput!]
+    createMany?: NexusGenInputs['ChannelInProductListCreateManyChannelInputEnvelope'] | null; // ChannelInProductListCreateManyChannelInputEnvelope
+  }
   ChannelInProductListCreateNestedManyWithoutProductListInput: { // input type
     connect?: NexusGenInputs['ChannelInProductListWhereUniqueInput'][] | null; // [ChannelInProductListWhereUniqueInput!]
     connectOrCreate?: NexusGenInputs['ChannelInProductListCreateOrConnectWithoutProductListInput'][] | null; // [ChannelInProductListCreateOrConnectWithoutProductListInput!]
     create?: NexusGenInputs['ChannelInProductListCreateWithoutProductListInput'][] | null; // [ChannelInProductListCreateWithoutProductListInput!]
     createMany?: NexusGenInputs['ChannelInProductListCreateManyProductListInputEnvelope'] | null; // ChannelInProductListCreateManyProductListInputEnvelope
   }
+  ChannelInProductListCreateOrConnectWithoutChannelInput: { // input type
+    create: NexusGenInputs['ChannelInProductListCreateWithoutChannelInput']; // ChannelInProductListCreateWithoutChannelInput!
+    where: NexusGenInputs['ChannelInProductListWhereUniqueInput']; // ChannelInProductListWhereUniqueInput!
+  }
   ChannelInProductListCreateOrConnectWithoutProductListInput: { // input type
     create: NexusGenInputs['ChannelInProductListCreateWithoutProductListInput']; // ChannelInProductListCreateWithoutProductListInput!
     where: NexusGenInputs['ChannelInProductListWhereUniqueInput']; // ChannelInProductListWhereUniqueInput!
+  }
+  ChannelInProductListCreateWithoutChannelInput: { // input type
+    productList: NexusGenInputs['ProductListCreateNestedOneWithoutChannelsInput']; // ProductListCreateNestedOneWithoutChannelsInput!
   }
   ChannelInProductListCreateWithoutProductListInput: { // input type
     channel: NexusGenInputs['ChannelCreateNestedOneWithoutProductListsInput']; // ChannelCreateNestedOneWithoutProductListsInput!
@@ -85,9 +120,26 @@ export interface NexusGenInputs {
   ChannelInProductListUpdateManyMutationInput: { // input type
     _dummy_field?: number | null; // Int
   }
+  ChannelInProductListUpdateManyWithWhereWithoutChannelInput: { // input type
+    data: NexusGenInputs['ChannelInProductListUpdateManyMutationInput']; // ChannelInProductListUpdateManyMutationInput!
+    where: NexusGenInputs['ChannelInProductListScalarWhereInput']; // ChannelInProductListScalarWhereInput!
+  }
   ChannelInProductListUpdateManyWithWhereWithoutProductListInput: { // input type
     data: NexusGenInputs['ChannelInProductListUpdateManyMutationInput']; // ChannelInProductListUpdateManyMutationInput!
     where: NexusGenInputs['ChannelInProductListScalarWhereInput']; // ChannelInProductListScalarWhereInput!
+  }
+  ChannelInProductListUpdateManyWithoutChannelInput: { // input type
+    connect?: NexusGenInputs['ChannelInProductListWhereUniqueInput'][] | null; // [ChannelInProductListWhereUniqueInput!]
+    connectOrCreate?: NexusGenInputs['ChannelInProductListCreateOrConnectWithoutChannelInput'][] | null; // [ChannelInProductListCreateOrConnectWithoutChannelInput!]
+    create?: NexusGenInputs['ChannelInProductListCreateWithoutChannelInput'][] | null; // [ChannelInProductListCreateWithoutChannelInput!]
+    createMany?: NexusGenInputs['ChannelInProductListCreateManyChannelInputEnvelope'] | null; // ChannelInProductListCreateManyChannelInputEnvelope
+    delete?: NexusGenInputs['ChannelInProductListWhereUniqueInput'][] | null; // [ChannelInProductListWhereUniqueInput!]
+    deleteMany?: NexusGenInputs['ChannelInProductListScalarWhereInput'][] | null; // [ChannelInProductListScalarWhereInput!]
+    disconnect?: NexusGenInputs['ChannelInProductListWhereUniqueInput'][] | null; // [ChannelInProductListWhereUniqueInput!]
+    set?: NexusGenInputs['ChannelInProductListWhereUniqueInput'][] | null; // [ChannelInProductListWhereUniqueInput!]
+    update?: NexusGenInputs['ChannelInProductListUpdateWithWhereUniqueWithoutChannelInput'][] | null; // [ChannelInProductListUpdateWithWhereUniqueWithoutChannelInput!]
+    updateMany?: NexusGenInputs['ChannelInProductListUpdateManyWithWhereWithoutChannelInput'][] | null; // [ChannelInProductListUpdateManyWithWhereWithoutChannelInput!]
+    upsert?: NexusGenInputs['ChannelInProductListUpsertWithWhereUniqueWithoutChannelInput'][] | null; // [ChannelInProductListUpsertWithWhereUniqueWithoutChannelInput!]
   }
   ChannelInProductListUpdateManyWithoutProductListInput: { // input type
     connect?: NexusGenInputs['ChannelInProductListWhereUniqueInput'][] | null; // [ChannelInProductListWhereUniqueInput!]
@@ -102,12 +154,24 @@ export interface NexusGenInputs {
     updateMany?: NexusGenInputs['ChannelInProductListUpdateManyWithWhereWithoutProductListInput'][] | null; // [ChannelInProductListUpdateManyWithWhereWithoutProductListInput!]
     upsert?: NexusGenInputs['ChannelInProductListUpsertWithWhereUniqueWithoutProductListInput'][] | null; // [ChannelInProductListUpsertWithWhereUniqueWithoutProductListInput!]
   }
+  ChannelInProductListUpdateWithWhereUniqueWithoutChannelInput: { // input type
+    data: NexusGenInputs['ChannelInProductListUpdateWithoutChannelInput']; // ChannelInProductListUpdateWithoutChannelInput!
+    where: NexusGenInputs['ChannelInProductListWhereUniqueInput']; // ChannelInProductListWhereUniqueInput!
+  }
   ChannelInProductListUpdateWithWhereUniqueWithoutProductListInput: { // input type
     data: NexusGenInputs['ChannelInProductListUpdateWithoutProductListInput']; // ChannelInProductListUpdateWithoutProductListInput!
     where: NexusGenInputs['ChannelInProductListWhereUniqueInput']; // ChannelInProductListWhereUniqueInput!
   }
+  ChannelInProductListUpdateWithoutChannelInput: { // input type
+    productList?: NexusGenInputs['ProductListUpdateOneRequiredWithoutChannelsInput'] | null; // ProductListUpdateOneRequiredWithoutChannelsInput
+  }
   ChannelInProductListUpdateWithoutProductListInput: { // input type
     channel?: NexusGenInputs['ChannelUpdateOneRequiredWithoutProductListsInput'] | null; // ChannelUpdateOneRequiredWithoutProductListsInput
+  }
+  ChannelInProductListUpsertWithWhereUniqueWithoutChannelInput: { // input type
+    create: NexusGenInputs['ChannelInProductListCreateWithoutChannelInput']; // ChannelInProductListCreateWithoutChannelInput!
+    update: NexusGenInputs['ChannelInProductListUpdateWithoutChannelInput']; // ChannelInProductListUpdateWithoutChannelInput!
+    where: NexusGenInputs['ChannelInProductListWhereUniqueInput']; // ChannelInProductListWhereUniqueInput!
   }
   ChannelInProductListUpsertWithWhereUniqueWithoutProductListInput: { // input type
     create: NexusGenInputs['ChannelInProductListCreateWithoutProductListInput']; // ChannelInProductListCreateWithoutProductListInput!
@@ -128,6 +192,13 @@ export interface NexusGenInputs {
     channelId_productListId?: NexusGenInputs['ChannelInProductListChannelIdProductListIdCompoundUniqueInput'] | null; // ChannelInProductListChannelIdProductListIdCompoundUniqueInput
     id?: number | null; // Int
   }
+  ChannelUpdateOneRequiredWithoutDistributionInput: { // input type
+    connect?: NexusGenInputs['ChannelWhereUniqueInput'] | null; // ChannelWhereUniqueInput
+    connectOrCreate?: NexusGenInputs['ChannelCreateOrConnectWithoutDistributionInput'] | null; // ChannelCreateOrConnectWithoutDistributionInput
+    create?: NexusGenInputs['ChannelCreateWithoutDistributionInput'] | null; // ChannelCreateWithoutDistributionInput
+    update?: NexusGenInputs['ChannelUpdateWithoutDistributionInput'] | null; // ChannelUpdateWithoutDistributionInput
+    upsert?: NexusGenInputs['ChannelUpsertWithoutDistributionInput'] | null; // ChannelUpsertWithoutDistributionInput
+  }
   ChannelUpdateOneRequiredWithoutProductListsInput: { // input type
     connect?: NexusGenInputs['ChannelWhereUniqueInput'] | null; // ChannelWhereUniqueInput
     connectOrCreate?: NexusGenInputs['ChannelCreateOrConnectWithoutProductListsInput'] | null; // ChannelCreateOrConnectWithoutProductListsInput
@@ -135,8 +206,17 @@ export interface NexusGenInputs {
     update?: NexusGenInputs['ChannelUpdateWithoutProductListsInput'] | null; // ChannelUpdateWithoutProductListsInput
     upsert?: NexusGenInputs['ChannelUpsertWithoutProductListsInput'] | null; // ChannelUpsertWithoutProductListsInput
   }
-  ChannelUpdateWithoutProductListsInput: { // input type
+  ChannelUpdateWithoutDistributionInput: { // input type
     name?: NexusGenInputs['StringFieldUpdateOperationsInput'] | null; // StringFieldUpdateOperationsInput
+    productLists?: NexusGenInputs['ChannelInProductListUpdateManyWithoutChannelInput'] | null; // ChannelInProductListUpdateManyWithoutChannelInput
+  }
+  ChannelUpdateWithoutProductListsInput: { // input type
+    Distribution?: NexusGenInputs['DistributionUpdateManyWithoutChannelInput'] | null; // DistributionUpdateManyWithoutChannelInput
+    name?: NexusGenInputs['StringFieldUpdateOperationsInput'] | null; // StringFieldUpdateOperationsInput
+  }
+  ChannelUpsertWithoutDistributionInput: { // input type
+    create: NexusGenInputs['ChannelCreateWithoutDistributionInput']; // ChannelCreateWithoutDistributionInput!
+    update: NexusGenInputs['ChannelUpdateWithoutDistributionInput']; // ChannelUpdateWithoutDistributionInput!
   }
   ChannelUpsertWithoutProductListsInput: { // input type
     create: NexusGenInputs['ChannelCreateWithoutProductListsInput']; // ChannelCreateWithoutProductListsInput!
@@ -144,6 +224,7 @@ export interface NexusGenInputs {
   }
   ChannelWhereInput: { // input type
     AND?: NexusGenInputs['ChannelWhereInput'][] | null; // [ChannelWhereInput!]
+    Distribution?: NexusGenInputs['DistributionListRelationFilter'] | null; // DistributionListRelationFilter
     NOT?: NexusGenInputs['ChannelWhereInput'][] | null; // [ChannelWhereInput!]
     OR?: NexusGenInputs['ChannelWhereInput'][] | null; // [ChannelWhereInput!]
     id?: NexusGenInputs['IntFilter'] | null; // IntFilter
@@ -153,6 +234,255 @@ export interface NexusGenInputs {
   ChannelWhereUniqueInput: { // input type
     id?: number | null; // Int
     name?: string | null; // String
+  }
+  DistributionCreateManyChannelInput: { // input type
+    id?: number | null; // Int
+    name: string; // String!
+  }
+  DistributionCreateManyChannelInputEnvelope: { // input type
+    data?: NexusGenInputs['DistributionCreateManyChannelInput'][] | null; // [DistributionCreateManyChannelInput!]
+    skipDuplicates?: boolean | null; // Boolean
+  }
+  DistributionCreateNestedManyWithoutChannelInput: { // input type
+    connect?: NexusGenInputs['DistributionWhereUniqueInput'][] | null; // [DistributionWhereUniqueInput!]
+    connectOrCreate?: NexusGenInputs['DistributionCreateOrConnectWithoutChannelInput'][] | null; // [DistributionCreateOrConnectWithoutChannelInput!]
+    create?: NexusGenInputs['DistributionCreateWithoutChannelInput'][] | null; // [DistributionCreateWithoutChannelInput!]
+    createMany?: NexusGenInputs['DistributionCreateManyChannelInputEnvelope'] | null; // DistributionCreateManyChannelInputEnvelope
+  }
+  DistributionCreateNestedOneWithoutProductInProductListsInput: { // input type
+    connect?: NexusGenInputs['DistributionWhereUniqueInput'] | null; // DistributionWhereUniqueInput
+    connectOrCreate?: NexusGenInputs['DistributionCreateOrConnectWithoutProductInProductListsInput'] | null; // DistributionCreateOrConnectWithoutProductInProductListsInput
+    create?: NexusGenInputs['DistributionCreateWithoutProductInProductListsInput'] | null; // DistributionCreateWithoutProductInProductListsInput
+  }
+  DistributionCreateOrConnectWithoutChannelInput: { // input type
+    create: NexusGenInputs['DistributionCreateWithoutChannelInput']; // DistributionCreateWithoutChannelInput!
+    where: NexusGenInputs['DistributionWhereUniqueInput']; // DistributionWhereUniqueInput!
+  }
+  DistributionCreateOrConnectWithoutProductInProductListsInput: { // input type
+    create: NexusGenInputs['DistributionCreateWithoutProductInProductListsInput']; // DistributionCreateWithoutProductInProductListsInput!
+    where: NexusGenInputs['DistributionWhereUniqueInput']; // DistributionWhereUniqueInput!
+  }
+  DistributionCreateWithoutChannelInput: { // input type
+    name: string; // String!
+    productInProductLists?: NexusGenInputs['DistributionForProductInProductListCreateNestedManyWithoutDistributionInput'] | null; // DistributionForProductInProductListCreateNestedManyWithoutDistributionInput
+  }
+  DistributionCreateWithoutProductInProductListsInput: { // input type
+    channel: NexusGenInputs['ChannelCreateNestedOneWithoutDistributionInput']; // ChannelCreateNestedOneWithoutDistributionInput!
+    name: string; // String!
+  }
+  DistributionForProductInProductListCreateManyDistributionInput: { // input type
+    id?: number | null; // Int
+    productInProductListId: number; // Int!
+  }
+  DistributionForProductInProductListCreateManyDistributionInputEnvelope: { // input type
+    data?: NexusGenInputs['DistributionForProductInProductListCreateManyDistributionInput'][] | null; // [DistributionForProductInProductListCreateManyDistributionInput!]
+    skipDuplicates?: boolean | null; // Boolean
+  }
+  DistributionForProductInProductListCreateManyProductInProductListInput: { // input type
+    distributionId: number; // Int!
+    id?: number | null; // Int
+  }
+  DistributionForProductInProductListCreateManyProductInProductListInputEnvelope: { // input type
+    data?: NexusGenInputs['DistributionForProductInProductListCreateManyProductInProductListInput'][] | null; // [DistributionForProductInProductListCreateManyProductInProductListInput!]
+    skipDuplicates?: boolean | null; // Boolean
+  }
+  DistributionForProductInProductListCreateNestedManyWithoutDistributionInput: { // input type
+    connect?: NexusGenInputs['DistributionForProductInProductListWhereUniqueInput'][] | null; // [DistributionForProductInProductListWhereUniqueInput!]
+    connectOrCreate?: NexusGenInputs['DistributionForProductInProductListCreateOrConnectWithoutDistributionInput'][] | null; // [DistributionForProductInProductListCreateOrConnectWithoutDistributionInput!]
+    create?: NexusGenInputs['DistributionForProductInProductListCreateWithoutDistributionInput'][] | null; // [DistributionForProductInProductListCreateWithoutDistributionInput!]
+    createMany?: NexusGenInputs['DistributionForProductInProductListCreateManyDistributionInputEnvelope'] | null; // DistributionForProductInProductListCreateManyDistributionInputEnvelope
+  }
+  DistributionForProductInProductListCreateNestedManyWithoutProductInProductListInput: { // input type
+    connect?: NexusGenInputs['DistributionForProductInProductListWhereUniqueInput'][] | null; // [DistributionForProductInProductListWhereUniqueInput!]
+    connectOrCreate?: NexusGenInputs['DistributionForProductInProductListCreateOrConnectWithoutProductInProductListInput'][] | null; // [DistributionForProductInProductListCreateOrConnectWithoutProductInProductListInput!]
+    create?: NexusGenInputs['DistributionForProductInProductListCreateWithoutProductInProductListInput'][] | null; // [DistributionForProductInProductListCreateWithoutProductInProductListInput!]
+    createMany?: NexusGenInputs['DistributionForProductInProductListCreateManyProductInProductListInputEnvelope'] | null; // DistributionForProductInProductListCreateManyProductInProductListInputEnvelope
+  }
+  DistributionForProductInProductListCreateOrConnectWithoutDistributionInput: { // input type
+    create: NexusGenInputs['DistributionForProductInProductListCreateWithoutDistributionInput']; // DistributionForProductInProductListCreateWithoutDistributionInput!
+    where: NexusGenInputs['DistributionForProductInProductListWhereUniqueInput']; // DistributionForProductInProductListWhereUniqueInput!
+  }
+  DistributionForProductInProductListCreateOrConnectWithoutProductInProductListInput: { // input type
+    create: NexusGenInputs['DistributionForProductInProductListCreateWithoutProductInProductListInput']; // DistributionForProductInProductListCreateWithoutProductInProductListInput!
+    where: NexusGenInputs['DistributionForProductInProductListWhereUniqueInput']; // DistributionForProductInProductListWhereUniqueInput!
+  }
+  DistributionForProductInProductListCreateWithoutDistributionInput: { // input type
+    productInProductList: NexusGenInputs['ProductInProductListCreateNestedOneWithoutDistributionsInput']; // ProductInProductListCreateNestedOneWithoutDistributionsInput!
+  }
+  DistributionForProductInProductListCreateWithoutProductInProductListInput: { // input type
+    distribution: NexusGenInputs['DistributionCreateNestedOneWithoutProductInProductListsInput']; // DistributionCreateNestedOneWithoutProductInProductListsInput!
+  }
+  DistributionForProductInProductListDistributionIdProductInProductListIdCompoundUniqueInput: { // input type
+    distributionId: number; // Int!
+    productInProductListId: number; // Int!
+  }
+  DistributionForProductInProductListListRelationFilter: { // input type
+    every?: NexusGenInputs['DistributionForProductInProductListWhereInput'] | null; // DistributionForProductInProductListWhereInput
+    none?: NexusGenInputs['DistributionForProductInProductListWhereInput'] | null; // DistributionForProductInProductListWhereInput
+    some?: NexusGenInputs['DistributionForProductInProductListWhereInput'] | null; // DistributionForProductInProductListWhereInput
+  }
+  DistributionForProductInProductListScalarWhereInput: { // input type
+    AND?: NexusGenInputs['DistributionForProductInProductListScalarWhereInput'][] | null; // [DistributionForProductInProductListScalarWhereInput!]
+    NOT?: NexusGenInputs['DistributionForProductInProductListScalarWhereInput'][] | null; // [DistributionForProductInProductListScalarWhereInput!]
+    OR?: NexusGenInputs['DistributionForProductInProductListScalarWhereInput'][] | null; // [DistributionForProductInProductListScalarWhereInput!]
+    distributionId?: NexusGenInputs['IntFilter'] | null; // IntFilter
+    id?: NexusGenInputs['IntFilter'] | null; // IntFilter
+    productInProductListId?: NexusGenInputs['IntFilter'] | null; // IntFilter
+  }
+  DistributionForProductInProductListUpdateManyMutationInput: { // input type
+    _dummy_field?: number | null; // Int
+  }
+  DistributionForProductInProductListUpdateManyWithWhereWithoutDistributionInput: { // input type
+    data: NexusGenInputs['DistributionForProductInProductListUpdateManyMutationInput']; // DistributionForProductInProductListUpdateManyMutationInput!
+    where: NexusGenInputs['DistributionForProductInProductListScalarWhereInput']; // DistributionForProductInProductListScalarWhereInput!
+  }
+  DistributionForProductInProductListUpdateManyWithWhereWithoutProductInProductListInput: { // input type
+    data: NexusGenInputs['DistributionForProductInProductListUpdateManyMutationInput']; // DistributionForProductInProductListUpdateManyMutationInput!
+    where: NexusGenInputs['DistributionForProductInProductListScalarWhereInput']; // DistributionForProductInProductListScalarWhereInput!
+  }
+  DistributionForProductInProductListUpdateManyWithoutDistributionInput: { // input type
+    connect?: NexusGenInputs['DistributionForProductInProductListWhereUniqueInput'][] | null; // [DistributionForProductInProductListWhereUniqueInput!]
+    connectOrCreate?: NexusGenInputs['DistributionForProductInProductListCreateOrConnectWithoutDistributionInput'][] | null; // [DistributionForProductInProductListCreateOrConnectWithoutDistributionInput!]
+    create?: NexusGenInputs['DistributionForProductInProductListCreateWithoutDistributionInput'][] | null; // [DistributionForProductInProductListCreateWithoutDistributionInput!]
+    createMany?: NexusGenInputs['DistributionForProductInProductListCreateManyDistributionInputEnvelope'] | null; // DistributionForProductInProductListCreateManyDistributionInputEnvelope
+    delete?: NexusGenInputs['DistributionForProductInProductListWhereUniqueInput'][] | null; // [DistributionForProductInProductListWhereUniqueInput!]
+    deleteMany?: NexusGenInputs['DistributionForProductInProductListScalarWhereInput'][] | null; // [DistributionForProductInProductListScalarWhereInput!]
+    disconnect?: NexusGenInputs['DistributionForProductInProductListWhereUniqueInput'][] | null; // [DistributionForProductInProductListWhereUniqueInput!]
+    set?: NexusGenInputs['DistributionForProductInProductListWhereUniqueInput'][] | null; // [DistributionForProductInProductListWhereUniqueInput!]
+    update?: NexusGenInputs['DistributionForProductInProductListUpdateWithWhereUniqueWithoutDistributionInput'][] | null; // [DistributionForProductInProductListUpdateWithWhereUniqueWithoutDistributionInput!]
+    updateMany?: NexusGenInputs['DistributionForProductInProductListUpdateManyWithWhereWithoutDistributionInput'][] | null; // [DistributionForProductInProductListUpdateManyWithWhereWithoutDistributionInput!]
+    upsert?: NexusGenInputs['DistributionForProductInProductListUpsertWithWhereUniqueWithoutDistributionInput'][] | null; // [DistributionForProductInProductListUpsertWithWhereUniqueWithoutDistributionInput!]
+  }
+  DistributionForProductInProductListUpdateManyWithoutProductInProductListInput: { // input type
+    connect?: NexusGenInputs['DistributionForProductInProductListWhereUniqueInput'][] | null; // [DistributionForProductInProductListWhereUniqueInput!]
+    connectOrCreate?: NexusGenInputs['DistributionForProductInProductListCreateOrConnectWithoutProductInProductListInput'][] | null; // [DistributionForProductInProductListCreateOrConnectWithoutProductInProductListInput!]
+    create?: NexusGenInputs['DistributionForProductInProductListCreateWithoutProductInProductListInput'][] | null; // [DistributionForProductInProductListCreateWithoutProductInProductListInput!]
+    createMany?: NexusGenInputs['DistributionForProductInProductListCreateManyProductInProductListInputEnvelope'] | null; // DistributionForProductInProductListCreateManyProductInProductListInputEnvelope
+    delete?: NexusGenInputs['DistributionForProductInProductListWhereUniqueInput'][] | null; // [DistributionForProductInProductListWhereUniqueInput!]
+    deleteMany?: NexusGenInputs['DistributionForProductInProductListScalarWhereInput'][] | null; // [DistributionForProductInProductListScalarWhereInput!]
+    disconnect?: NexusGenInputs['DistributionForProductInProductListWhereUniqueInput'][] | null; // [DistributionForProductInProductListWhereUniqueInput!]
+    set?: NexusGenInputs['DistributionForProductInProductListWhereUniqueInput'][] | null; // [DistributionForProductInProductListWhereUniqueInput!]
+    update?: NexusGenInputs['DistributionForProductInProductListUpdateWithWhereUniqueWithoutProductInProductListInput'][] | null; // [DistributionForProductInProductListUpdateWithWhereUniqueWithoutProductInProductListInput!]
+    updateMany?: NexusGenInputs['DistributionForProductInProductListUpdateManyWithWhereWithoutProductInProductListInput'][] | null; // [DistributionForProductInProductListUpdateManyWithWhereWithoutProductInProductListInput!]
+    upsert?: NexusGenInputs['DistributionForProductInProductListUpsertWithWhereUniqueWithoutProductInProductListInput'][] | null; // [DistributionForProductInProductListUpsertWithWhereUniqueWithoutProductInProductListInput!]
+  }
+  DistributionForProductInProductListUpdateWithWhereUniqueWithoutDistributionInput: { // input type
+    data: NexusGenInputs['DistributionForProductInProductListUpdateWithoutDistributionInput']; // DistributionForProductInProductListUpdateWithoutDistributionInput!
+    where: NexusGenInputs['DistributionForProductInProductListWhereUniqueInput']; // DistributionForProductInProductListWhereUniqueInput!
+  }
+  DistributionForProductInProductListUpdateWithWhereUniqueWithoutProductInProductListInput: { // input type
+    data: NexusGenInputs['DistributionForProductInProductListUpdateWithoutProductInProductListInput']; // DistributionForProductInProductListUpdateWithoutProductInProductListInput!
+    where: NexusGenInputs['DistributionForProductInProductListWhereUniqueInput']; // DistributionForProductInProductListWhereUniqueInput!
+  }
+  DistributionForProductInProductListUpdateWithoutDistributionInput: { // input type
+    productInProductList?: NexusGenInputs['ProductInProductListUpdateOneRequiredWithoutDistributionsInput'] | null; // ProductInProductListUpdateOneRequiredWithoutDistributionsInput
+  }
+  DistributionForProductInProductListUpdateWithoutProductInProductListInput: { // input type
+    distribution?: NexusGenInputs['DistributionUpdateOneRequiredWithoutProductInProductListsInput'] | null; // DistributionUpdateOneRequiredWithoutProductInProductListsInput
+  }
+  DistributionForProductInProductListUpsertWithWhereUniqueWithoutDistributionInput: { // input type
+    create: NexusGenInputs['DistributionForProductInProductListCreateWithoutDistributionInput']; // DistributionForProductInProductListCreateWithoutDistributionInput!
+    update: NexusGenInputs['DistributionForProductInProductListUpdateWithoutDistributionInput']; // DistributionForProductInProductListUpdateWithoutDistributionInput!
+    where: NexusGenInputs['DistributionForProductInProductListWhereUniqueInput']; // DistributionForProductInProductListWhereUniqueInput!
+  }
+  DistributionForProductInProductListUpsertWithWhereUniqueWithoutProductInProductListInput: { // input type
+    create: NexusGenInputs['DistributionForProductInProductListCreateWithoutProductInProductListInput']; // DistributionForProductInProductListCreateWithoutProductInProductListInput!
+    update: NexusGenInputs['DistributionForProductInProductListUpdateWithoutProductInProductListInput']; // DistributionForProductInProductListUpdateWithoutProductInProductListInput!
+    where: NexusGenInputs['DistributionForProductInProductListWhereUniqueInput']; // DistributionForProductInProductListWhereUniqueInput!
+  }
+  DistributionForProductInProductListWhereInput: { // input type
+    AND?: NexusGenInputs['DistributionForProductInProductListWhereInput'][] | null; // [DistributionForProductInProductListWhereInput!]
+    NOT?: NexusGenInputs['DistributionForProductInProductListWhereInput'][] | null; // [DistributionForProductInProductListWhereInput!]
+    OR?: NexusGenInputs['DistributionForProductInProductListWhereInput'][] | null; // [DistributionForProductInProductListWhereInput!]
+    distribution?: NexusGenInputs['DistributionWhereInput'] | null; // DistributionWhereInput
+    distributionId?: NexusGenInputs['IntFilter'] | null; // IntFilter
+    id?: NexusGenInputs['IntFilter'] | null; // IntFilter
+    productInProductList?: NexusGenInputs['ProductInProductListWhereInput'] | null; // ProductInProductListWhereInput
+    productInProductListId?: NexusGenInputs['IntFilter'] | null; // IntFilter
+  }
+  DistributionForProductInProductListWhereUniqueInput: { // input type
+    distributionId_productInProductListId?: NexusGenInputs['DistributionForProductInProductListDistributionIdProductInProductListIdCompoundUniqueInput'] | null; // DistributionForProductInProductListDistributionIdProductInProductListIdCompoundUniqueInput
+    id?: number | null; // Int
+  }
+  DistributionListRelationFilter: { // input type
+    every?: NexusGenInputs['DistributionWhereInput'] | null; // DistributionWhereInput
+    none?: NexusGenInputs['DistributionWhereInput'] | null; // DistributionWhereInput
+    some?: NexusGenInputs['DistributionWhereInput'] | null; // DistributionWhereInput
+  }
+  DistributionNameChannelIdCompoundUniqueInput: { // input type
+    channelId: number; // Int!
+    name: string; // String!
+  }
+  DistributionScalarWhereInput: { // input type
+    AND?: NexusGenInputs['DistributionScalarWhereInput'][] | null; // [DistributionScalarWhereInput!]
+    NOT?: NexusGenInputs['DistributionScalarWhereInput'][] | null; // [DistributionScalarWhereInput!]
+    OR?: NexusGenInputs['DistributionScalarWhereInput'][] | null; // [DistributionScalarWhereInput!]
+    channelId?: NexusGenInputs['IntFilter'] | null; // IntFilter
+    id?: NexusGenInputs['IntFilter'] | null; // IntFilter
+    name?: NexusGenInputs['StringFilter'] | null; // StringFilter
+  }
+  DistributionUpdateManyMutationInput: { // input type
+    name?: NexusGenInputs['StringFieldUpdateOperationsInput'] | null; // StringFieldUpdateOperationsInput
+  }
+  DistributionUpdateManyWithWhereWithoutChannelInput: { // input type
+    data: NexusGenInputs['DistributionUpdateManyMutationInput']; // DistributionUpdateManyMutationInput!
+    where: NexusGenInputs['DistributionScalarWhereInput']; // DistributionScalarWhereInput!
+  }
+  DistributionUpdateManyWithoutChannelInput: { // input type
+    connect?: NexusGenInputs['DistributionWhereUniqueInput'][] | null; // [DistributionWhereUniqueInput!]
+    connectOrCreate?: NexusGenInputs['DistributionCreateOrConnectWithoutChannelInput'][] | null; // [DistributionCreateOrConnectWithoutChannelInput!]
+    create?: NexusGenInputs['DistributionCreateWithoutChannelInput'][] | null; // [DistributionCreateWithoutChannelInput!]
+    createMany?: NexusGenInputs['DistributionCreateManyChannelInputEnvelope'] | null; // DistributionCreateManyChannelInputEnvelope
+    delete?: NexusGenInputs['DistributionWhereUniqueInput'][] | null; // [DistributionWhereUniqueInput!]
+    deleteMany?: NexusGenInputs['DistributionScalarWhereInput'][] | null; // [DistributionScalarWhereInput!]
+    disconnect?: NexusGenInputs['DistributionWhereUniqueInput'][] | null; // [DistributionWhereUniqueInput!]
+    set?: NexusGenInputs['DistributionWhereUniqueInput'][] | null; // [DistributionWhereUniqueInput!]
+    update?: NexusGenInputs['DistributionUpdateWithWhereUniqueWithoutChannelInput'][] | null; // [DistributionUpdateWithWhereUniqueWithoutChannelInput!]
+    updateMany?: NexusGenInputs['DistributionUpdateManyWithWhereWithoutChannelInput'][] | null; // [DistributionUpdateManyWithWhereWithoutChannelInput!]
+    upsert?: NexusGenInputs['DistributionUpsertWithWhereUniqueWithoutChannelInput'][] | null; // [DistributionUpsertWithWhereUniqueWithoutChannelInput!]
+  }
+  DistributionUpdateOneRequiredWithoutProductInProductListsInput: { // input type
+    connect?: NexusGenInputs['DistributionWhereUniqueInput'] | null; // DistributionWhereUniqueInput
+    connectOrCreate?: NexusGenInputs['DistributionCreateOrConnectWithoutProductInProductListsInput'] | null; // DistributionCreateOrConnectWithoutProductInProductListsInput
+    create?: NexusGenInputs['DistributionCreateWithoutProductInProductListsInput'] | null; // DistributionCreateWithoutProductInProductListsInput
+    update?: NexusGenInputs['DistributionUpdateWithoutProductInProductListsInput'] | null; // DistributionUpdateWithoutProductInProductListsInput
+    upsert?: NexusGenInputs['DistributionUpsertWithoutProductInProductListsInput'] | null; // DistributionUpsertWithoutProductInProductListsInput
+  }
+  DistributionUpdateWithWhereUniqueWithoutChannelInput: { // input type
+    data: NexusGenInputs['DistributionUpdateWithoutChannelInput']; // DistributionUpdateWithoutChannelInput!
+    where: NexusGenInputs['DistributionWhereUniqueInput']; // DistributionWhereUniqueInput!
+  }
+  DistributionUpdateWithoutChannelInput: { // input type
+    name?: NexusGenInputs['StringFieldUpdateOperationsInput'] | null; // StringFieldUpdateOperationsInput
+    productInProductLists?: NexusGenInputs['DistributionForProductInProductListUpdateManyWithoutDistributionInput'] | null; // DistributionForProductInProductListUpdateManyWithoutDistributionInput
+  }
+  DistributionUpdateWithoutProductInProductListsInput: { // input type
+    channel?: NexusGenInputs['ChannelUpdateOneRequiredWithoutDistributionInput'] | null; // ChannelUpdateOneRequiredWithoutDistributionInput
+    name?: NexusGenInputs['StringFieldUpdateOperationsInput'] | null; // StringFieldUpdateOperationsInput
+  }
+  DistributionUpsertWithWhereUniqueWithoutChannelInput: { // input type
+    create: NexusGenInputs['DistributionCreateWithoutChannelInput']; // DistributionCreateWithoutChannelInput!
+    update: NexusGenInputs['DistributionUpdateWithoutChannelInput']; // DistributionUpdateWithoutChannelInput!
+    where: NexusGenInputs['DistributionWhereUniqueInput']; // DistributionWhereUniqueInput!
+  }
+  DistributionUpsertWithoutProductInProductListsInput: { // input type
+    create: NexusGenInputs['DistributionCreateWithoutProductInProductListsInput']; // DistributionCreateWithoutProductInProductListsInput!
+    update: NexusGenInputs['DistributionUpdateWithoutProductInProductListsInput']; // DistributionUpdateWithoutProductInProductListsInput!
+  }
+  DistributionWhereInput: { // input type
+    AND?: NexusGenInputs['DistributionWhereInput'][] | null; // [DistributionWhereInput!]
+    NOT?: NexusGenInputs['DistributionWhereInput'][] | null; // [DistributionWhereInput!]
+    OR?: NexusGenInputs['DistributionWhereInput'][] | null; // [DistributionWhereInput!]
+    channel?: NexusGenInputs['ChannelWhereInput'] | null; // ChannelWhereInput
+    channelId?: NexusGenInputs['IntFilter'] | null; // IntFilter
+    id?: NexusGenInputs['IntFilter'] | null; // IntFilter
+    name?: NexusGenInputs['StringFilter'] | null; // StringFilter
+    productInProductLists?: NexusGenInputs['DistributionForProductInProductListListRelationFilter'] | null; // DistributionForProductInProductListListRelationFilter
+  }
+  DistributionWhereUniqueInput: { // input type
+    id?: number | null; // Int
+    name?: string | null; // String
+    name_channelId?: NexusGenInputs['DistributionNameChannelIdCompoundUniqueInput'] | null; // DistributionNameChannelIdCompoundUniqueInput
   }
   IntFilter: { // input type
     equals?: number | null; // Int
@@ -230,6 +560,11 @@ export interface NexusGenInputs {
   NullableStringFieldUpdateOperationsInput: { // input type
     set?: string | null; // String
   }
+  ProductCreateNestedOneWithoutProductListsInput: { // input type
+    connect?: NexusGenInputs['ProductWhereUniqueInput'] | null; // ProductWhereUniqueInput
+    connectOrCreate?: NexusGenInputs['ProductCreateOrConnectWithoutProductListsInput'] | null; // ProductCreateOrConnectWithoutProductListsInput
+    create?: NexusGenInputs['ProductCreateWithoutProductListsInput'] | null; // ProductCreateWithoutProductListsInput
+  }
   ProductCreateOrConnectWithoutProductListsInput: { // input type
     create: NexusGenInputs['ProductCreateWithoutProductListsInput']; // ProductCreateWithoutProductListsInput!
     where: NexusGenInputs['ProductWhereUniqueInput']; // ProductWhereUniqueInput!
@@ -237,6 +572,53 @@ export interface NexusGenInputs {
   ProductCreateWithoutProductListsInput: { // input type
     colorwayName: string; // String!
     pc9: string; // String!
+  }
+  ProductInProductListCreateManyProductListInput: { // input type
+    exclusive?: string | null; // String
+    exclusiveComments?: string | null; // String
+    id?: number | null; // Int
+    minimumOrderQuantity?: number | null; // Int
+    productId: number; // Int!
+    productLifecycleGroupName?: string | null; // String
+  }
+  ProductInProductListCreateManyProductListInputEnvelope: { // input type
+    data?: NexusGenInputs['ProductInProductListCreateManyProductListInput'][] | null; // [ProductInProductListCreateManyProductListInput!]
+    skipDuplicates?: boolean | null; // Boolean
+  }
+  ProductInProductListCreateNestedManyWithoutProductListInput: { // input type
+    connect?: NexusGenInputs['ProductInProductListWhereUniqueInput'][] | null; // [ProductInProductListWhereUniqueInput!]
+    connectOrCreate?: NexusGenInputs['ProductInProductListCreateOrConnectWithoutProductListInput'][] | null; // [ProductInProductListCreateOrConnectWithoutProductListInput!]
+    create?: NexusGenInputs['ProductInProductListCreateWithoutProductListInput'][] | null; // [ProductInProductListCreateWithoutProductListInput!]
+    createMany?: NexusGenInputs['ProductInProductListCreateManyProductListInputEnvelope'] | null; // ProductInProductListCreateManyProductListInputEnvelope
+  }
+  ProductInProductListCreateNestedOneWithoutDistributionsInput: { // input type
+    connect?: NexusGenInputs['ProductInProductListWhereUniqueInput'] | null; // ProductInProductListWhereUniqueInput
+    connectOrCreate?: NexusGenInputs['ProductInProductListCreateOrConnectWithoutDistributionsInput'] | null; // ProductInProductListCreateOrConnectWithoutDistributionsInput
+    create?: NexusGenInputs['ProductInProductListCreateWithoutDistributionsInput'] | null; // ProductInProductListCreateWithoutDistributionsInput
+  }
+  ProductInProductListCreateOrConnectWithoutDistributionsInput: { // input type
+    create: NexusGenInputs['ProductInProductListCreateWithoutDistributionsInput']; // ProductInProductListCreateWithoutDistributionsInput!
+    where: NexusGenInputs['ProductInProductListWhereUniqueInput']; // ProductInProductListWhereUniqueInput!
+  }
+  ProductInProductListCreateOrConnectWithoutProductListInput: { // input type
+    create: NexusGenInputs['ProductInProductListCreateWithoutProductListInput']; // ProductInProductListCreateWithoutProductListInput!
+    where: NexusGenInputs['ProductInProductListWhereUniqueInput']; // ProductInProductListWhereUniqueInput!
+  }
+  ProductInProductListCreateWithoutDistributionsInput: { // input type
+    exclusive?: string | null; // String
+    exclusiveComments?: string | null; // String
+    minimumOrderQuantity?: number | null; // Int
+    product: NexusGenInputs['ProductCreateNestedOneWithoutProductListsInput']; // ProductCreateNestedOneWithoutProductListsInput!
+    productLifecycleGroup?: NexusGenInputs['ProductLifecycleGroupCreateNestedOneWithoutProductInProductListInput'] | null; // ProductLifecycleGroupCreateNestedOneWithoutProductInProductListInput
+    productList: NexusGenInputs['ProductListCreateNestedOneWithoutProductsInput']; // ProductListCreateNestedOneWithoutProductsInput!
+  }
+  ProductInProductListCreateWithoutProductListInput: { // input type
+    distributions?: NexusGenInputs['DistributionForProductInProductListCreateNestedManyWithoutProductInProductListInput'] | null; // DistributionForProductInProductListCreateNestedManyWithoutProductInProductListInput
+    exclusive?: string | null; // String
+    exclusiveComments?: string | null; // String
+    minimumOrderQuantity?: number | null; // Int
+    product: NexusGenInputs['ProductCreateNestedOneWithoutProductListsInput']; // ProductCreateNestedOneWithoutProductListsInput!
+    productLifecycleGroup?: NexusGenInputs['ProductLifecycleGroupCreateNestedOneWithoutProductInProductListInput'] | null; // ProductLifecycleGroupCreateNestedOneWithoutProductInProductListInput
   }
   ProductInProductListListRelationFilter: { // input type
     every?: NexusGenInputs['ProductInProductListWhereInput'] | null; // ProductInProductListWhereInput
@@ -247,7 +629,20 @@ export interface NexusGenInputs {
     productId: number; // Int!
     productListId: number; // Int!
   }
+  ProductInProductListScalarWhereInput: { // input type
+    AND?: NexusGenInputs['ProductInProductListScalarWhereInput'][] | null; // [ProductInProductListScalarWhereInput!]
+    NOT?: NexusGenInputs['ProductInProductListScalarWhereInput'][] | null; // [ProductInProductListScalarWhereInput!]
+    OR?: NexusGenInputs['ProductInProductListScalarWhereInput'][] | null; // [ProductInProductListScalarWhereInput!]
+    exclusive?: NexusGenInputs['StringNullableFilter'] | null; // StringNullableFilter
+    exclusiveComments?: NexusGenInputs['StringNullableFilter'] | null; // StringNullableFilter
+    id?: NexusGenInputs['IntFilter'] | null; // IntFilter
+    minimumOrderQuantity?: NexusGenInputs['IntNullableFilter'] | null; // IntNullableFilter
+    productId?: NexusGenInputs['IntFilter'] | null; // IntFilter
+    productLifecycleGroupName?: NexusGenInputs['StringNullableFilter'] | null; // StringNullableFilter
+    productListId?: NexusGenInputs['IntFilter'] | null; // IntFilter
+  }
   ProductInProductListUpdateInput: { // input type
+    distributions?: NexusGenInputs['DistributionForProductInProductListUpdateManyWithoutProductInProductListInput'] | null; // DistributionForProductInProductListUpdateManyWithoutProductInProductListInput
     exclusive?: NexusGenInputs['NullableStringFieldUpdateOperationsInput'] | null; // NullableStringFieldUpdateOperationsInput
     exclusiveComments?: NexusGenInputs['NullableStringFieldUpdateOperationsInput'] | null; // NullableStringFieldUpdateOperationsInput
     minimumOrderQuantity?: NexusGenInputs['NullableIntFieldUpdateOperationsInput'] | null; // NullableIntFieldUpdateOperationsInput
@@ -255,14 +650,73 @@ export interface NexusGenInputs {
     productLifecycleGroup?: NexusGenInputs['ProductLifecycleGroupUpdateOneWithoutProductInProductListInput'] | null; // ProductLifecycleGroupUpdateOneWithoutProductInProductListInput
     productList?: NexusGenInputs['ProductListUpdateOneRequiredWithoutProductsInput'] | null; // ProductListUpdateOneRequiredWithoutProductsInput
   }
+  ProductInProductListUpdateManyMutationInput: { // input type
+    exclusive?: NexusGenInputs['NullableStringFieldUpdateOperationsInput'] | null; // NullableStringFieldUpdateOperationsInput
+    exclusiveComments?: NexusGenInputs['NullableStringFieldUpdateOperationsInput'] | null; // NullableStringFieldUpdateOperationsInput
+    minimumOrderQuantity?: NexusGenInputs['NullableIntFieldUpdateOperationsInput'] | null; // NullableIntFieldUpdateOperationsInput
+  }
+  ProductInProductListUpdateManyWithWhereWithoutProductListInput: { // input type
+    data: NexusGenInputs['ProductInProductListUpdateManyMutationInput']; // ProductInProductListUpdateManyMutationInput!
+    where: NexusGenInputs['ProductInProductListScalarWhereInput']; // ProductInProductListScalarWhereInput!
+  }
+  ProductInProductListUpdateManyWithoutProductListInput: { // input type
+    connect?: NexusGenInputs['ProductInProductListWhereUniqueInput'][] | null; // [ProductInProductListWhereUniqueInput!]
+    connectOrCreate?: NexusGenInputs['ProductInProductListCreateOrConnectWithoutProductListInput'][] | null; // [ProductInProductListCreateOrConnectWithoutProductListInput!]
+    create?: NexusGenInputs['ProductInProductListCreateWithoutProductListInput'][] | null; // [ProductInProductListCreateWithoutProductListInput!]
+    createMany?: NexusGenInputs['ProductInProductListCreateManyProductListInputEnvelope'] | null; // ProductInProductListCreateManyProductListInputEnvelope
+    delete?: NexusGenInputs['ProductInProductListWhereUniqueInput'][] | null; // [ProductInProductListWhereUniqueInput!]
+    deleteMany?: NexusGenInputs['ProductInProductListScalarWhereInput'][] | null; // [ProductInProductListScalarWhereInput!]
+    disconnect?: NexusGenInputs['ProductInProductListWhereUniqueInput'][] | null; // [ProductInProductListWhereUniqueInput!]
+    set?: NexusGenInputs['ProductInProductListWhereUniqueInput'][] | null; // [ProductInProductListWhereUniqueInput!]
+    update?: NexusGenInputs['ProductInProductListUpdateWithWhereUniqueWithoutProductListInput'][] | null; // [ProductInProductListUpdateWithWhereUniqueWithoutProductListInput!]
+    updateMany?: NexusGenInputs['ProductInProductListUpdateManyWithWhereWithoutProductListInput'][] | null; // [ProductInProductListUpdateManyWithWhereWithoutProductListInput!]
+    upsert?: NexusGenInputs['ProductInProductListUpsertWithWhereUniqueWithoutProductListInput'][] | null; // [ProductInProductListUpsertWithWhereUniqueWithoutProductListInput!]
+  }
+  ProductInProductListUpdateOneRequiredWithoutDistributionsInput: { // input type
+    connect?: NexusGenInputs['ProductInProductListWhereUniqueInput'] | null; // ProductInProductListWhereUniqueInput
+    connectOrCreate?: NexusGenInputs['ProductInProductListCreateOrConnectWithoutDistributionsInput'] | null; // ProductInProductListCreateOrConnectWithoutDistributionsInput
+    create?: NexusGenInputs['ProductInProductListCreateWithoutDistributionsInput'] | null; // ProductInProductListCreateWithoutDistributionsInput
+    update?: NexusGenInputs['ProductInProductListUpdateWithoutDistributionsInput'] | null; // ProductInProductListUpdateWithoutDistributionsInput
+    upsert?: NexusGenInputs['ProductInProductListUpsertWithoutDistributionsInput'] | null; // ProductInProductListUpsertWithoutDistributionsInput
+  }
   ProductInProductListUpdateRowInput: { // input type
     data: NexusGenInputs['ProductInProductListUpdateInput']; // ProductInProductListUpdateInput!
     where: NexusGenInputs['ProductInProductListWhereUniqueInput']; // ProductInProductListWhereUniqueInput!
+  }
+  ProductInProductListUpdateWithWhereUniqueWithoutProductListInput: { // input type
+    data: NexusGenInputs['ProductInProductListUpdateWithoutProductListInput']; // ProductInProductListUpdateWithoutProductListInput!
+    where: NexusGenInputs['ProductInProductListWhereUniqueInput']; // ProductInProductListWhereUniqueInput!
+  }
+  ProductInProductListUpdateWithoutDistributionsInput: { // input type
+    exclusive?: NexusGenInputs['NullableStringFieldUpdateOperationsInput'] | null; // NullableStringFieldUpdateOperationsInput
+    exclusiveComments?: NexusGenInputs['NullableStringFieldUpdateOperationsInput'] | null; // NullableStringFieldUpdateOperationsInput
+    minimumOrderQuantity?: NexusGenInputs['NullableIntFieldUpdateOperationsInput'] | null; // NullableIntFieldUpdateOperationsInput
+    product?: NexusGenInputs['ProductUpdateOneRequiredWithoutProductListsInput'] | null; // ProductUpdateOneRequiredWithoutProductListsInput
+    productLifecycleGroup?: NexusGenInputs['ProductLifecycleGroupUpdateOneWithoutProductInProductListInput'] | null; // ProductLifecycleGroupUpdateOneWithoutProductInProductListInput
+    productList?: NexusGenInputs['ProductListUpdateOneRequiredWithoutProductsInput'] | null; // ProductListUpdateOneRequiredWithoutProductsInput
+  }
+  ProductInProductListUpdateWithoutProductListInput: { // input type
+    distributions?: NexusGenInputs['DistributionForProductInProductListUpdateManyWithoutProductInProductListInput'] | null; // DistributionForProductInProductListUpdateManyWithoutProductInProductListInput
+    exclusive?: NexusGenInputs['NullableStringFieldUpdateOperationsInput'] | null; // NullableStringFieldUpdateOperationsInput
+    exclusiveComments?: NexusGenInputs['NullableStringFieldUpdateOperationsInput'] | null; // NullableStringFieldUpdateOperationsInput
+    minimumOrderQuantity?: NexusGenInputs['NullableIntFieldUpdateOperationsInput'] | null; // NullableIntFieldUpdateOperationsInput
+    product?: NexusGenInputs['ProductUpdateOneRequiredWithoutProductListsInput'] | null; // ProductUpdateOneRequiredWithoutProductListsInput
+    productLifecycleGroup?: NexusGenInputs['ProductLifecycleGroupUpdateOneWithoutProductInProductListInput'] | null; // ProductLifecycleGroupUpdateOneWithoutProductInProductListInput
+  }
+  ProductInProductListUpsertWithWhereUniqueWithoutProductListInput: { // input type
+    create: NexusGenInputs['ProductInProductListCreateWithoutProductListInput']; // ProductInProductListCreateWithoutProductListInput!
+    update: NexusGenInputs['ProductInProductListUpdateWithoutProductListInput']; // ProductInProductListUpdateWithoutProductListInput!
+    where: NexusGenInputs['ProductInProductListWhereUniqueInput']; // ProductInProductListWhereUniqueInput!
+  }
+  ProductInProductListUpsertWithoutDistributionsInput: { // input type
+    create: NexusGenInputs['ProductInProductListCreateWithoutDistributionsInput']; // ProductInProductListCreateWithoutDistributionsInput!
+    update: NexusGenInputs['ProductInProductListUpdateWithoutDistributionsInput']; // ProductInProductListUpdateWithoutDistributionsInput!
   }
   ProductInProductListWhereInput: { // input type
     AND?: NexusGenInputs['ProductInProductListWhereInput'][] | null; // [ProductInProductListWhereInput!]
     NOT?: NexusGenInputs['ProductInProductListWhereInput'][] | null; // [ProductInProductListWhereInput!]
     OR?: NexusGenInputs['ProductInProductListWhereInput'][] | null; // [ProductInProductListWhereInput!]
+    distributions?: NexusGenInputs['DistributionForProductInProductListListRelationFilter'] | null; // DistributionForProductInProductListListRelationFilter
     exclusive?: NexusGenInputs['StringNullableFilter'] | null; // StringNullableFilter
     exclusiveComments?: NexusGenInputs['StringNullableFilter'] | null; // StringNullableFilter
     id?: NexusGenInputs['IntFilter'] | null; // IntFilter
@@ -277,6 +731,11 @@ export interface NexusGenInputs {
   ProductInProductListWhereUniqueInput: { // input type
     id?: number | null; // Int
     productId_productListId?: NexusGenInputs['ProductInProductListProductIdProductListIdCompoundUniqueInput'] | null; // ProductInProductListProductIdProductListIdCompoundUniqueInput
+  }
+  ProductLifecycleGroupCreateNestedOneWithoutProductInProductListInput: { // input type
+    connect?: NexusGenInputs['ProductLifecycleGroupWhereUniqueInput'] | null; // ProductLifecycleGroupWhereUniqueInput
+    connectOrCreate?: NexusGenInputs['ProductLifecycleGroupCreateOrConnectWithoutProductInProductListInput'] | null; // ProductLifecycleGroupCreateOrConnectWithoutProductInProductListInput
+    create?: NexusGenInputs['ProductLifecycleGroupCreateWithoutProductInProductListInput'] | null; // ProductLifecycleGroupCreateWithoutProductInProductListInput
   }
   ProductLifecycleGroupCreateOrConnectWithoutProductInProductListInput: { // input type
     create: NexusGenInputs['ProductLifecycleGroupCreateWithoutProductInProductListInput']; // ProductLifecycleGroupCreateWithoutProductInProductListInput!
@@ -315,13 +774,38 @@ export interface NexusGenInputs {
     displayName?: string | null; // String
     name?: string | null; // String
   }
+  ProductListCreateNestedOneWithoutChannelsInput: { // input type
+    connect?: NexusGenInputs['ProductListWhereUniqueInput'] | null; // ProductListWhereUniqueInput
+    connectOrCreate?: NexusGenInputs['ProductListCreateOrConnectWithoutChannelsInput'] | null; // ProductListCreateOrConnectWithoutChannelsInput
+    create?: NexusGenInputs['ProductListCreateWithoutChannelsInput'] | null; // ProductListCreateWithoutChannelsInput
+  }
+  ProductListCreateNestedOneWithoutProductsInput: { // input type
+    connect?: NexusGenInputs['ProductListWhereUniqueInput'] | null; // ProductListWhereUniqueInput
+    connectOrCreate?: NexusGenInputs['ProductListCreateOrConnectWithoutProductsInput'] | null; // ProductListCreateOrConnectWithoutProductsInput
+    create?: NexusGenInputs['ProductListCreateWithoutProductsInput'] | null; // ProductListCreateWithoutProductsInput
+  }
+  ProductListCreateOrConnectWithoutChannelsInput: { // input type
+    create: NexusGenInputs['ProductListCreateWithoutChannelsInput']; // ProductListCreateWithoutChannelsInput!
+    where: NexusGenInputs['ProductListWhereUniqueInput']; // ProductListWhereUniqueInput!
+  }
   ProductListCreateOrConnectWithoutProductsInput: { // input type
     create: NexusGenInputs['ProductListCreateWithoutProductsInput']; // ProductListCreateWithoutProductsInput!
     where: NexusGenInputs['ProductListWhereUniqueInput']; // ProductListWhereUniqueInput!
   }
+  ProductListCreateWithoutChannelsInput: { // input type
+    products?: NexusGenInputs['ProductInProductListCreateNestedManyWithoutProductListInput'] | null; // ProductInProductListCreateNestedManyWithoutProductListInput
+    title: string; // String!
+  }
   ProductListCreateWithoutProductsInput: { // input type
     channels?: NexusGenInputs['ChannelInProductListCreateNestedManyWithoutProductListInput'] | null; // ChannelInProductListCreateNestedManyWithoutProductListInput
     title: string; // String!
+  }
+  ProductListUpdateOneRequiredWithoutChannelsInput: { // input type
+    connect?: NexusGenInputs['ProductListWhereUniqueInput'] | null; // ProductListWhereUniqueInput
+    connectOrCreate?: NexusGenInputs['ProductListCreateOrConnectWithoutChannelsInput'] | null; // ProductListCreateOrConnectWithoutChannelsInput
+    create?: NexusGenInputs['ProductListCreateWithoutChannelsInput'] | null; // ProductListCreateWithoutChannelsInput
+    update?: NexusGenInputs['ProductListUpdateWithoutChannelsInput'] | null; // ProductListUpdateWithoutChannelsInput
+    upsert?: NexusGenInputs['ProductListUpsertWithoutChannelsInput'] | null; // ProductListUpsertWithoutChannelsInput
   }
   ProductListUpdateOneRequiredWithoutProductsInput: { // input type
     connect?: NexusGenInputs['ProductListWhereUniqueInput'] | null; // ProductListWhereUniqueInput
@@ -330,9 +814,17 @@ export interface NexusGenInputs {
     update?: NexusGenInputs['ProductListUpdateWithoutProductsInput'] | null; // ProductListUpdateWithoutProductsInput
     upsert?: NexusGenInputs['ProductListUpsertWithoutProductsInput'] | null; // ProductListUpsertWithoutProductsInput
   }
+  ProductListUpdateWithoutChannelsInput: { // input type
+    products?: NexusGenInputs['ProductInProductListUpdateManyWithoutProductListInput'] | null; // ProductInProductListUpdateManyWithoutProductListInput
+    title?: NexusGenInputs['StringFieldUpdateOperationsInput'] | null; // StringFieldUpdateOperationsInput
+  }
   ProductListUpdateWithoutProductsInput: { // input type
     channels?: NexusGenInputs['ChannelInProductListUpdateManyWithoutProductListInput'] | null; // ChannelInProductListUpdateManyWithoutProductListInput
     title?: NexusGenInputs['StringFieldUpdateOperationsInput'] | null; // StringFieldUpdateOperationsInput
+  }
+  ProductListUpsertWithoutChannelsInput: { // input type
+    create: NexusGenInputs['ProductListCreateWithoutChannelsInput']; // ProductListCreateWithoutChannelsInput!
+    update: NexusGenInputs['ProductListUpdateWithoutChannelsInput']; // ProductListUpdateWithoutChannelsInput!
   }
   ProductListUpsertWithoutProductsInput: { // input type
     create: NexusGenInputs['ProductListCreateWithoutProductsInput']; // ProductListCreateWithoutProductsInput!
@@ -427,6 +919,10 @@ export interface NexusGenObjects {
     name: string; // String!
   }
   ChannelInProductList: {};
+  Distribution: { // root type
+    name: string; // String!
+  }
+  DistributionForProductInProductList: {};
   Mutation: {};
   PageInfo: { // root type
     endCursor?: string | null; // String
@@ -486,6 +982,17 @@ export interface NexusGenFieldTypes {
     id: string; // ID!
     ownId: number; // Int!
   }
+  Distribution: { // field return type
+    channel: NexusGenRootTypes['Channel']; // Channel!
+    id: string; // ID!
+    name: string; // String!
+    ownId: number; // Int!
+  }
+  DistributionForProductInProductList: { // field return type
+    distribution: NexusGenRootTypes['Distribution']; // Distribution!
+    id: string; // ID!
+    ownId: number; // Int!
+  }
   Mutation: { // field return type
     updateManyProductInProductList: NexusGenRootTypes['ProductInProductList'][]; // [ProductInProductList!]!
     updateOneProductInProductList: NexusGenRootTypes['ProductInProductList'] | null; // ProductInProductList
@@ -503,6 +1010,7 @@ export interface NexusGenFieldTypes {
     pc9: string; // String!
   }
   ProductInProductList: { // field return type
+    distributions: NexusGenRootTypes['DistributionForProductInProductList'][]; // [DistributionForProductInProductList!]!
     exclusive: string | null; // String
     exclusiveComments: string | null; // String
     id: string; // ID!
@@ -555,6 +1063,17 @@ export interface NexusGenFieldTypeNames {
     id: 'ID'
     ownId: 'Int'
   }
+  Distribution: { // field return type name
+    channel: 'Channel'
+    id: 'ID'
+    name: 'String'
+    ownId: 'Int'
+  }
+  DistributionForProductInProductList: { // field return type name
+    distribution: 'Distribution'
+    id: 'ID'
+    ownId: 'Int'
+  }
   Mutation: { // field return type name
     updateManyProductInProductList: 'ProductInProductList'
     updateOneProductInProductList: 'ProductInProductList'
@@ -572,6 +1091,7 @@ export interface NexusGenFieldTypeNames {
     pc9: 'String'
   }
   ProductInProductList: { // field return type name
+    distributions: 'DistributionForProductInProductList'
     exclusive: 'String'
     exclusiveComments: 'String'
     id: 'ID'
@@ -621,6 +1141,14 @@ export interface NexusGenArgTypes {
     updateOneProductInProductList: { // args
       data: NexusGenInputs['ProductInProductListUpdateInput']; // ProductInProductListUpdateInput!
       where: NexusGenInputs['ProductInProductListWhereUniqueInput']; // ProductInProductListWhereUniqueInput!
+    }
+  }
+  ProductInProductList: {
+    distributions: { // args
+      after?: NexusGenInputs['DistributionForProductInProductListWhereUniqueInput'] | null; // DistributionForProductInProductListWhereUniqueInput
+      before?: NexusGenInputs['DistributionForProductInProductListWhereUniqueInput'] | null; // DistributionForProductInProductListWhereUniqueInput
+      first?: number | null; // Int
+      last?: number | null; // Int
     }
   }
   ProductList: {

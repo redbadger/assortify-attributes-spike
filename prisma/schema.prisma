@@ -27,16 +27,17 @@ model ProductList {
 }
 
 model ProductInProductList {
-  id                        Int                    @id @default(autoincrement())
-  product                   Product                @relation(fields: [productId], references: [id])
+  id                        Int                                   @id @default(autoincrement())
+  product                   Product                               @relation(fields: [productId], references: [id])
   productId                 Int
-  productList               ProductList            @relation(fields: [productListId], references: [id])
+  productList               ProductList                           @relation(fields: [productListId], references: [id])
   productListId             Int
   exclusive                 String?
   exclusiveComments         String?
   minimumOrderQuantity      Int?
   productLifecycleGroupName String?
-  productLifecycleGroup     ProductLifecycleGroup? @relation(fields: [productLifecycleGroupName], references: [name])
+  productLifecycleGroup     ProductLifecycleGroup?                @relation(fields: [productLifecycleGroupName], references: [name])
+  distributions             DistributionForProductInProductList[]
 
   @@unique([productId, productListId])
 }
@@ -51,6 +52,7 @@ model Channel {
   id           Int                    @id @default(autoincrement())
   name         String                 @unique
   productLists ChannelInProductList[]
+  Distribution Distribution[]
 }
 
 model ChannelInProductList {
@@ -61,4 +63,24 @@ model ChannelInProductList {
   productListId Int
 
   @@unique([channelId, productListId])
+}
+
+model Distribution {
+  id                    Int                                   @id @default(autoincrement())
+  name                  String                                @unique
+  channel               Channel                               @relation(fields: [channelId], references: [id])
+  channelId             Int
+  productInProductLists DistributionForProductInProductList[]
+
+  @@unique([name, channelId])
+}
+
+model DistributionForProductInProductList {
+  id                     Int                  @id @default(autoincrement())
+  distribution           Distribution         @relation(fields: [distributionId], references: [id])
+  distributionId         Int
+  productInProductList   ProductInProductList @relation(fields: [productInProductListId], references: [id])
+  productInProductListId Int
+
+  @@unique([distributionId, productInProductListId])
 }
