@@ -4,6 +4,7 @@ import "ag-grid-community/styles/ag-grid.css";
 import "ag-grid-community/styles/ag-theme-alpine.css";
 import { AgGridReact } from "ag-grid-react";
 import produce from "immer";
+import { useSnackbar } from "notistack";
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { graphql, useFragment, useMutation } from "react-relay";
 import "twin.macro";
@@ -127,13 +128,24 @@ const Table = ({
     []
   );
 
+  const { enqueueSnackbar } = useSnackbar();
+
   const handleSave = useCallback(() => {
     const data = Object.entries(edits).map(([key, value]) => ({
       where: { id: +key },
       data: value,
     }));
 
-    commit({ variables: { data } });
+    commit({
+      variables: { data },
+      onCompleted: (_response, errors) => {
+        if (errors) {
+          enqueueSnackbar("Error saving edits", { variant: "error" });
+        } else {
+          enqueueSnackbar("All assortment edits saved", { variant: "success" });
+        }
+      },
+    });
   }, [edits]);
 
   const defaultColDef = useMemo(
