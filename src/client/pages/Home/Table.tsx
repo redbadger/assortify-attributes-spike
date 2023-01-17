@@ -1,13 +1,12 @@
 import { Button } from "@mui/material";
 import { FirstDataRenderedEvent } from "ag-grid-community";
-import { AgGridCommon } from "ag-grid-community/dist/lib/interfaces/iCommon";
 import "ag-grid-community/styles/ag-grid.css";
 import "ag-grid-community/styles/ag-theme-alpine.css";
 import { AgGridReact } from "ag-grid-react";
-import produce from "immer";
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { graphql, useFragment, useMutation } from "react-relay";
 import "twin.macro";
+import useEdits from "../../hooks/useEdits";
 import { TableFragment$key } from "./__generated__/TableFragment.graphql";
 
 export const productFragment = graphql`
@@ -86,49 +85,7 @@ const Table = ({ productList }: { productList: TableFragment$key }) => {
 
   const gridRef = useRef<AgGridReact<typeof rowData[0]>>(null);
 
-  const [edits, setEdits] = useState<{
-    [ownId: string]: { [key: string]: any };
-  }>({});
-
-  const updateEdits = useCallback(
-    (_: AgGridCommon<typeof rowData[0]>) => {
-      setEdits(
-        produce((edits) => {
-          _.api.forEachNode((node) => {
-            const nodeOnServer = edges.find(
-              (_) => _.node.productInProductList.ownId === node.data?.ownId
-            )?.node.productInProductList;
-
-            Object.entries(node.data ?? []).map(([key, value]) => {
-              const isEditable = _.columnApi
-                .getColumn(key)
-                ?.getColDef().editable;
-
-              if (isEditable) {
-                const ownId = node.data?.ownId;
-
-                if (ownId) {
-                  const valueEdited = value !== nodeOnServer?.[key];
-
-                  if (valueEdited) {
-                    if (!edits[ownId]) edits[ownId] = {};
-                    if (!edits[ownId][key]) edits[ownId][key] = {};
-                    edits[ownId][key].set = value;
-                  } else if (edits[ownId]) {
-                    delete edits[ownId][key];
-                    if (!Object.keys(edits[ownId]).length) {
-                      delete edits[ownId];
-                    }
-                  }
-                }
-              }
-            });
-          });
-        })
-      );
-    },
-    [edges]
-  );
+  const [edits, updateEdits] = useEdits<typeof rowData[0], typeof edges>(edges);
 
   useEffect(() => {
     if (gridRef.current?.api?.forEachNode) {
