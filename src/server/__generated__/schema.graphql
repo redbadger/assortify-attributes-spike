@@ -2,6 +2,167 @@
 ### Do not make changes to this file directly
 
 
+type Channel {
+  id: ID!
+  name: String!
+  ownId: Int!
+}
+
+input ChannelCreateNestedOneWithoutProductListsInput {
+  connect: ChannelWhereUniqueInput
+  connectOrCreate: ChannelCreateOrConnectWithoutProductListsInput
+  create: ChannelCreateWithoutProductListsInput
+}
+
+input ChannelCreateOrConnectWithoutProductListsInput {
+  create: ChannelCreateWithoutProductListsInput!
+  where: ChannelWhereUniqueInput!
+}
+
+input ChannelCreateWithoutProductListsInput {
+  name: String!
+}
+
+type ChannelInProductList {
+  channel: Channel!
+  id: ID!
+  ownId: Int!
+}
+
+input ChannelInProductListChannelIdProductListIdCompoundUniqueInput {
+  channelId: Int!
+  productListId: Int!
+}
+
+input ChannelInProductListCreateManyProductListInput {
+  channelId: Int!
+  id: Int
+}
+
+input ChannelInProductListCreateManyProductListInputEnvelope {
+  data: [ChannelInProductListCreateManyProductListInput!]
+  skipDuplicates: Boolean
+}
+
+input ChannelInProductListCreateNestedManyWithoutProductListInput {
+  connect: [ChannelInProductListWhereUniqueInput!]
+  connectOrCreate: [ChannelInProductListCreateOrConnectWithoutProductListInput!]
+  create: [ChannelInProductListCreateWithoutProductListInput!]
+  createMany: ChannelInProductListCreateManyProductListInputEnvelope
+}
+
+input ChannelInProductListCreateOrConnectWithoutProductListInput {
+  create: ChannelInProductListCreateWithoutProductListInput!
+  where: ChannelInProductListWhereUniqueInput!
+}
+
+input ChannelInProductListCreateWithoutProductListInput {
+  channel: ChannelCreateNestedOneWithoutProductListsInput!
+}
+
+input ChannelInProductListListRelationFilter {
+  every: ChannelInProductListWhereInput
+  none: ChannelInProductListWhereInput
+  some: ChannelInProductListWhereInput
+}
+
+input ChannelInProductListScalarWhereInput {
+  AND: [ChannelInProductListScalarWhereInput!]
+  NOT: [ChannelInProductListScalarWhereInput!]
+  OR: [ChannelInProductListScalarWhereInput!]
+  channelId: IntFilter
+  id: IntFilter
+  productListId: IntFilter
+}
+
+input ChannelInProductListUpdateManyMutationInput {
+  """
+  Dummy field to avoid Error: Input Object type ChannelInProductListUpdateManyMutationInput must define one or more fields.
+  """
+  _dummy_field: Int
+}
+
+input ChannelInProductListUpdateManyWithWhereWithoutProductListInput {
+  data: ChannelInProductListUpdateManyMutationInput!
+  where: ChannelInProductListScalarWhereInput!
+}
+
+input ChannelInProductListUpdateManyWithoutProductListInput {
+  connect: [ChannelInProductListWhereUniqueInput!]
+  connectOrCreate: [ChannelInProductListCreateOrConnectWithoutProductListInput!]
+  create: [ChannelInProductListCreateWithoutProductListInput!]
+  createMany: ChannelInProductListCreateManyProductListInputEnvelope
+  delete: [ChannelInProductListWhereUniqueInput!]
+  deleteMany: [ChannelInProductListScalarWhereInput!]
+  disconnect: [ChannelInProductListWhereUniqueInput!]
+  set: [ChannelInProductListWhereUniqueInput!]
+  update: [ChannelInProductListUpdateWithWhereUniqueWithoutProductListInput!]
+  updateMany: [ChannelInProductListUpdateManyWithWhereWithoutProductListInput!]
+  upsert: [ChannelInProductListUpsertWithWhereUniqueWithoutProductListInput!]
+}
+
+input ChannelInProductListUpdateWithWhereUniqueWithoutProductListInput {
+  data: ChannelInProductListUpdateWithoutProductListInput!
+  where: ChannelInProductListWhereUniqueInput!
+}
+
+input ChannelInProductListUpdateWithoutProductListInput {
+  channel: ChannelUpdateOneRequiredWithoutProductListsInput
+}
+
+input ChannelInProductListUpsertWithWhereUniqueWithoutProductListInput {
+  create: ChannelInProductListCreateWithoutProductListInput!
+  update: ChannelInProductListUpdateWithoutProductListInput!
+  where: ChannelInProductListWhereUniqueInput!
+}
+
+input ChannelInProductListWhereInput {
+  AND: [ChannelInProductListWhereInput!]
+  NOT: [ChannelInProductListWhereInput!]
+  OR: [ChannelInProductListWhereInput!]
+  channel: ChannelWhereInput
+  channelId: IntFilter
+  id: IntFilter
+  productList: ProductListWhereInput
+  productListId: IntFilter
+}
+
+input ChannelInProductListWhereUniqueInput {
+  channelId_productListId: ChannelInProductListChannelIdProductListIdCompoundUniqueInput
+  id: Int
+}
+
+input ChannelUpdateOneRequiredWithoutProductListsInput {
+  connect: ChannelWhereUniqueInput
+  connectOrCreate: ChannelCreateOrConnectWithoutProductListsInput
+  create: ChannelCreateWithoutProductListsInput
+  update: ChannelUpdateWithoutProductListsInput
+  upsert: ChannelUpsertWithoutProductListsInput
+}
+
+input ChannelUpdateWithoutProductListsInput {
+  name: StringFieldUpdateOperationsInput
+}
+
+input ChannelUpsertWithoutProductListsInput {
+  create: ChannelCreateWithoutProductListsInput!
+  update: ChannelUpdateWithoutProductListsInput!
+}
+
+input ChannelWhereInput {
+  AND: [ChannelWhereInput!]
+  NOT: [ChannelWhereInput!]
+  OR: [ChannelWhereInput!]
+  id: IntFilter
+  name: StringFilter
+  productLists: ChannelInProductListListRelationFilter
+}
+
+input ChannelWhereUniqueInput {
+  id: Int
+  name: String
+}
+
 input IntFilter {
   equals: Int
   gt: Int
@@ -159,7 +320,7 @@ input ProductInProductListUpdateInput {
   minimumOrderQuantity: NullableIntFieldUpdateOperationsInput
   product: ProductUpdateOneRequiredWithoutProductListsInput
   productLifecycleGroup: ProductLifecycleGroupUpdateOneWithoutProductInProductListInput
-  productList: ProductListUpdateOneWithoutProductsInput
+  productList: ProductListUpdateOneRequiredWithoutProductsInput
 }
 
 input ProductInProductListUpdateRowInput {
@@ -238,6 +399,7 @@ input ProductLifecycleGroupWhereUniqueInput {
 }
 
 type ProductList {
+  channels(after: ChannelInProductListWhereUniqueInput, before: ChannelInProductListWhereUniqueInput, first: Int, last: Int): [ChannelInProductList!]!
   id: ID!
   ownId: Int!
   productListProductConnection(
@@ -262,6 +424,7 @@ input ProductListCreateOrConnectWithoutProductsInput {
 }
 
 input ProductListCreateWithoutProductsInput {
+  channels: ChannelInProductListCreateNestedManyWithoutProductListInput
   title: String!
 }
 
@@ -291,17 +454,16 @@ type ProductListProductEdge {
   node: ProductListProduct!
 }
 
-input ProductListUpdateOneWithoutProductsInput {
+input ProductListUpdateOneRequiredWithoutProductsInput {
   connect: ProductListWhereUniqueInput
   connectOrCreate: ProductListCreateOrConnectWithoutProductsInput
   create: ProductListCreateWithoutProductsInput
-  delete: Boolean
-  disconnect: Boolean
   update: ProductListUpdateWithoutProductsInput
   upsert: ProductListUpsertWithoutProductsInput
 }
 
 input ProductListUpdateWithoutProductsInput {
+  channels: ChannelInProductListUpdateManyWithoutProductListInput
   title: StringFieldUpdateOperationsInput
 }
 
@@ -314,6 +476,7 @@ input ProductListWhereInput {
   AND: [ProductListWhereInput!]
   NOT: [ProductListWhereInput!]
   OR: [ProductListWhereInput!]
+  channels: ChannelInProductListListRelationFilter
   id: IntFilter
   products: ProductInProductListListRelationFilter
   title: StringFilter

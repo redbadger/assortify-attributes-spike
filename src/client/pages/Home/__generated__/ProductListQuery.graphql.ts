@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<2af391bda7e5c70b044c64f567043076>>
+ * @generated SignedSource<<8fd10df5e5fc3b2061474ef1b44b24bd>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -15,6 +15,11 @@ export type ProductListQuery$variables = {
 };
 export type ProductListQuery$data = {
   readonly productList: {
+    readonly channels: ReadonlyArray<{
+      readonly channel: {
+        readonly name: string;
+      };
+    }>;
     readonly title: string;
     readonly " $fragmentSpreads": FragmentRefs<"TableDataFragment">;
   } | null;
@@ -53,7 +58,14 @@ v2 = {
   "name": "title",
   "storageKey": null
 },
-v3 = [
+v3 = {
+  "alias": null,
+  "args": null,
+  "kind": "ScalarField",
+  "name": "name",
+  "storageKey": null
+},
+v4 = [
   {
     "alias": null,
     "args": null,
@@ -62,7 +74,7 @@ v3 = [
     "storageKey": null
   }
 ],
-v4 = {
+v5 = {
   "alias": null,
   "args": null,
   "kind": "ScalarField",
@@ -91,6 +103,29 @@ return {
         "selections": [
           (v2/*: any*/),
           {
+            "alias": null,
+            "args": null,
+            "concreteType": "ChannelInProductList",
+            "kind": "LinkedField",
+            "name": "channels",
+            "plural": true,
+            "selections": [
+              {
+                "alias": null,
+                "args": null,
+                "concreteType": "Channel",
+                "kind": "LinkedField",
+                "name": "channel",
+                "plural": false,
+                "selections": [
+                  (v3/*: any*/)
+                ],
+                "storageKey": null
+              }
+            ],
+            "storageKey": null
+          },
+          {
             "args": null,
             "kind": "FragmentSpread",
             "name": "TableDataFragment"
@@ -115,7 +150,7 @@ return {
         "kind": "LinkedField",
         "name": "productLifecycleGroups",
         "plural": true,
-        "selections": (v3/*: any*/),
+        "selections": (v4/*: any*/),
         "storageKey": null
       },
       {
@@ -127,6 +162,31 @@ return {
         "plural": false,
         "selections": [
           (v2/*: any*/),
+          {
+            "alias": null,
+            "args": null,
+            "concreteType": "ChannelInProductList",
+            "kind": "LinkedField",
+            "name": "channels",
+            "plural": true,
+            "selections": [
+              {
+                "alias": null,
+                "args": null,
+                "concreteType": "Channel",
+                "kind": "LinkedField",
+                "name": "channel",
+                "plural": false,
+                "selections": [
+                  (v3/*: any*/),
+                  (v5/*: any*/)
+                ],
+                "storageKey": null
+              },
+              (v5/*: any*/)
+            ],
+            "storageKey": null
+          },
           {
             "alias": null,
             "args": [
@@ -179,7 +239,7 @@ return {
                             "name": "colorwayName",
                             "storageKey": null
                           },
-                          (v4/*: any*/)
+                          (v5/*: any*/)
                         ],
                         "storageKey": null
                       },
@@ -226,14 +286,14 @@ return {
                             "kind": "LinkedField",
                             "name": "productLifecycleGroup",
                             "plural": false,
-                            "selections": (v3/*: any*/),
+                            "selections": (v4/*: any*/),
                             "storageKey": null
                           },
-                          (v4/*: any*/)
+                          (v5/*: any*/)
                         ],
                         "storageKey": null
                       },
-                      (v4/*: any*/)
+                      (v5/*: any*/)
                     ],
                     "storageKey": null
                   }
@@ -243,23 +303,23 @@ return {
             ],
             "storageKey": "productListProductConnection(first:10)"
           },
-          (v4/*: any*/)
+          (v5/*: any*/)
         ],
         "storageKey": null
       }
     ]
   },
   "params": {
-    "cacheID": "df39f74db8d1a99184f8bd94fb136858",
+    "cacheID": "3261a221ba373ecb9a3b3ab6c2b4d0c1",
     "id": null,
     "metadata": {},
     "name": "ProductListQuery",
     "operationKind": "query",
-    "text": "query ProductListQuery(\n  $id: Int\n) {\n  ...TableLookupValuesFragment\n  productList(where: {id: $id}) {\n    title\n    ...TableDataFragment\n    id\n  }\n}\n\nfragment TableDataFragment on ProductList {\n  productListProductConnection(first: 10) {\n    edges {\n      node {\n        product {\n          pc9\n          colorwayName\n          id\n        }\n        productInProductList {\n          ownId\n          exclusive\n          exclusiveComments\n          minimumOrderQuantity\n          productLifecycleGroup {\n            displayName\n          }\n          id\n        }\n        id\n      }\n    }\n  }\n}\n\nfragment TableLookupValuesFragment on Query {\n  productLifecycleGroups {\n    displayName\n  }\n}\n"
+    "text": "query ProductListQuery(\n  $id: Int\n) {\n  ...TableLookupValuesFragment\n  productList(where: {id: $id}) {\n    title\n    channels {\n      channel {\n        name\n        id\n      }\n      id\n    }\n    ...TableDataFragment\n    id\n  }\n}\n\nfragment TableDataFragment on ProductList {\n  productListProductConnection(first: 10) {\n    edges {\n      node {\n        product {\n          pc9\n          colorwayName\n          id\n        }\n        productInProductList {\n          ownId\n          exclusive\n          exclusiveComments\n          minimumOrderQuantity\n          productLifecycleGroup {\n            displayName\n          }\n          id\n        }\n        id\n      }\n    }\n  }\n}\n\nfragment TableLookupValuesFragment on Query {\n  productLifecycleGroups {\n    displayName\n  }\n}\n"
   }
 };
 })();
 
-(node as any).hash = "aa05587f46d28218c62aa6577fe03f73";
+(node as any).hash = "9ba804d749cf4ac2f6354694d8d7fd44";
 
 export default node;

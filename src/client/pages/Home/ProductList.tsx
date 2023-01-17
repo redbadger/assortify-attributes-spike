@@ -1,4 +1,4 @@
-import { Typography } from "@mui/material";
+import { Chip, Typography } from "@mui/material";
 import { graphql, useLazyLoadQuery } from "react-relay";
 import "twin.macro";
 import Table from "./Table";
@@ -9,6 +9,11 @@ const query = graphql`
     ...TableLookupValuesFragment
     productList(where: { id: $id }) {
       title
+      channels {
+        channel {
+          name
+        }
+      }
       ...TableDataFragment
     }
   }
@@ -20,9 +25,15 @@ const ProductList = () => {
 
   return productList ? (
     <>
-      <Typography variant="h6" component="h2" tw="mb-3">
+      <Typography variant="h6" component="h2" tw="mb-2">
         {productList.title}
       </Typography>
+      <div tw="flex gap-2 items-baseline mb-3">
+        <span>Channels:</span>
+        {productList.channels.map((_) => (
+          <Chip key={_.channel.name} label={_.channel.name} />
+        ))}
+      </div>
       <Table root={data} productList={productList} />
     </>
   ) : null;

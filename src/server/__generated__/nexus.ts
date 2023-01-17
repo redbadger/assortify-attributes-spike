@@ -32,6 +32,128 @@ declare global {
 }
 
 export interface NexusGenInputs {
+  ChannelCreateNestedOneWithoutProductListsInput: { // input type
+    connect?: NexusGenInputs['ChannelWhereUniqueInput'] | null; // ChannelWhereUniqueInput
+    connectOrCreate?: NexusGenInputs['ChannelCreateOrConnectWithoutProductListsInput'] | null; // ChannelCreateOrConnectWithoutProductListsInput
+    create?: NexusGenInputs['ChannelCreateWithoutProductListsInput'] | null; // ChannelCreateWithoutProductListsInput
+  }
+  ChannelCreateOrConnectWithoutProductListsInput: { // input type
+    create: NexusGenInputs['ChannelCreateWithoutProductListsInput']; // ChannelCreateWithoutProductListsInput!
+    where: NexusGenInputs['ChannelWhereUniqueInput']; // ChannelWhereUniqueInput!
+  }
+  ChannelCreateWithoutProductListsInput: { // input type
+    name: string; // String!
+  }
+  ChannelInProductListChannelIdProductListIdCompoundUniqueInput: { // input type
+    channelId: number; // Int!
+    productListId: number; // Int!
+  }
+  ChannelInProductListCreateManyProductListInput: { // input type
+    channelId: number; // Int!
+    id?: number | null; // Int
+  }
+  ChannelInProductListCreateManyProductListInputEnvelope: { // input type
+    data?: NexusGenInputs['ChannelInProductListCreateManyProductListInput'][] | null; // [ChannelInProductListCreateManyProductListInput!]
+    skipDuplicates?: boolean | null; // Boolean
+  }
+  ChannelInProductListCreateNestedManyWithoutProductListInput: { // input type
+    connect?: NexusGenInputs['ChannelInProductListWhereUniqueInput'][] | null; // [ChannelInProductListWhereUniqueInput!]
+    connectOrCreate?: NexusGenInputs['ChannelInProductListCreateOrConnectWithoutProductListInput'][] | null; // [ChannelInProductListCreateOrConnectWithoutProductListInput!]
+    create?: NexusGenInputs['ChannelInProductListCreateWithoutProductListInput'][] | null; // [ChannelInProductListCreateWithoutProductListInput!]
+    createMany?: NexusGenInputs['ChannelInProductListCreateManyProductListInputEnvelope'] | null; // ChannelInProductListCreateManyProductListInputEnvelope
+  }
+  ChannelInProductListCreateOrConnectWithoutProductListInput: { // input type
+    create: NexusGenInputs['ChannelInProductListCreateWithoutProductListInput']; // ChannelInProductListCreateWithoutProductListInput!
+    where: NexusGenInputs['ChannelInProductListWhereUniqueInput']; // ChannelInProductListWhereUniqueInput!
+  }
+  ChannelInProductListCreateWithoutProductListInput: { // input type
+    channel: NexusGenInputs['ChannelCreateNestedOneWithoutProductListsInput']; // ChannelCreateNestedOneWithoutProductListsInput!
+  }
+  ChannelInProductListListRelationFilter: { // input type
+    every?: NexusGenInputs['ChannelInProductListWhereInput'] | null; // ChannelInProductListWhereInput
+    none?: NexusGenInputs['ChannelInProductListWhereInput'] | null; // ChannelInProductListWhereInput
+    some?: NexusGenInputs['ChannelInProductListWhereInput'] | null; // ChannelInProductListWhereInput
+  }
+  ChannelInProductListScalarWhereInput: { // input type
+    AND?: NexusGenInputs['ChannelInProductListScalarWhereInput'][] | null; // [ChannelInProductListScalarWhereInput!]
+    NOT?: NexusGenInputs['ChannelInProductListScalarWhereInput'][] | null; // [ChannelInProductListScalarWhereInput!]
+    OR?: NexusGenInputs['ChannelInProductListScalarWhereInput'][] | null; // [ChannelInProductListScalarWhereInput!]
+    channelId?: NexusGenInputs['IntFilter'] | null; // IntFilter
+    id?: NexusGenInputs['IntFilter'] | null; // IntFilter
+    productListId?: NexusGenInputs['IntFilter'] | null; // IntFilter
+  }
+  ChannelInProductListUpdateManyMutationInput: { // input type
+    _dummy_field?: number | null; // Int
+  }
+  ChannelInProductListUpdateManyWithWhereWithoutProductListInput: { // input type
+    data: NexusGenInputs['ChannelInProductListUpdateManyMutationInput']; // ChannelInProductListUpdateManyMutationInput!
+    where: NexusGenInputs['ChannelInProductListScalarWhereInput']; // ChannelInProductListScalarWhereInput!
+  }
+  ChannelInProductListUpdateManyWithoutProductListInput: { // input type
+    connect?: NexusGenInputs['ChannelInProductListWhereUniqueInput'][] | null; // [ChannelInProductListWhereUniqueInput!]
+    connectOrCreate?: NexusGenInputs['ChannelInProductListCreateOrConnectWithoutProductListInput'][] | null; // [ChannelInProductListCreateOrConnectWithoutProductListInput!]
+    create?: NexusGenInputs['ChannelInProductListCreateWithoutProductListInput'][] | null; // [ChannelInProductListCreateWithoutProductListInput!]
+    createMany?: NexusGenInputs['ChannelInProductListCreateManyProductListInputEnvelope'] | null; // ChannelInProductListCreateManyProductListInputEnvelope
+    delete?: NexusGenInputs['ChannelInProductListWhereUniqueInput'][] | null; // [ChannelInProductListWhereUniqueInput!]
+    deleteMany?: NexusGenInputs['ChannelInProductListScalarWhereInput'][] | null; // [ChannelInProductListScalarWhereInput!]
+    disconnect?: NexusGenInputs['ChannelInProductListWhereUniqueInput'][] | null; // [ChannelInProductListWhereUniqueInput!]
+    set?: NexusGenInputs['ChannelInProductListWhereUniqueInput'][] | null; // [ChannelInProductListWhereUniqueInput!]
+    update?: NexusGenInputs['ChannelInProductListUpdateWithWhereUniqueWithoutProductListInput'][] | null; // [ChannelInProductListUpdateWithWhereUniqueWithoutProductListInput!]
+    updateMany?: NexusGenInputs['ChannelInProductListUpdateManyWithWhereWithoutProductListInput'][] | null; // [ChannelInProductListUpdateManyWithWhereWithoutProductListInput!]
+    upsert?: NexusGenInputs['ChannelInProductListUpsertWithWhereUniqueWithoutProductListInput'][] | null; // [ChannelInProductListUpsertWithWhereUniqueWithoutProductListInput!]
+  }
+  ChannelInProductListUpdateWithWhereUniqueWithoutProductListInput: { // input type
+    data: NexusGenInputs['ChannelInProductListUpdateWithoutProductListInput']; // ChannelInProductListUpdateWithoutProductListInput!
+    where: NexusGenInputs['ChannelInProductListWhereUniqueInput']; // ChannelInProductListWhereUniqueInput!
+  }
+  ChannelInProductListUpdateWithoutProductListInput: { // input type
+    channel?: NexusGenInputs['ChannelUpdateOneRequiredWithoutProductListsInput'] | null; // ChannelUpdateOneRequiredWithoutProductListsInput
+  }
+  ChannelInProductListUpsertWithWhereUniqueWithoutProductListInput: { // input type
+    create: NexusGenInputs['ChannelInProductListCreateWithoutProductListInput']; // ChannelInProductListCreateWithoutProductListInput!
+    update: NexusGenInputs['ChannelInProductListUpdateWithoutProductListInput']; // ChannelInProductListUpdateWithoutProductListInput!
+    where: NexusGenInputs['ChannelInProductListWhereUniqueInput']; // ChannelInProductListWhereUniqueInput!
+  }
+  ChannelInProductListWhereInput: { // input type
+    AND?: NexusGenInputs['ChannelInProductListWhereInput'][] | null; // [ChannelInProductListWhereInput!]
+    NOT?: NexusGenInputs['ChannelInProductListWhereInput'][] | null; // [ChannelInProductListWhereInput!]
+    OR?: NexusGenInputs['ChannelInProductListWhereInput'][] | null; // [ChannelInProductListWhereInput!]
+    channel?: NexusGenInputs['ChannelWhereInput'] | null; // ChannelWhereInput
+    channelId?: NexusGenInputs['IntFilter'] | null; // IntFilter
+    id?: NexusGenInputs['IntFilter'] | null; // IntFilter
+    productList?: NexusGenInputs['ProductListWhereInput'] | null; // ProductListWhereInput
+    productListId?: NexusGenInputs['IntFilter'] | null; // IntFilter
+  }
+  ChannelInProductListWhereUniqueInput: { // input type
+    channelId_productListId?: NexusGenInputs['ChannelInProductListChannelIdProductListIdCompoundUniqueInput'] | null; // ChannelInProductListChannelIdProductListIdCompoundUniqueInput
+    id?: number | null; // Int
+  }
+  ChannelUpdateOneRequiredWithoutProductListsInput: { // input type
+    connect?: NexusGenInputs['ChannelWhereUniqueInput'] | null; // ChannelWhereUniqueInput
+    connectOrCreate?: NexusGenInputs['ChannelCreateOrConnectWithoutProductListsInput'] | null; // ChannelCreateOrConnectWithoutProductListsInput
+    create?: NexusGenInputs['ChannelCreateWithoutProductListsInput'] | null; // ChannelCreateWithoutProductListsInput
+    update?: NexusGenInputs['ChannelUpdateWithoutProductListsInput'] | null; // ChannelUpdateWithoutProductListsInput
+    upsert?: NexusGenInputs['ChannelUpsertWithoutProductListsInput'] | null; // ChannelUpsertWithoutProductListsInput
+  }
+  ChannelUpdateWithoutProductListsInput: { // input type
+    name?: NexusGenInputs['StringFieldUpdateOperationsInput'] | null; // StringFieldUpdateOperationsInput
+  }
+  ChannelUpsertWithoutProductListsInput: { // input type
+    create: NexusGenInputs['ChannelCreateWithoutProductListsInput']; // ChannelCreateWithoutProductListsInput!
+    update: NexusGenInputs['ChannelUpdateWithoutProductListsInput']; // ChannelUpdateWithoutProductListsInput!
+  }
+  ChannelWhereInput: { // input type
+    AND?: NexusGenInputs['ChannelWhereInput'][] | null; // [ChannelWhereInput!]
+    NOT?: NexusGenInputs['ChannelWhereInput'][] | null; // [ChannelWhereInput!]
+    OR?: NexusGenInputs['ChannelWhereInput'][] | null; // [ChannelWhereInput!]
+    id?: NexusGenInputs['IntFilter'] | null; // IntFilter
+    name?: NexusGenInputs['StringFilter'] | null; // StringFilter
+    productLists?: NexusGenInputs['ChannelInProductListListRelationFilter'] | null; // ChannelInProductListListRelationFilter
+  }
+  ChannelWhereUniqueInput: { // input type
+    id?: number | null; // Int
+    name?: string | null; // String
+  }
   IntFilter: { // input type
     equals?: number | null; // Int
     gt?: number | null; // Int
@@ -131,7 +253,7 @@ export interface NexusGenInputs {
     minimumOrderQuantity?: NexusGenInputs['NullableIntFieldUpdateOperationsInput'] | null; // NullableIntFieldUpdateOperationsInput
     product?: NexusGenInputs['ProductUpdateOneRequiredWithoutProductListsInput'] | null; // ProductUpdateOneRequiredWithoutProductListsInput
     productLifecycleGroup?: NexusGenInputs['ProductLifecycleGroupUpdateOneWithoutProductInProductListInput'] | null; // ProductLifecycleGroupUpdateOneWithoutProductInProductListInput
-    productList?: NexusGenInputs['ProductListUpdateOneWithoutProductsInput'] | null; // ProductListUpdateOneWithoutProductsInput
+    productList?: NexusGenInputs['ProductListUpdateOneRequiredWithoutProductsInput'] | null; // ProductListUpdateOneRequiredWithoutProductsInput
   }
   ProductInProductListUpdateRowInput: { // input type
     data: NexusGenInputs['ProductInProductListUpdateInput']; // ProductInProductListUpdateInput!
@@ -198,18 +320,18 @@ export interface NexusGenInputs {
     where: NexusGenInputs['ProductListWhereUniqueInput']; // ProductListWhereUniqueInput!
   }
   ProductListCreateWithoutProductsInput: { // input type
+    channels?: NexusGenInputs['ChannelInProductListCreateNestedManyWithoutProductListInput'] | null; // ChannelInProductListCreateNestedManyWithoutProductListInput
     title: string; // String!
   }
-  ProductListUpdateOneWithoutProductsInput: { // input type
+  ProductListUpdateOneRequiredWithoutProductsInput: { // input type
     connect?: NexusGenInputs['ProductListWhereUniqueInput'] | null; // ProductListWhereUniqueInput
     connectOrCreate?: NexusGenInputs['ProductListCreateOrConnectWithoutProductsInput'] | null; // ProductListCreateOrConnectWithoutProductsInput
     create?: NexusGenInputs['ProductListCreateWithoutProductsInput'] | null; // ProductListCreateWithoutProductsInput
-    delete?: boolean | null; // Boolean
-    disconnect?: boolean | null; // Boolean
     update?: NexusGenInputs['ProductListUpdateWithoutProductsInput'] | null; // ProductListUpdateWithoutProductsInput
     upsert?: NexusGenInputs['ProductListUpsertWithoutProductsInput'] | null; // ProductListUpsertWithoutProductsInput
   }
   ProductListUpdateWithoutProductsInput: { // input type
+    channels?: NexusGenInputs['ChannelInProductListUpdateManyWithoutProductListInput'] | null; // ChannelInProductListUpdateManyWithoutProductListInput
     title?: NexusGenInputs['StringFieldUpdateOperationsInput'] | null; // StringFieldUpdateOperationsInput
   }
   ProductListUpsertWithoutProductsInput: { // input type
@@ -220,6 +342,7 @@ export interface NexusGenInputs {
     AND?: NexusGenInputs['ProductListWhereInput'][] | null; // [ProductListWhereInput!]
     NOT?: NexusGenInputs['ProductListWhereInput'][] | null; // [ProductListWhereInput!]
     OR?: NexusGenInputs['ProductListWhereInput'][] | null; // [ProductListWhereInput!]
+    channels?: NexusGenInputs['ChannelInProductListListRelationFilter'] | null; // ChannelInProductListListRelationFilter
     id?: NexusGenInputs['IntFilter'] | null; // IntFilter
     products?: NexusGenInputs['ProductInProductListListRelationFilter'] | null; // ProductInProductListListRelationFilter
     title?: NexusGenInputs['StringFilter'] | null; // StringFilter
@@ -300,6 +423,10 @@ export interface NexusGenScalars {
 }
 
 export interface NexusGenObjects {
+  Channel: { // root type
+    name: string; // String!
+  }
+  ChannelInProductList: {};
   Mutation: {};
   PageInfo: { // root type
     endCursor?: string | null; // String
@@ -349,6 +476,16 @@ export type NexusGenRootTypes = NexusGenObjects
 export type NexusGenAllTypes = NexusGenRootTypes & NexusGenScalars & NexusGenEnums
 
 export interface NexusGenFieldTypes {
+  Channel: { // field return type
+    id: string; // ID!
+    name: string; // String!
+    ownId: number; // Int!
+  }
+  ChannelInProductList: { // field return type
+    channel: NexusGenRootTypes['Channel']; // Channel!
+    id: string; // ID!
+    ownId: number; // Int!
+  }
   Mutation: { // field return type
     updateManyProductInProductList: NexusGenRootTypes['ProductInProductList'][]; // [ProductInProductList!]!
     updateOneProductInProductList: NexusGenRootTypes['ProductInProductList'] | null; // ProductInProductList
@@ -378,6 +515,7 @@ export interface NexusGenFieldTypes {
     name: string; // String!
   }
   ProductList: { // field return type
+    channels: NexusGenRootTypes['ChannelInProductList'][]; // [ChannelInProductList!]!
     id: string; // ID!
     ownId: number; // Int!
     productListProductConnection: NexusGenRootTypes['ProductListProductConnection']; // ProductListProductConnection!
@@ -407,6 +545,16 @@ export interface NexusGenFieldTypes {
 }
 
 export interface NexusGenFieldTypeNames {
+  Channel: { // field return type name
+    id: 'ID'
+    name: 'String'
+    ownId: 'Int'
+  }
+  ChannelInProductList: { // field return type name
+    channel: 'Channel'
+    id: 'ID'
+    ownId: 'Int'
+  }
   Mutation: { // field return type name
     updateManyProductInProductList: 'ProductInProductList'
     updateOneProductInProductList: 'ProductInProductList'
@@ -436,6 +584,7 @@ export interface NexusGenFieldTypeNames {
     name: 'String'
   }
   ProductList: { // field return type name
+    channels: 'ChannelInProductList'
     id: 'ID'
     ownId: 'Int'
     productListProductConnection: 'ProductListProductConnection'
@@ -475,6 +624,12 @@ export interface NexusGenArgTypes {
     }
   }
   ProductList: {
+    channels: { // args
+      after?: NexusGenInputs['ChannelInProductListWhereUniqueInput'] | null; // ChannelInProductListWhereUniqueInput
+      before?: NexusGenInputs['ChannelInProductListWhereUniqueInput'] | null; // ChannelInProductListWhereUniqueInput
+      first?: number | null; // Int
+      last?: number | null; // Int
+    }
     productListProductConnection: { // args
       after?: string | null; // String
       before?: string | null; // String

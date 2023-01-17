@@ -20,6 +20,39 @@ export const ProductLifecycleGroup = objectType({
   },
 });
 
+export const Channel = objectType({
+  name: "Channel",
+  definition: (t) => {
+    t.nonNull.id("id", {
+      resolve: ({ id }: any) => toGlobalId("Channel", String(id)),
+    });
+    t.model.id({ alias: "ownId" });
+    t.model.name();
+  },
+});
+
+export const ChannelInProductList = objectType({
+  name: "ChannelInProductList",
+  definition: (t) => {
+    t.nonNull.id("id", {
+      resolve: ({ id }: any) => toGlobalId("ChannelInProductList", String(id)),
+    });
+    t.model.id({ alias: "ownId" });
+    t.model.channel();
+  },
+});
+
+export const ChannelInProductListUpdateManyMutationInput = inputObjectType({
+  name: "ChannelInProductListUpdateManyMutationInput",
+  definition: (t) => {
+    t.int("_dummy_field", {
+      // See: https://github.com/graphql-nexus/nexus-plugin-prisma/issues/801
+      description:
+        "Dummy field to avoid Error: Input Object type ChannelInProductListUpdateManyMutationInput must define one or more fields.",
+    });
+  },
+});
+
 export const Product = objectType({
   name: "Product",
   definition: (t) => {
@@ -65,6 +98,7 @@ export const ProductList = objectType({
     });
     t.model.id({ alias: "ownId" });
     t.model.title();
+    t.model.channels();
 
     t.connectionField("productListProductConnection", {
       type: ProductListProduct,

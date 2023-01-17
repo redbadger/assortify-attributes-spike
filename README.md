@@ -27,7 +27,20 @@ erDiagram
     String displayName  
     }
   
+
+  Channel {
+    Int id PK 
+    String name  
+    }
+  
+
+  ChannelInProductList {
+    Int id PK 
+    }
+  
     ProductInProductList o{--|| Product : "product"
-    ProductInProductList o{--|o ProductList : "productList"
+    ProductInProductList o{--|| ProductList : "productList"
     ProductInProductList o{--|o ProductLifecycleGroup : "productLifecycleGroup"
+    ChannelInProductList o{--|| Channel : "channel"
+    ChannelInProductList o{--|| ProductList : "productList"
 ```

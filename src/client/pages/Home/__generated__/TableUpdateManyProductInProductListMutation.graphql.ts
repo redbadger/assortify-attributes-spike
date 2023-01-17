@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<f862eebabf0f37f4d7c8e35eaeeaafb8>>
+ * @generated SignedSource<<a79e48bbb37e40b44c0114e6df53bb5f>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -20,7 +20,7 @@ export type ProductInProductListUpdateInput = {
   minimumOrderQuantity?: NullableIntFieldUpdateOperationsInput | null;
   product?: ProductUpdateOneRequiredWithoutProductListsInput | null;
   productLifecycleGroup?: ProductLifecycleGroupUpdateOneWithoutProductInProductListInput | null;
-  productList?: ProductListUpdateOneWithoutProductsInput | null;
+  productList?: ProductListUpdateOneRequiredWithoutProductsInput | null;
 };
 export type NullableStringFieldUpdateOperationsInput = {
   set?: string | null;
@@ -90,12 +90,10 @@ export type ProductLifecycleGroupUpsertWithoutProductInProductListInput = {
   create: ProductLifecycleGroupCreateWithoutProductInProductListInput;
   update: ProductLifecycleGroupUpdateWithoutProductInProductListInput;
 };
-export type ProductListUpdateOneWithoutProductsInput = {
+export type ProductListUpdateOneRequiredWithoutProductsInput = {
   connect?: ProductListWhereUniqueInput | null;
   connectOrCreate?: ProductListCreateOrConnectWithoutProductsInput | null;
   create?: ProductListCreateWithoutProductsInput | null;
-  delete?: boolean | null;
-  disconnect?: boolean | null;
   update?: ProductListUpdateWithoutProductsInput | null;
   upsert?: ProductListUpsertWithoutProductsInput | null;
 };
@@ -107,10 +105,131 @@ export type ProductListCreateOrConnectWithoutProductsInput = {
   where: ProductListWhereUniqueInput;
 };
 export type ProductListCreateWithoutProductsInput = {
+  channels?: ChannelInProductListCreateNestedManyWithoutProductListInput | null;
   title: string;
 };
+export type ChannelInProductListCreateNestedManyWithoutProductListInput = {
+  connect?: ReadonlyArray<ChannelInProductListWhereUniqueInput> | null;
+  connectOrCreate?: ReadonlyArray<ChannelInProductListCreateOrConnectWithoutProductListInput> | null;
+  create?: ReadonlyArray<ChannelInProductListCreateWithoutProductListInput> | null;
+  createMany?: ChannelInProductListCreateManyProductListInputEnvelope | null;
+};
+export type ChannelInProductListWhereUniqueInput = {
+  channelId_productListId?: ChannelInProductListChannelIdProductListIdCompoundUniqueInput | null;
+  id?: number | null;
+};
+export type ChannelInProductListChannelIdProductListIdCompoundUniqueInput = {
+  channelId: number;
+  productListId: number;
+};
+export type ChannelInProductListCreateOrConnectWithoutProductListInput = {
+  create: ChannelInProductListCreateWithoutProductListInput;
+  where: ChannelInProductListWhereUniqueInput;
+};
+export type ChannelInProductListCreateWithoutProductListInput = {
+  channel: ChannelCreateNestedOneWithoutProductListsInput;
+};
+export type ChannelCreateNestedOneWithoutProductListsInput = {
+  connect?: ChannelWhereUniqueInput | null;
+  connectOrCreate?: ChannelCreateOrConnectWithoutProductListsInput | null;
+  create?: ChannelCreateWithoutProductListsInput | null;
+};
+export type ChannelWhereUniqueInput = {
+  id?: number | null;
+  name?: string | null;
+};
+export type ChannelCreateOrConnectWithoutProductListsInput = {
+  create: ChannelCreateWithoutProductListsInput;
+  where: ChannelWhereUniqueInput;
+};
+export type ChannelCreateWithoutProductListsInput = {
+  name: string;
+};
+export type ChannelInProductListCreateManyProductListInputEnvelope = {
+  data?: ReadonlyArray<ChannelInProductListCreateManyProductListInput> | null;
+  skipDuplicates?: boolean | null;
+};
+export type ChannelInProductListCreateManyProductListInput = {
+  channelId: number;
+  id?: number | null;
+};
 export type ProductListUpdateWithoutProductsInput = {
+  channels?: ChannelInProductListUpdateManyWithoutProductListInput | null;
   title?: StringFieldUpdateOperationsInput | null;
+};
+export type ChannelInProductListUpdateManyWithoutProductListInput = {
+  connect?: ReadonlyArray<ChannelInProductListWhereUniqueInput> | null;
+  connectOrCreate?: ReadonlyArray<ChannelInProductListCreateOrConnectWithoutProductListInput> | null;
+  create?: ReadonlyArray<ChannelInProductListCreateWithoutProductListInput> | null;
+  createMany?: ChannelInProductListCreateManyProductListInputEnvelope | null;
+  delete?: ReadonlyArray<ChannelInProductListWhereUniqueInput> | null;
+  deleteMany?: ReadonlyArray<ChannelInProductListScalarWhereInput> | null;
+  disconnect?: ReadonlyArray<ChannelInProductListWhereUniqueInput> | null;
+  set?: ReadonlyArray<ChannelInProductListWhereUniqueInput> | null;
+  update?: ReadonlyArray<ChannelInProductListUpdateWithWhereUniqueWithoutProductListInput> | null;
+  updateMany?: ReadonlyArray<ChannelInProductListUpdateManyWithWhereWithoutProductListInput> | null;
+  upsert?: ReadonlyArray<ChannelInProductListUpsertWithWhereUniqueWithoutProductListInput> | null;
+};
+export type ChannelInProductListScalarWhereInput = {
+  AND?: ReadonlyArray<ChannelInProductListScalarWhereInput> | null;
+  NOT?: ReadonlyArray<ChannelInProductListScalarWhereInput> | null;
+  OR?: ReadonlyArray<ChannelInProductListScalarWhereInput> | null;
+  channelId?: IntFilter | null;
+  id?: IntFilter | null;
+  productListId?: IntFilter | null;
+};
+export type IntFilter = {
+  equals?: number | null;
+  gt?: number | null;
+  gte?: number | null;
+  in?: ReadonlyArray<number> | null;
+  lt?: number | null;
+  lte?: number | null;
+  not?: NestedIntFilter | null;
+  notIn?: ReadonlyArray<number> | null;
+};
+export type NestedIntFilter = {
+  equals?: number | null;
+  gt?: number | null;
+  gte?: number | null;
+  in?: ReadonlyArray<number> | null;
+  lt?: number | null;
+  lte?: number | null;
+  not?: NestedIntFilter | null;
+  notIn?: ReadonlyArray<number> | null;
+};
+export type ChannelInProductListUpdateWithWhereUniqueWithoutProductListInput = {
+  data: ChannelInProductListUpdateWithoutProductListInput;
+  where: ChannelInProductListWhereUniqueInput;
+};
+export type ChannelInProductListUpdateWithoutProductListInput = {
+  channel?: ChannelUpdateOneRequiredWithoutProductListsInput | null;
+};
+export type ChannelUpdateOneRequiredWithoutProductListsInput = {
+  connect?: ChannelWhereUniqueInput | null;
+  connectOrCreate?: ChannelCreateOrConnectWithoutProductListsInput | null;
+  create?: ChannelCreateWithoutProductListsInput | null;
+  update?: ChannelUpdateWithoutProductListsInput | null;
+  upsert?: ChannelUpsertWithoutProductListsInput | null;
+};
+export type ChannelUpdateWithoutProductListsInput = {
+  name?: StringFieldUpdateOperationsInput | null;
+};
+export type ChannelUpsertWithoutProductListsInput = {
+  create: ChannelCreateWithoutProductListsInput;
+  update: ChannelUpdateWithoutProductListsInput;
+};
+export type ChannelInProductListUpdateManyWithWhereWithoutProductListInput = {
+  data: ChannelInProductListUpdateManyMutationInput;
+  where: ChannelInProductListScalarWhereInput;
+};
+export type ChannelInProductListUpdateManyMutationInput = {
+  _dummy_field?: number | null;
+};
+export type ChannelInProductListUpsertWithWhereUniqueWithoutProductListInput = {
+  create: ChannelInProductListCreateWithoutProductListInput;
+  update: ChannelInProductListUpdateWithoutProductListInput;
+  where: ChannelInProductListWhereUniqueInput;
 };
 export type ProductListUpsertWithoutProductsInput = {
   create: ProductListCreateWithoutProductsInput;

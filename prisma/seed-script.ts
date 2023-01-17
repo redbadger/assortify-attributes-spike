@@ -42,6 +42,10 @@ const data = [
 ];
 
 const main = async () => {
+  await prisma.channel.createMany({
+    data: [{ name: "Mainline" }, { name: "Outlet" }, { name: "Wholesale" }],
+  });
+
   await prisma.productLifecycleGroup.createMany({
     data: [
       { name: "seasonal", displayName: "Seasonal" },
@@ -60,6 +64,12 @@ const main = async () => {
   await prisma.productList.create({
     data: {
       title: "My new Assortment",
+      channels: {
+        create: [
+          { channel: { connect: { name: "Mainline" } } },
+          { channel: { connect: { name: "Wholesale" } } },
+        ],
+      },
       products: {
         create: products.map(({ id, pc9 }) => ({
           product: { connect: { id } },

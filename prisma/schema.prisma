@@ -23,13 +23,14 @@ model ProductList {
   id       Int                    @id @default(autoincrement())
   title    String
   products ProductInProductList[]
+  channels ChannelInProductList[]
 }
 
 model ProductInProductList {
   id                        Int                    @id @default(autoincrement())
   product                   Product                @relation(fields: [productId], references: [id])
   productId                 Int
-  productList               ProductList?           @relation(fields: [productListId], references: [id])
+  productList               ProductList            @relation(fields: [productListId], references: [id])
   productListId             Int
   exclusive                 String?
   exclusiveComments         String?
@@ -44,4 +45,20 @@ model ProductLifecycleGroup {
   name                 String                 @id
   displayName          String                 @unique
   ProductInProductList ProductInProductList[]
+}
+
+model Channel {
+  id           Int                    @id @default(autoincrement())
+  name         String                 @unique
+  productLists ChannelInProductList[]
+}
+
+model ChannelInProductList {
+  id            Int         @id @default(autoincrement())
+  channel       Channel     @relation(fields: [channelId], references: [id])
+  channelId     Int
+  productList   ProductList @relation(fields: [productListId], references: [id])
+  productListId Int
+
+  @@unique([channelId, productListId])
 }
