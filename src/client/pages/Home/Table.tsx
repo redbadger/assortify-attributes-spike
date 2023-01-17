@@ -8,6 +8,7 @@ import { useSnackbar } from "notistack";
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { graphql, useFragment, useMutation } from "react-relay";
 import "twin.macro";
+import MultiSelectCellEditor from "../../components/MutliSelectCellEditor";
 import useEdits from "../../hooks/useEdits";
 import flattenLookups from "../../utils/flattenLookups";
 import { TableDataFragment$key } from "./__generated__/TableDataFragment.graphql";
@@ -47,6 +48,8 @@ const columnDefsStatic: ColDef<any>[] = [
   {
     field: "distributions",
     editable: true,
+    cellEditor: MultiSelectCellEditor,
+    cellEditorPopup: true,
     valueFormatter: ({ value }) =>
       JSON.parse(value)
         .map((_) => _.distribution.name)
@@ -198,7 +201,7 @@ const Table = ({
   const dirty = !!Object.keys(edits).length;
 
   return (
-    <div className="ag-theme-alpine" tw="w-full h-52">
+    <div className="ag-theme-alpine" tw="w-full h-[280px]">
       <AgGridReact
         ref={gridRef}
         defaultColDef={defaultColDef}
@@ -206,6 +209,7 @@ const Table = ({
         rowData={rowData}
         onFirstDataRendered={handleFirstDataRendered}
         onCellValueChanged={updateEdits}
+        stopEditingWhenCellsLoseFocus
       />
       <pre tw="p-4 bg-gray-200">{JSON.stringify(edits, null, 2)}</pre>
       <Button

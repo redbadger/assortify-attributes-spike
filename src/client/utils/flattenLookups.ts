@@ -1,4 +1,5 @@
 import produce from "immer";
+import { sortBy } from "lodash-es";
 
 const flattenLookups = (data: { [key: string]: any }) =>
   produce(data, (draft) => {
@@ -6,7 +7,9 @@ const flattenLookups = (data: { [key: string]: any }) =>
       if (draft[key]?.displayName) {
         draft[key] = draft[key].displayName;
       } else if (Array.isArray(draft[key])) {
-        draft[key] = JSON.stringify(draft[key]);
+        draft[key] = JSON.stringify(
+          sortBy(draft[key], `${key.slice(0, -1)}.name`)
+        );
       }
     }
   });

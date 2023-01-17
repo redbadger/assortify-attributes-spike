@@ -1,5 +1,6 @@
 import { AgGridCommon } from "ag-grid-community/dist/lib/interfaces/iCommon";
 import produce from "immer";
+import { isEqual } from "lodash-es";
 import { useCallback, useState } from "react";
 import flattenLookups from "../utils/flattenLookups";
 
@@ -41,13 +42,17 @@ const useEdits = <
 
                 if (ownId) {
                   const serverValue = flattenedNodeOnServer?.[key];
-                  const valueEdited = value !== serverValue;
+                  const valueEdited = !isEqual(serverValue, value);
 
                   if (valueEdited) {
                     if (!edits[ownId]) edits[ownId] = {};
                     if (!edits[ownId][key]) edits[ownId][key] = {};
 
-                    if (colDef?.field === "distributions") {
+                    if (
+                      colDef?.cellEditor?.render?.displayName ===
+                        "MultiSelectCellEditor" &&
+                      colDef.field
+                    ) {
                       const singular = colDef?.field.slice(0, -1);
 
                       const create = JSON.parse(value).map((_) => ({
