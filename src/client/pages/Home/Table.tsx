@@ -42,6 +42,10 @@ const columnDefs = [
   {
     field: "productLifecycleGroup",
     editable: true,
+    cellEditor: "agSelectCellEditor",
+    cellEditorParams: {
+      values: ["Seasonal", "Core", "Fashion", "Seasonal Core"],
+    },
   },
 ];
 

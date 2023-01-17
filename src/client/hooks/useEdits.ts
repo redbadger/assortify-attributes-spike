@@ -33,9 +33,8 @@ const useEdits = <
             const flattenedNodeOnServer = flattenLookups(nodeOnServer);
 
             Object.entries(node.data ?? []).map(([key, value]) => {
-              const isEditable = _.columnApi
-                .getColumn(key)
-                ?.getColDef().editable;
+              const colDef = _.columnApi.getColumn(key)?.getColDef();
+              const isEditable = colDef?.editable;
 
               if (isEditable) {
                 const ownId = node.data?.ownId;
@@ -46,7 +45,12 @@ const useEdits = <
                   if (valueEdited) {
                     if (!edits[ownId]) edits[ownId] = {};
                     if (!edits[ownId][key]) edits[ownId][key] = {};
-                    edits[ownId][key].set = value;
+
+                    if (colDef?.cellEditor === "agSelectCellEditor") {
+                      edits[ownId][key].connect = { displayName: value };
+                    } else {
+                      edits[ownId][key].set = value;
+                    }
                   } else if (edits[ownId]) {
                     delete edits[ownId][key];
                     if (!Object.keys(edits[ownId]).length) {
