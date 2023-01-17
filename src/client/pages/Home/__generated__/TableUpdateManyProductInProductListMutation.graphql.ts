@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<44c98a179574da6855161b51962fedd0>>
+ * @generated SignedSource<<eb52c3318abd524df8ec2b64b318259b>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -895,6 +895,37 @@ return {
               }
             ],
             "storageKey": null
+          },
+          {
+            "alias": null,
+            "args": null,
+            "concreteType": "DistributionForProductInProductList",
+            "kind": "LinkedField",
+            "name": "distributions",
+            "plural": true,
+            "selections": [
+              {
+                "alias": null,
+                "args": null,
+                "concreteType": "Distribution",
+                "kind": "LinkedField",
+                "name": "distribution",
+                "plural": false,
+                "selections": [
+                  {
+                    "alias": null,
+                    "args": null,
+                    "kind": "ScalarField",
+                    "name": "name",
+                    "storageKey": null
+                  },
+                  (v2/*: any*/)
+                ],
+                "storageKey": null
+              },
+              (v2/*: any*/)
+            ],
+            "storageKey": null
           }
         ],
         "storageKey": null
@@ -902,12 +933,12 @@ return {
     ]
   },
   "params": {
-    "cacheID": "5b8e78ae1cb5f5112813c26f12efb691",
+    "cacheID": "358a8585109b72bbc2e97a6df3f3a102",
     "id": null,
     "metadata": {},
     "name": "TableUpdateManyProductInProductListMutation",
     "operationKind": "mutation",
-    "text": "mutation TableUpdateManyProductInProductListMutation(\n  $data: [ProductInProductListUpdateRowInput!]\n) {\n  updateManyProductInProductList(data: $data) {\n    id\n    ...TableProductInProductListFragment\n  }\n}\n\nfragment TableProductInProductListFragment on ProductInProductList {\n  exclusive\n  exclusiveComments\n  minimumOrderQuantity\n  productLifecycleGroup {\n    displayName\n  }\n}\n"
+    "text": "mutation TableUpdateManyProductInProductListMutation(\n  $data: [ProductInProductListUpdateRowInput!]\n) {\n  updateManyProductInProductList(data: $data) {\n    id\n    ...TableProductInProductListFragment\n  }\n}\n\nfragment TableProductInProductListFragment on ProductInProductList {\n  exclusive\n  exclusiveComments\n  minimumOrderQuantity\n  productLifecycleGroup {\n    displayName\n  }\n  distributions {\n    distribution {\n      name\n      id\n    }\n    id\n  }\n}\n"
   }
 };
 })();

@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<00384000309ab4fea70d98b50d1ddbe6>>
+ * @generated SignedSource<<c10edb5c18a9b0664a90fe37c3f046de>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -19,6 +19,11 @@ export type TableDataFragment$data = {
           readonly pc9: string;
         };
         readonly productInProductList: {
+          readonly distributions: ReadonlyArray<{
+            readonly distribution: {
+              readonly name: string;
+            };
+          }>;
           readonly exclusive: string | null;
           readonly exclusiveComments: string | null;
           readonly minimumOrderQuantity: number | null;
@@ -147,6 +152,35 @@ const node: ReaderFragment = {
                           "args": null,
                           "kind": "ScalarField",
                           "name": "displayName",
+                          "storageKey": null
+                        }
+                      ],
+                      "storageKey": null
+                    },
+                    {
+                      "alias": null,
+                      "args": null,
+                      "concreteType": "DistributionForProductInProductList",
+                      "kind": "LinkedField",
+                      "name": "distributions",
+                      "plural": true,
+                      "selections": [
+                        {
+                          "alias": null,
+                          "args": null,
+                          "concreteType": "Distribution",
+                          "kind": "LinkedField",
+                          "name": "distribution",
+                          "plural": false,
+                          "selections": [
+                            {
+                              "alias": null,
+                              "args": null,
+                              "kind": "ScalarField",
+                              "name": "name",
+                              "storageKey": null
+                            }
+                          ],
                           "storageKey": null
                         }
                       ],

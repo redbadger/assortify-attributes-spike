@@ -43,6 +43,9 @@ const data = [
       productLifecycleGroup: {
         connect: { displayName: "Core" },
       },
+      distributions: {
+        create: [{ distribution: { connect: { name: "MENS_CORE_V1" } } }],
+      },
     },
   },
 ];

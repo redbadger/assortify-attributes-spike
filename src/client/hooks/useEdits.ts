@@ -47,7 +47,14 @@ const useEdits = <
                     if (!edits[ownId]) edits[ownId] = {};
                     if (!edits[ownId][key]) edits[ownId][key] = {};
 
-                    if (colDef?.cellEditor === "agSelectCellEditor") {
+                    if (colDef?.field === "distributions") {
+                      const create = JSON.parse(value).map((_) => ({
+                        distribution: { connect: _.distribution },
+                      }));
+
+                      edits[ownId][key].create = create;
+                      edits[ownId][key].deleteMany = {};
+                    } else if (colDef?.cellEditor === "agSelectCellEditor") {
                       if (value) {
                         edits[ownId][key].connect = { displayName: value };
                       } else if (serverValue) {

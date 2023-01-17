@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<1014db6cdd90b52e66fb39f49c8ea716>>
+ * @generated SignedSource<<e4b4efefd94dd2fdec79fc22e49521ab>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -11,6 +11,11 @@
 import { Fragment, ReaderFragment } from 'relay-runtime';
 import { FragmentRefs } from "relay-runtime";
 export type TableProductInProductListFragment$data = {
+  readonly distributions: ReadonlyArray<{
+    readonly distribution: {
+      readonly name: string;
+    };
+  }>;
   readonly exclusive: string | null;
   readonly exclusiveComments: string | null;
   readonly minimumOrderQuantity: number | null;
@@ -68,12 +73,41 @@ const node: ReaderFragment = {
         }
       ],
       "storageKey": null
+    },
+    {
+      "alias": null,
+      "args": null,
+      "concreteType": "DistributionForProductInProductList",
+      "kind": "LinkedField",
+      "name": "distributions",
+      "plural": true,
+      "selections": [
+        {
+          "alias": null,
+          "args": null,
+          "concreteType": "Distribution",
+          "kind": "LinkedField",
+          "name": "distribution",
+          "plural": false,
+          "selections": [
+            {
+              "alias": null,
+              "args": null,
+              "kind": "ScalarField",
+              "name": "name",
+              "storageKey": null
+            }
+          ],
+          "storageKey": null
+        }
+      ],
+      "storageKey": null
     }
   ],
   "type": "ProductInProductList",
   "abstractKey": null
 };
 
-(node as any).hash = "3970e53f2c35d9b3b1dc7db762b45801";
+(node as any).hash = "9d761c50d036ef1f552212c2b52c53fc";
 
 export default node;

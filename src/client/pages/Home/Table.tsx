@@ -28,24 +28,40 @@ export const productInProductListFragment = graphql`
     productLifecycleGroup {
       displayName
     }
+    distributions {
+      distribution {
+        name
+      }
+    }
   }
 `;
 
 const columnDefsStatic: ColDef<any>[] = [
-  { field: "pc9" },
+  { field: "pc9", headerName: "PC9" },
   { field: "colorwayName" },
-  { field: "exclusive", editable: true },
-  { field: "exclusiveComments", editable: true },
-  {
-    field: "minimumOrderQuantity",
-    editable: true,
-    valueParser: (_) => Number(_.newValue),
-  },
   {
     field: "productLifecycleGroup",
     editable: true,
     cellEditor: "agSelectCellEditor",
   },
+  {
+    field: "distributions",
+    editable: true,
+    valueFormatter: ({ value }) =>
+      JSON.parse(value)
+        .map((_) => _.distribution.name)
+        .sort()
+        .join(", "),
+  },
+  {
+    field: "minimumOrderQuantity",
+    headerName: "MOQ",
+    editable: true,
+    type: "rightAligned",
+    valueParser: (_) => Number(_.newValue),
+  },
+  { field: "exclusive", editable: true },
+  { field: "exclusiveComments", editable: true },
 ];
 
 const lookupValuesFragment = graphql`

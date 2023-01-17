@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<8fd10df5e5fc3b2061474ef1b44b24bd>>
+ * @generated SignedSource<<39fab00f834f37296906f71a79c0ab83>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -80,7 +80,11 @@ v5 = {
   "kind": "ScalarField",
   "name": "id",
   "storageKey": null
-};
+},
+v6 = [
+  (v3/*: any*/),
+  (v5/*: any*/)
+];
 return {
   "fragment": {
     "argumentDefinitions": (v0/*: any*/),
@@ -177,10 +181,7 @@ return {
                 "kind": "LinkedField",
                 "name": "channel",
                 "plural": false,
-                "selections": [
-                  (v3/*: any*/),
-                  (v5/*: any*/)
-                ],
+                "selections": (v6/*: any*/),
                 "storageKey": null
               },
               (v5/*: any*/)
@@ -289,6 +290,28 @@ return {
                             "selections": (v4/*: any*/),
                             "storageKey": null
                           },
+                          {
+                            "alias": null,
+                            "args": null,
+                            "concreteType": "DistributionForProductInProductList",
+                            "kind": "LinkedField",
+                            "name": "distributions",
+                            "plural": true,
+                            "selections": [
+                              {
+                                "alias": null,
+                                "args": null,
+                                "concreteType": "Distribution",
+                                "kind": "LinkedField",
+                                "name": "distribution",
+                                "plural": false,
+                                "selections": (v6/*: any*/),
+                                "storageKey": null
+                              },
+                              (v5/*: any*/)
+                            ],
+                            "storageKey": null
+                          },
                           (v5/*: any*/)
                         ],
                         "storageKey": null
@@ -310,12 +333,12 @@ return {
     ]
   },
   "params": {
-    "cacheID": "3261a221ba373ecb9a3b3ab6c2b4d0c1",
+    "cacheID": "7331c34a20f889d18a29e0662cf1a20b",
     "id": null,
     "metadata": {},
     "name": "ProductListQuery",
     "operationKind": "query",
-    "text": "query ProductListQuery(\n  $id: Int\n) {\n  ...TableLookupValuesFragment\n  productList(where: {id: $id}) {\n    title\n    channels {\n      channel {\n        name\n        id\n      }\n      id\n    }\n    ...TableDataFragment\n    id\n  }\n}\n\nfragment TableDataFragment on ProductList {\n  productListProductConnection(first: 10) {\n    edges {\n      node {\n        product {\n          pc9\n          colorwayName\n          id\n        }\n        productInProductList {\n          ownId\n          exclusive\n          exclusiveComments\n          minimumOrderQuantity\n          productLifecycleGroup {\n            displayName\n          }\n          id\n        }\n        id\n      }\n    }\n  }\n}\n\nfragment TableLookupValuesFragment on Query {\n  productLifecycleGroups {\n    displayName\n  }\n}\n"
+    "text": "query ProductListQuery(\n  $id: Int\n) {\n  ...TableLookupValuesFragment\n  productList(where: {id: $id}) {\n    title\n    channels {\n      channel {\n        name\n        id\n      }\n      id\n    }\n    ...TableDataFragment\n    id\n  }\n}\n\nfragment TableDataFragment on ProductList {\n  productListProductConnection(first: 10) {\n    edges {\n      node {\n        product {\n          pc9\n          colorwayName\n          id\n        }\n        productInProductList {\n          ownId\n          exclusive\n          exclusiveComments\n          minimumOrderQuantity\n          productLifecycleGroup {\n            displayName\n          }\n          distributions {\n            distribution {\n              name\n              id\n            }\n            id\n          }\n          id\n        }\n        id\n      }\n    }\n  }\n}\n\nfragment TableLookupValuesFragment on Query {\n  productLifecycleGroups {\n    displayName\n  }\n}\n"
   }
 };
 })();
