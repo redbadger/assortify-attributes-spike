@@ -130,6 +130,7 @@ export interface NexusGenInputs {
     exclusiveComments?: NexusGenInputs['NullableStringFieldUpdateOperationsInput'] | null; // NullableStringFieldUpdateOperationsInput
     minimumOrderQuantity?: NexusGenInputs['NullableIntFieldUpdateOperationsInput'] | null; // NullableIntFieldUpdateOperationsInput
     product?: NexusGenInputs['ProductUpdateOneRequiredWithoutProductListsInput'] | null; // ProductUpdateOneRequiredWithoutProductListsInput
+    productLifecycleGroup?: NexusGenInputs['ProductLifecycleGroupUpdateOneWithoutProductInProductListInput'] | null; // ProductLifecycleGroupUpdateOneWithoutProductInProductListInput
     productList?: NexusGenInputs['ProductListUpdateOneWithoutProductsInput'] | null; // ProductListUpdateOneWithoutProductsInput
   }
   ProductInProductListUpdateRowInput: { // input type
@@ -146,12 +147,51 @@ export interface NexusGenInputs {
     minimumOrderQuantity?: NexusGenInputs['IntNullableFilter'] | null; // IntNullableFilter
     product?: NexusGenInputs['ProductWhereInput'] | null; // ProductWhereInput
     productId?: NexusGenInputs['IntFilter'] | null; // IntFilter
+    productLifecycleGroup?: NexusGenInputs['ProductLifecycleGroupWhereInput'] | null; // ProductLifecycleGroupWhereInput
+    productLifecycleGroupName?: NexusGenInputs['StringNullableFilter'] | null; // StringNullableFilter
     productList?: NexusGenInputs['ProductListWhereInput'] | null; // ProductListWhereInput
     productListId?: NexusGenInputs['IntFilter'] | null; // IntFilter
   }
   ProductInProductListWhereUniqueInput: { // input type
     id?: number | null; // Int
     productId_productListId?: NexusGenInputs['ProductInProductListProductIdProductListIdCompoundUniqueInput'] | null; // ProductInProductListProductIdProductListIdCompoundUniqueInput
+  }
+  ProductLifecycleGroupCreateOrConnectWithoutProductInProductListInput: { // input type
+    create: NexusGenInputs['ProductLifecycleGroupCreateWithoutProductInProductListInput']; // ProductLifecycleGroupCreateWithoutProductInProductListInput!
+    where: NexusGenInputs['ProductLifecycleGroupWhereUniqueInput']; // ProductLifecycleGroupWhereUniqueInput!
+  }
+  ProductLifecycleGroupCreateWithoutProductInProductListInput: { // input type
+    displayName: string; // String!
+    name: string; // String!
+  }
+  ProductLifecycleGroupUpdateOneWithoutProductInProductListInput: { // input type
+    connect?: NexusGenInputs['ProductLifecycleGroupWhereUniqueInput'] | null; // ProductLifecycleGroupWhereUniqueInput
+    connectOrCreate?: NexusGenInputs['ProductLifecycleGroupCreateOrConnectWithoutProductInProductListInput'] | null; // ProductLifecycleGroupCreateOrConnectWithoutProductInProductListInput
+    create?: NexusGenInputs['ProductLifecycleGroupCreateWithoutProductInProductListInput'] | null; // ProductLifecycleGroupCreateWithoutProductInProductListInput
+    delete?: boolean | null; // Boolean
+    disconnect?: boolean | null; // Boolean
+    update?: NexusGenInputs['ProductLifecycleGroupUpdateWithoutProductInProductListInput'] | null; // ProductLifecycleGroupUpdateWithoutProductInProductListInput
+    upsert?: NexusGenInputs['ProductLifecycleGroupUpsertWithoutProductInProductListInput'] | null; // ProductLifecycleGroupUpsertWithoutProductInProductListInput
+  }
+  ProductLifecycleGroupUpdateWithoutProductInProductListInput: { // input type
+    displayName?: NexusGenInputs['StringFieldUpdateOperationsInput'] | null; // StringFieldUpdateOperationsInput
+    name?: NexusGenInputs['StringFieldUpdateOperationsInput'] | null; // StringFieldUpdateOperationsInput
+  }
+  ProductLifecycleGroupUpsertWithoutProductInProductListInput: { // input type
+    create: NexusGenInputs['ProductLifecycleGroupCreateWithoutProductInProductListInput']; // ProductLifecycleGroupCreateWithoutProductInProductListInput!
+    update: NexusGenInputs['ProductLifecycleGroupUpdateWithoutProductInProductListInput']; // ProductLifecycleGroupUpdateWithoutProductInProductListInput!
+  }
+  ProductLifecycleGroupWhereInput: { // input type
+    AND?: NexusGenInputs['ProductLifecycleGroupWhereInput'][] | null; // [ProductLifecycleGroupWhereInput!]
+    NOT?: NexusGenInputs['ProductLifecycleGroupWhereInput'][] | null; // [ProductLifecycleGroupWhereInput!]
+    OR?: NexusGenInputs['ProductLifecycleGroupWhereInput'][] | null; // [ProductLifecycleGroupWhereInput!]
+    ProductInProductList?: NexusGenInputs['ProductInProductListListRelationFilter'] | null; // ProductInProductListListRelationFilter
+    displayName?: NexusGenInputs['StringFilter'] | null; // StringFilter
+    name?: NexusGenInputs['StringFilter'] | null; // StringFilter
+  }
+  ProductLifecycleGroupWhereUniqueInput: { // input type
+    displayName?: string | null; // String
+    name?: string | null; // String
   }
   ProductListCreateOrConnectWithoutProductsInput: { // input type
     create: NexusGenInputs['ProductListCreateWithoutProductsInput']; // ProductListCreateWithoutProductsInput!
@@ -276,6 +316,10 @@ export interface NexusGenObjects {
     exclusiveComments?: string | null; // String
     minimumOrderQuantity?: number | null; // Int
   }
+  ProductLifecycleGroup: { // root type
+    displayName: string; // String!
+    name: string; // String!
+  }
   ProductList: { // root type
     title: string; // String!
   }
@@ -327,6 +371,11 @@ export interface NexusGenFieldTypes {
     id: string; // ID!
     minimumOrderQuantity: number | null; // Int
     ownId: number; // Int!
+    productLifecycleGroup: NexusGenRootTypes['ProductLifecycleGroup'] | null; // ProductLifecycleGroup
+  }
+  ProductLifecycleGroup: { // field return type
+    displayName: string; // String!
+    name: string; // String!
   }
   ProductList: { // field return type
     id: string; // ID!
@@ -378,6 +427,11 @@ export interface NexusGenFieldTypeNames {
     id: 'ID'
     minimumOrderQuantity: 'Int'
     ownId: 'Int'
+    productLifecycleGroup: 'ProductLifecycleGroup'
+  }
+  ProductLifecycleGroup: { // field return type name
+    displayName: 'String'
+    name: 'String'
   }
   ProductList: { // field return type name
     id: 'ID'

@@ -3,10 +3,12 @@ import { FirstDataRenderedEvent } from "ag-grid-community";
 import "ag-grid-community/styles/ag-grid.css";
 import "ag-grid-community/styles/ag-theme-alpine.css";
 import { AgGridReact } from "ag-grid-react";
+import produce from "immer";
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { graphql, useFragment, useMutation } from "react-relay";
 import "twin.macro";
 import useEdits from "../../hooks/useEdits";
+import flattenLookups from "../../utils/flattenLookups";
 import { TableFragment$key } from "./__generated__/TableFragment.graphql";
 
 export const productFragment = graphql`
@@ -21,6 +23,9 @@ export const productInProductListFragment = graphql`
     exclusive
     exclusiveComments
     minimumOrderQuantity
+    productLifecycleGroup {
+      displayName
+    }
   }
 `;
 
@@ -33,6 +38,10 @@ const columnDefs = [
     field: "minimumOrderQuantity",
     editable: true,
     valueParser: (_) => Number(_.newValue),
+  },
+  {
+    field: "productLifecycleGroup",
+    editable: true,
   },
 ];
 
@@ -77,8 +86,9 @@ const Table = ({ productList }: { productList: TableFragment$key }) => {
   const rowData = useMemo(
     () =>
       edges.map(({ node }) => ({
-        ...node.product,
-        ...node.productInProductList,
+        ...flattenLookups(node.product),
+        ...flattenLookups(node.productInProductList),
+        ownId: node.productInProductList.ownId,
       })),
     [edges, resetCount]
   );

@@ -139,6 +139,7 @@ type ProductInProductList {
   id: ID!
   minimumOrderQuantity: Int
   ownId: Int!
+  productLifecycleGroup: ProductLifecycleGroup
 }
 
 input ProductInProductListListRelationFilter {
@@ -157,6 +158,7 @@ input ProductInProductListUpdateInput {
   exclusiveComments: NullableStringFieldUpdateOperationsInput
   minimumOrderQuantity: NullableIntFieldUpdateOperationsInput
   product: ProductUpdateOneRequiredWithoutProductListsInput
+  productLifecycleGroup: ProductLifecycleGroupUpdateOneWithoutProductInProductListInput
   productList: ProductListUpdateOneWithoutProductsInput
 }
 
@@ -175,6 +177,8 @@ input ProductInProductListWhereInput {
   minimumOrderQuantity: IntNullableFilter
   product: ProductWhereInput
   productId: IntFilter
+  productLifecycleGroup: ProductLifecycleGroupWhereInput
+  productLifecycleGroupName: StringNullableFilter
   productList: ProductListWhereInput
   productListId: IntFilter
 }
@@ -182,6 +186,55 @@ input ProductInProductListWhereInput {
 input ProductInProductListWhereUniqueInput {
   id: Int
   productId_productListId: ProductInProductListProductIdProductListIdCompoundUniqueInput
+}
+
+type ProductLifecycleGroup {
+  displayName: String!
+  name: String!
+}
+
+input ProductLifecycleGroupCreateOrConnectWithoutProductInProductListInput {
+  create: ProductLifecycleGroupCreateWithoutProductInProductListInput!
+  where: ProductLifecycleGroupWhereUniqueInput!
+}
+
+input ProductLifecycleGroupCreateWithoutProductInProductListInput {
+  displayName: String!
+  name: String!
+}
+
+input ProductLifecycleGroupUpdateOneWithoutProductInProductListInput {
+  connect: ProductLifecycleGroupWhereUniqueInput
+  connectOrCreate: ProductLifecycleGroupCreateOrConnectWithoutProductInProductListInput
+  create: ProductLifecycleGroupCreateWithoutProductInProductListInput
+  delete: Boolean
+  disconnect: Boolean
+  update: ProductLifecycleGroupUpdateWithoutProductInProductListInput
+  upsert: ProductLifecycleGroupUpsertWithoutProductInProductListInput
+}
+
+input ProductLifecycleGroupUpdateWithoutProductInProductListInput {
+  displayName: StringFieldUpdateOperationsInput
+  name: StringFieldUpdateOperationsInput
+}
+
+input ProductLifecycleGroupUpsertWithoutProductInProductListInput {
+  create: ProductLifecycleGroupCreateWithoutProductInProductListInput!
+  update: ProductLifecycleGroupUpdateWithoutProductInProductListInput!
+}
+
+input ProductLifecycleGroupWhereInput {
+  AND: [ProductLifecycleGroupWhereInput!]
+  NOT: [ProductLifecycleGroupWhereInput!]
+  OR: [ProductLifecycleGroupWhereInput!]
+  ProductInProductList: ProductInProductListListRelationFilter
+  displayName: StringFilter
+  name: StringFilter
+}
+
+input ProductLifecycleGroupWhereUniqueInput {
+  displayName: String
+  name: String
 }
 
 type ProductList {

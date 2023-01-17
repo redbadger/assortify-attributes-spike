@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<3b67defc5ce840a6e6d9ae41a5d09fd6>>
+ * @generated SignedSource<<f862eebabf0f37f4d7c8e35eaeeaafb8>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -19,6 +19,7 @@ export type ProductInProductListUpdateInput = {
   exclusiveComments?: NullableStringFieldUpdateOperationsInput | null;
   minimumOrderQuantity?: NullableIntFieldUpdateOperationsInput | null;
   product?: ProductUpdateOneRequiredWithoutProductListsInput | null;
+  productLifecycleGroup?: ProductLifecycleGroupUpdateOneWithoutProductInProductListInput | null;
   productList?: ProductListUpdateOneWithoutProductsInput | null;
 };
 export type NullableStringFieldUpdateOperationsInput = {
@@ -59,6 +60,35 @@ export type StringFieldUpdateOperationsInput = {
 export type ProductUpsertWithoutProductListsInput = {
   create: ProductCreateWithoutProductListsInput;
   update: ProductUpdateWithoutProductListsInput;
+};
+export type ProductLifecycleGroupUpdateOneWithoutProductInProductListInput = {
+  connect?: ProductLifecycleGroupWhereUniqueInput | null;
+  connectOrCreate?: ProductLifecycleGroupCreateOrConnectWithoutProductInProductListInput | null;
+  create?: ProductLifecycleGroupCreateWithoutProductInProductListInput | null;
+  delete?: boolean | null;
+  disconnect?: boolean | null;
+  update?: ProductLifecycleGroupUpdateWithoutProductInProductListInput | null;
+  upsert?: ProductLifecycleGroupUpsertWithoutProductInProductListInput | null;
+};
+export type ProductLifecycleGroupWhereUniqueInput = {
+  displayName?: string | null;
+  name?: string | null;
+};
+export type ProductLifecycleGroupCreateOrConnectWithoutProductInProductListInput = {
+  create: ProductLifecycleGroupCreateWithoutProductInProductListInput;
+  where: ProductLifecycleGroupWhereUniqueInput;
+};
+export type ProductLifecycleGroupCreateWithoutProductInProductListInput = {
+  displayName: string;
+  name: string;
+};
+export type ProductLifecycleGroupUpdateWithoutProductInProductListInput = {
+  displayName?: StringFieldUpdateOperationsInput | null;
+  name?: StringFieldUpdateOperationsInput | null;
+};
+export type ProductLifecycleGroupUpsertWithoutProductInProductListInput = {
+  create: ProductLifecycleGroupCreateWithoutProductInProductListInput;
+  update: ProductLifecycleGroupUpdateWithoutProductInProductListInput;
 };
 export type ProductListUpdateOneWithoutProductsInput = {
   connect?: ProductListWhereUniqueInput | null;
@@ -193,6 +223,24 @@ return {
             "kind": "ScalarField",
             "name": "minimumOrderQuantity",
             "storageKey": null
+          },
+          {
+            "alias": null,
+            "args": null,
+            "concreteType": "ProductLifecycleGroup",
+            "kind": "LinkedField",
+            "name": "productLifecycleGroup",
+            "plural": false,
+            "selections": [
+              {
+                "alias": null,
+                "args": null,
+                "kind": "ScalarField",
+                "name": "displayName",
+                "storageKey": null
+              }
+            ],
+            "storageKey": null
           }
         ],
         "storageKey": null
@@ -200,12 +248,12 @@ return {
     ]
   },
   "params": {
-    "cacheID": "bfdafa1f0339fea1bdd0313613955f88",
+    "cacheID": "5b8e78ae1cb5f5112813c26f12efb691",
     "id": null,
     "metadata": {},
     "name": "TableUpdateManyProductInProductListMutation",
     "operationKind": "mutation",
-    "text": "mutation TableUpdateManyProductInProductListMutation(\n  $data: [ProductInProductListUpdateRowInput!]\n) {\n  updateManyProductInProductList(data: $data) {\n    id\n    ...TableProductInProductListFragment\n  }\n}\n\nfragment TableProductInProductListFragment on ProductInProductList {\n  exclusive\n  exclusiveComments\n  minimumOrderQuantity\n}\n"
+    "text": "mutation TableUpdateManyProductInProductListMutation(\n  $data: [ProductInProductListUpdateRowInput!]\n) {\n  updateManyProductInProductList(data: $data) {\n    id\n    ...TableProductInProductListFragment\n  }\n}\n\nfragment TableProductInProductListFragment on ProductInProductList {\n  exclusive\n  exclusiveComments\n  minimumOrderQuantity\n  productLifecycleGroup {\n    displayName\n  }\n}\n"
   }
 };
 })();

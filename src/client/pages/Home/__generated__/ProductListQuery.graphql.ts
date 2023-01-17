@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<15c3016d94c81b859b81c665901cac6a>>
+ * @generated SignedSource<<c5e188c95a32230c119a34bf129c75fe>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -194,6 +194,24 @@ return {
                             "name": "minimumOrderQuantity",
                             "storageKey": null
                           },
+                          {
+                            "alias": null,
+                            "args": null,
+                            "concreteType": "ProductLifecycleGroup",
+                            "kind": "LinkedField",
+                            "name": "productLifecycleGroup",
+                            "plural": false,
+                            "selections": [
+                              {
+                                "alias": null,
+                                "args": null,
+                                "kind": "ScalarField",
+                                "name": "displayName",
+                                "storageKey": null
+                              }
+                            ],
+                            "storageKey": null
+                          },
                           (v3/*: any*/)
                         ],
                         "storageKey": null
@@ -215,12 +233,12 @@ return {
     ]
   },
   "params": {
-    "cacheID": "f49263c999747fe830c904f8b25fa8d2",
+    "cacheID": "ab647797c4360b146363d605725954b6",
     "id": null,
     "metadata": {},
     "name": "ProductListQuery",
     "operationKind": "query",
-    "text": "query ProductListQuery(\n  $id: Int\n) {\n  productList(where: {id: $id}) {\n    title\n    ...TableFragment\n    id\n  }\n}\n\nfragment TableFragment on ProductList {\n  productListProductConnection(first: 10) {\n    edges {\n      node {\n        product {\n          pc9\n          colorwayName\n          id\n        }\n        productInProductList {\n          ownId\n          exclusive\n          exclusiveComments\n          minimumOrderQuantity\n          id\n        }\n        id\n      }\n    }\n  }\n}\n"
+    "text": "query ProductListQuery(\n  $id: Int\n) {\n  productList(where: {id: $id}) {\n    title\n    ...TableFragment\n    id\n  }\n}\n\nfragment TableFragment on ProductList {\n  productListProductConnection(first: 10) {\n    edges {\n      node {\n        product {\n          pc9\n          colorwayName\n          id\n        }\n        productInProductList {\n          ownId\n          exclusive\n          exclusiveComments\n          minimumOrderQuantity\n          productLifecycleGroup {\n            displayName\n          }\n          id\n        }\n        id\n      }\n    }\n  }\n}\n"
   }
 };
 })();

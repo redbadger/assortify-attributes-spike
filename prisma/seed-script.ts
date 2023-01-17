@@ -8,8 +8,11 @@ const data = [
     productInProductList: {
       exclusive: "foo",
       exclusiveComments:
-        "Brunch enamel pin mixtape forage beard. VHS pickled four loko cronut kale chips austin bodega boys.",
+        "Brunch enamel pin mixtape forage beard. VHS pickled four loko cronut.",
       minimumOrderQuantity: 10,
+      productLifecycleGroup: {
+        connect: { displayName: "Seasonal" },
+      },
     },
   },
   {
@@ -17,8 +20,11 @@ const data = [
     productInProductList: {
       exclusive: "bar",
       exclusiveComments:
-        "Shabby chic waistcoat vape bespoke whatever echo park williamsburg ennui brunch roof party. Keffiyeh fashion axe mustache direct trade umami.",
+        "Shabby chic waistcoat vape bespoke whatever echo park williamsburg ennui brunch roof party.",
       minimumOrderQuantity: 15,
+      productLifecycleGroup: {
+        connect: { displayName: "Core" },
+      },
     },
   },
   {
@@ -26,13 +32,25 @@ const data = [
     productInProductList: {
       exclusive: "baz",
       exclusiveComments:
-        "Hot chicken wolf YOLO, fingerstache leggings authentic quinoa asymmetrical raclette craft beer kogi pop-up church-key tumeric godard.",
+        "Hot chicken wolf YOLO, fingerstache leggings authentic quinoa asymmetrical raclette.",
       minimumOrderQuantity: 20,
+      productLifecycleGroup: {
+        connect: { displayName: "Core" },
+      },
     },
   },
 ];
 
 const main = async () => {
+  await prisma.productLifecycleGroup.createMany({
+    data: [
+      { name: "seasonal", displayName: "Seasonal" },
+      { name: "core", displayName: "Core" },
+      { name: "fashion", displayName: "Fashion" },
+      { name: "seasonalCore", displayName: "Seasonal Core" },
+    ],
+  });
+
   await prisma.product.createMany({
     data: data.map((_) => _.product),
   });

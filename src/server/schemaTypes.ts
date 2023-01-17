@@ -12,6 +12,14 @@ import {
 } from "nexus";
 import "./__generated__/nexus.js";
 
+export const ProductLifecycleGroup = objectType({
+  name: "ProductLifecycleGroup",
+  definition: (t) => {
+    t.model.name();
+    t.model.displayName();
+  },
+});
+
 export const Product = objectType({
   name: "Product",
   definition: (t) => {
@@ -34,6 +42,7 @@ export const ProductInProductList = objectType({
     t.model.exclusive();
     t.model.exclusiveComments();
     t.model.minimumOrderQuantity();
+    t.model.productLifecycleGroup();
   },
 });
 

@@ -1,12 +1,16 @@
 import { AgGridCommon } from "ag-grid-community/dist/lib/interfaces/iCommon";
 import produce from "immer";
 import { useCallback, useState } from "react";
+import flattenLookups from "../utils/flattenLookups";
 
 const useEdits = <
   TRowData extends { ownId: number; [key: string]: any },
   TEdges extends readonly {
     readonly node: {
-      readonly productInProductList: { readonly ownId: number };
+      readonly productInProductList: {
+        readonly ownId: number;
+        readonly [key: string]: any;
+      };
     };
   }[]
 >(
@@ -25,6 +29,9 @@ const useEdits = <
               (_) => _.node.productInProductList.ownId === node.data?.ownId
             )?.node.productInProductList;
 
+            if (!nodeOnServer) throw new Error();
+            const flattenedNodeOnServer = flattenLookups(nodeOnServer);
+
             Object.entries(node.data ?? []).map(([key, value]) => {
               const isEditable = _.columnApi
                 .getColumn(key)
@@ -34,7 +41,7 @@ const useEdits = <
                 const ownId = node.data?.ownId;
 
                 if (ownId) {
-                  const valueEdited = value !== nodeOnServer?.[key];
+                  const valueEdited = value !== flattenedNodeOnServer?.[key];
 
                   if (valueEdited) {
                     if (!edits[ownId]) edits[ownId] = {};

@@ -17,6 +17,7 @@ interface PrismaModels {
   Product: Prisma.Product
   ProductList: Prisma.ProductList
   ProductInProductList: Prisma.ProductInProductList
+  ProductLifecycleGroup: Prisma.ProductLifecycleGroup
 }
 
 // Prisma input types metadata
@@ -31,24 +32,34 @@ interface NexusPrismaInputs {
       ordering: 'id' | 'title'
     }
     productInProductLists: {
-      filtering: 'AND' | 'OR' | 'NOT' | 'id' | 'product' | 'productId' | 'productList' | 'productListId' | 'exclusive' | 'exclusiveComments' | 'minimumOrderQuantity'
-      ordering: 'id' | 'productId' | 'productListId' | 'exclusive' | 'exclusiveComments' | 'minimumOrderQuantity'
+      filtering: 'AND' | 'OR' | 'NOT' | 'id' | 'product' | 'productId' | 'productList' | 'productListId' | 'exclusive' | 'exclusiveComments' | 'minimumOrderQuantity' | 'productLifecycleGroupName' | 'productLifecycleGroup'
+      ordering: 'id' | 'productId' | 'productListId' | 'exclusive' | 'exclusiveComments' | 'minimumOrderQuantity' | 'productLifecycleGroupName'
+    }
+    productLifecycleGroups: {
+      filtering: 'AND' | 'OR' | 'NOT' | 'name' | 'displayName' | 'ProductInProductList'
+      ordering: 'name' | 'displayName'
     }
   },
   Product: {
     productLists: {
-      filtering: 'AND' | 'OR' | 'NOT' | 'id' | 'product' | 'productId' | 'productList' | 'productListId' | 'exclusive' | 'exclusiveComments' | 'minimumOrderQuantity'
-      ordering: 'id' | 'productId' | 'productListId' | 'exclusive' | 'exclusiveComments' | 'minimumOrderQuantity'
+      filtering: 'AND' | 'OR' | 'NOT' | 'id' | 'product' | 'productId' | 'productList' | 'productListId' | 'exclusive' | 'exclusiveComments' | 'minimumOrderQuantity' | 'productLifecycleGroupName' | 'productLifecycleGroup'
+      ordering: 'id' | 'productId' | 'productListId' | 'exclusive' | 'exclusiveComments' | 'minimumOrderQuantity' | 'productLifecycleGroupName'
     }
   }
   ProductList: {
     products: {
-      filtering: 'AND' | 'OR' | 'NOT' | 'id' | 'product' | 'productId' | 'productList' | 'productListId' | 'exclusive' | 'exclusiveComments' | 'minimumOrderQuantity'
-      ordering: 'id' | 'productId' | 'productListId' | 'exclusive' | 'exclusiveComments' | 'minimumOrderQuantity'
+      filtering: 'AND' | 'OR' | 'NOT' | 'id' | 'product' | 'productId' | 'productList' | 'productListId' | 'exclusive' | 'exclusiveComments' | 'minimumOrderQuantity' | 'productLifecycleGroupName' | 'productLifecycleGroup'
+      ordering: 'id' | 'productId' | 'productListId' | 'exclusive' | 'exclusiveComments' | 'minimumOrderQuantity' | 'productLifecycleGroupName'
     }
   }
   ProductInProductList: {
 
+  }
+  ProductLifecycleGroup: {
+    ProductInProductList: {
+      filtering: 'AND' | 'OR' | 'NOT' | 'id' | 'product' | 'productId' | 'productList' | 'productListId' | 'exclusive' | 'exclusiveComments' | 'minimumOrderQuantity' | 'productLifecycleGroupName' | 'productLifecycleGroup'
+      ordering: 'id' | 'productId' | 'productListId' | 'exclusive' | 'exclusiveComments' | 'minimumOrderQuantity' | 'productLifecycleGroupName'
+    }
   }
 }
 
@@ -61,6 +72,8 @@ interface NexusPrismaOutputs {
     productLists: 'ProductList'
     productInProductList: 'ProductInProductList'
     productInProductLists: 'ProductInProductList'
+    productLifecycleGroup: 'ProductLifecycleGroup'
+    productLifecycleGroups: 'ProductLifecycleGroup'
   },
   Mutation: {
     createOneProduct: 'Product'
@@ -81,6 +94,12 @@ interface NexusPrismaOutputs {
     deleteOneProductInProductList: 'ProductInProductList'
     deleteManyProductInProductList: 'AffectedRowsOutput'
     upsertOneProductInProductList: 'ProductInProductList'
+    createOneProductLifecycleGroup: 'ProductLifecycleGroup'
+    updateOneProductLifecycleGroup: 'ProductLifecycleGroup'
+    updateManyProductLifecycleGroup: 'AffectedRowsOutput'
+    deleteOneProductLifecycleGroup: 'ProductLifecycleGroup'
+    deleteManyProductLifecycleGroup: 'AffectedRowsOutput'
+    upsertOneProductLifecycleGroup: 'ProductLifecycleGroup'
   },
   Product: {
     id: 'Int'
@@ -102,6 +121,13 @@ interface NexusPrismaOutputs {
     exclusive: 'String'
     exclusiveComments: 'String'
     minimumOrderQuantity: 'Int'
+    productLifecycleGroupName: 'String'
+    productLifecycleGroup: 'ProductLifecycleGroup'
+  }
+  ProductLifecycleGroup: {
+    name: 'String'
+    displayName: 'String'
+    ProductInProductList: 'ProductInProductList'
   }
 }
 
@@ -110,6 +136,7 @@ interface NexusPrismaMethods {
   Product: Typegen.NexusPrismaFields<'Product'>
   ProductList: Typegen.NexusPrismaFields<'ProductList'>
   ProductInProductList: Typegen.NexusPrismaFields<'ProductInProductList'>
+  ProductLifecycleGroup: Typegen.NexusPrismaFields<'ProductLifecycleGroup'>
   Query: Typegen.NexusPrismaFields<'Query'>
   Mutation: Typegen.NexusPrismaFields<'Mutation'>
 }

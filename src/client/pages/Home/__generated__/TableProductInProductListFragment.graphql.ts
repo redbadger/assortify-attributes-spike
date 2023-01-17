@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<c232bb69da771e95e6a6bd33c8b6613f>>
+ * @generated SignedSource<<1014db6cdd90b52e66fb39f49c8ea716>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -14,6 +14,9 @@ export type TableProductInProductListFragment$data = {
   readonly exclusive: string | null;
   readonly exclusiveComments: string | null;
   readonly minimumOrderQuantity: number | null;
+  readonly productLifecycleGroup: {
+    readonly displayName: string;
+  } | null;
   readonly " $fragmentType": "TableProductInProductListFragment";
 };
 export type TableProductInProductListFragment$key = {
@@ -47,12 +50,30 @@ const node: ReaderFragment = {
       "kind": "ScalarField",
       "name": "minimumOrderQuantity",
       "storageKey": null
+    },
+    {
+      "alias": null,
+      "args": null,
+      "concreteType": "ProductLifecycleGroup",
+      "kind": "LinkedField",
+      "name": "productLifecycleGroup",
+      "plural": false,
+      "selections": [
+        {
+          "alias": null,
+          "args": null,
+          "kind": "ScalarField",
+          "name": "displayName",
+          "storageKey": null
+        }
+      ],
+      "storageKey": null
     }
   ],
   "type": "ProductInProductList",
   "abstractKey": null
 };
 
-(node as any).hash = "2c10862852832c6d2711521cee72dda8";
+(node as any).hash = "3970e53f2c35d9b3b1dc7db762b45801";
 
 export default node;

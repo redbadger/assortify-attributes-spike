@@ -21,6 +21,13 @@ erDiagram
     Int minimumOrderQuantity  "nullable"
     }
   
+
+  ProductLifecycleGroup {
+    String name PK 
+    String displayName  
+    }
+  
     ProductInProductList o{--|| Product : "product"
     ProductInProductList o{--|o ProductList : "productList"
+    ProductInProductList o{--|o ProductLifecycleGroup : "productLifecycleGroup"
 ```

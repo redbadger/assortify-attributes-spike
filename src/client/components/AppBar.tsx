@@ -33,7 +33,7 @@ const AppBar = () => {
             href="/"
           >
             <Typography variant="h5" component="h1">
-              Assortify Attributes Spike
+              Baby Assortify
             </Typography>
           </a>
         </Toolbar>

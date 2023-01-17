@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<e44fc298d742c3aba6befeaa813322aa>>
+ * @generated SignedSource<<b305bd47ddfdd5aa9a2d1a7a88e2eb0b>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -23,6 +23,9 @@ export type TableFragment$data = {
           readonly exclusiveComments: string | null;
           readonly minimumOrderQuantity: number | null;
           readonly ownId: number;
+          readonly productLifecycleGroup: {
+            readonly displayName: string;
+          } | null;
         };
       };
     }>;
@@ -129,6 +132,24 @@ const node: ReaderFragment = {
                       "args": null,
                       "kind": "ScalarField",
                       "name": "minimumOrderQuantity",
+                      "storageKey": null
+                    },
+                    {
+                      "alias": null,
+                      "args": null,
+                      "concreteType": "ProductLifecycleGroup",
+                      "kind": "LinkedField",
+                      "name": "productLifecycleGroup",
+                      "plural": false,
+                      "selections": [
+                        {
+                          "alias": null,
+                          "args": null,
+                          "kind": "ScalarField",
+                          "name": "displayName",
+                          "storageKey": null
+                        }
+                      ],
                       "storageKey": null
                     }
                   ],

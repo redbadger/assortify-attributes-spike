@@ -6,9 +6,7 @@ const useClientEffect =
 
 const useDocumentTitle = (pageTitle?: string) => {
   const context = useContext(Context);
-  const title = `${
-    pageTitle ? `${pageTitle} · ` : ""
-  }Assortify Attributes Spike`;
+  const title = `${pageTitle ? `${pageTitle} · ` : ""}Baby Assortify`;
   context.title = title;
 
   useClientEffect(() => {
