@@ -236,19 +236,21 @@ const Table = ({
         onCellValueChanged={updateEdits}
         stopEditingWhenCellsLoseFocus
       />
+      <div tw="my-2">
+        <Button
+          tw="mr-4"
+          variant="contained"
+          size="large"
+          disabled={!dirty}
+          onClick={handleSave}
+        >
+          Save
+        </Button>
+        <Button size="large" onClick={handleCancel} disabled={!dirty}>
+          Cancel
+        </Button>
+      </div>
       <pre tw="p-4 bg-gray-200">{JSON.stringify(edits, null, 2)}</pre>
-      <Button
-        tw="mr-4"
-        variant="contained"
-        size="large"
-        disabled={!dirty}
-        onClick={handleSave}
-      >
-        Save
-      </Button>
-      <Button size="large" onClick={handleCancel} disabled={!dirty}>
-        Cancel
-      </Button>
     </div>
   );
 };
