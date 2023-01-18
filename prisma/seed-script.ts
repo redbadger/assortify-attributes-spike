@@ -48,6 +48,34 @@ const data = [
       },
     },
   },
+  {
+    product: { pc9: "17391-0001", colorwayName: "17391-0001 DRESS BLUES" },
+    productInProductList: {
+      exclusiveComments: "Tofu hot chicken la croix four dollar toast migas.",
+      minimumOrderQuantity: 25,
+      distributions: {
+        create: [
+          { distribution: { connect: { name: "HOT_V1" } } },
+          { distribution: { connect: { name: "MENS_CORE_V1" } } },
+        ],
+      },
+    },
+  },
+  {
+    product: { pc9: "A0964-0020", colorwayName: "A0964-0020 GO AHEAD" },
+    productInProductList: {
+      exclusive: "qux",
+      exclusiveComments:
+        "Enamel pin kombucha yr post-ironic artisan hammock gatekeep celiac meditation.",
+      minimumOrderQuantity: 30,
+      productLifecycleGroup: {
+        connect: { displayName: "Seasonal" },
+      },
+      distributions: {
+        create: [{ distribution: { connect: { name: "HOT_V1" } } }],
+      },
+    },
+  },
 ];
 
 const main = async () => {
