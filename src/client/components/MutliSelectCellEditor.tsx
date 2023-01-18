@@ -18,9 +18,9 @@ const MultiSelectCellEditor = forwardRef(
       setSelectedItems,
       selectedItems,
     } = useMultipleSelection({
-      initialSelectedItems: JSON.parse(props.value).map(
-        (_) => _[key].name
-      ) as string[],
+      initialSelectedItems: props.value
+        ? (props.value.split(",").map((_) => _.trim()) as string[])
+        : [],
     });
 
     const getFilteredItems = (items: string[]) =>
@@ -41,10 +41,7 @@ const MultiSelectCellEditor = forwardRef(
     });
 
     useImperativeHandle(ref, () => ({
-      getValue: () =>
-        JSON.stringify(
-          selectedItems.sort().map((_) => ({ [key]: { name: _ } }))
-        ),
+      getValue: () => selectedItems.sort().join(", "),
     }));
 
     const [width, setWidth] = useState(() => props.column.getActualWidth());

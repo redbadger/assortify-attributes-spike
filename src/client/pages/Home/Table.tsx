@@ -50,13 +50,6 @@ const columnDefsStatic: ColDef<any>[] = [
     editable: true,
     cellEditor: MultiSelectCellEditor,
     cellEditorPopup: true,
-    valueFormatter: ({ value }) =>
-      value
-        ? JSON.parse(value)
-            .map((_) => _.distribution.name)
-            .sort()
-            .join(", ")
-        : null,
   },
   { headerName: "Door Count", type: "rightAligned" },
   {
@@ -204,13 +197,19 @@ const Table = ({
           }
 
           if (col.headerName === "Door Count") {
-            col.valueGetter = (_) => {
-              return JSON.parse(_.data.distributions).reduce(
-                (count, { distribution: { name } }) =>
-                  count +
-                  validDistributions.find((_) => _.name === name)?.doorCount,
-                0
-              );
+            col.valueGetter = ({ data: { distributions } }) => {
+              return distributions
+                ? distributions
+                    .split(",")
+                    .map((_) => _.trim())
+                    .reduce(
+                      (count, name) =>
+                        count +
+                        validDistributions.find((_) => _.name === name)
+                          ?.doorCount,
+                      0
+                    )
+                : 0;
             };
           }
         }
