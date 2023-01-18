@@ -32,30 +32,30 @@ declare global {
 }
 
 export interface NexusGenInputs {
-  ChannelCreateNestedOneWithoutDistributionInput: { // input type
+  ChannelCreateNestedOneWithoutDistributionsInput: { // input type
     connect?: NexusGenInputs['ChannelWhereUniqueInput'] | null; // ChannelWhereUniqueInput
-    connectOrCreate?: NexusGenInputs['ChannelCreateOrConnectWithoutDistributionInput'] | null; // ChannelCreateOrConnectWithoutDistributionInput
-    create?: NexusGenInputs['ChannelCreateWithoutDistributionInput'] | null; // ChannelCreateWithoutDistributionInput
+    connectOrCreate?: NexusGenInputs['ChannelCreateOrConnectWithoutDistributionsInput'] | null; // ChannelCreateOrConnectWithoutDistributionsInput
+    create?: NexusGenInputs['ChannelCreateWithoutDistributionsInput'] | null; // ChannelCreateWithoutDistributionsInput
   }
   ChannelCreateNestedOneWithoutProductListsInput: { // input type
     connect?: NexusGenInputs['ChannelWhereUniqueInput'] | null; // ChannelWhereUniqueInput
     connectOrCreate?: NexusGenInputs['ChannelCreateOrConnectWithoutProductListsInput'] | null; // ChannelCreateOrConnectWithoutProductListsInput
     create?: NexusGenInputs['ChannelCreateWithoutProductListsInput'] | null; // ChannelCreateWithoutProductListsInput
   }
-  ChannelCreateOrConnectWithoutDistributionInput: { // input type
-    create: NexusGenInputs['ChannelCreateWithoutDistributionInput']; // ChannelCreateWithoutDistributionInput!
+  ChannelCreateOrConnectWithoutDistributionsInput: { // input type
+    create: NexusGenInputs['ChannelCreateWithoutDistributionsInput']; // ChannelCreateWithoutDistributionsInput!
     where: NexusGenInputs['ChannelWhereUniqueInput']; // ChannelWhereUniqueInput!
   }
   ChannelCreateOrConnectWithoutProductListsInput: { // input type
     create: NexusGenInputs['ChannelCreateWithoutProductListsInput']; // ChannelCreateWithoutProductListsInput!
     where: NexusGenInputs['ChannelWhereUniqueInput']; // ChannelWhereUniqueInput!
   }
-  ChannelCreateWithoutDistributionInput: { // input type
+  ChannelCreateWithoutDistributionsInput: { // input type
     name: string; // String!
     productLists?: NexusGenInputs['ChannelInProductListCreateNestedManyWithoutChannelInput'] | null; // ChannelInProductListCreateNestedManyWithoutChannelInput
   }
   ChannelCreateWithoutProductListsInput: { // input type
-    Distribution?: NexusGenInputs['DistributionCreateNestedManyWithoutChannelInput'] | null; // DistributionCreateNestedManyWithoutChannelInput
+    distributions?: NexusGenInputs['DistributionCreateNestedManyWithoutChannelInput'] | null; // DistributionCreateNestedManyWithoutChannelInput
     name: string; // String!
   }
   ChannelInProductListChannelIdProductListIdCompoundUniqueInput: { // input type
@@ -192,12 +192,12 @@ export interface NexusGenInputs {
     channelId_productListId?: NexusGenInputs['ChannelInProductListChannelIdProductListIdCompoundUniqueInput'] | null; // ChannelInProductListChannelIdProductListIdCompoundUniqueInput
     id?: number | null; // Int
   }
-  ChannelUpdateOneRequiredWithoutDistributionInput: { // input type
+  ChannelUpdateOneRequiredWithoutDistributionsInput: { // input type
     connect?: NexusGenInputs['ChannelWhereUniqueInput'] | null; // ChannelWhereUniqueInput
-    connectOrCreate?: NexusGenInputs['ChannelCreateOrConnectWithoutDistributionInput'] | null; // ChannelCreateOrConnectWithoutDistributionInput
-    create?: NexusGenInputs['ChannelCreateWithoutDistributionInput'] | null; // ChannelCreateWithoutDistributionInput
-    update?: NexusGenInputs['ChannelUpdateWithoutDistributionInput'] | null; // ChannelUpdateWithoutDistributionInput
-    upsert?: NexusGenInputs['ChannelUpsertWithoutDistributionInput'] | null; // ChannelUpsertWithoutDistributionInput
+    connectOrCreate?: NexusGenInputs['ChannelCreateOrConnectWithoutDistributionsInput'] | null; // ChannelCreateOrConnectWithoutDistributionsInput
+    create?: NexusGenInputs['ChannelCreateWithoutDistributionsInput'] | null; // ChannelCreateWithoutDistributionsInput
+    update?: NexusGenInputs['ChannelUpdateWithoutDistributionsInput'] | null; // ChannelUpdateWithoutDistributionsInput
+    upsert?: NexusGenInputs['ChannelUpsertWithoutDistributionsInput'] | null; // ChannelUpsertWithoutDistributionsInput
   }
   ChannelUpdateOneRequiredWithoutProductListsInput: { // input type
     connect?: NexusGenInputs['ChannelWhereUniqueInput'] | null; // ChannelWhereUniqueInput
@@ -206,17 +206,17 @@ export interface NexusGenInputs {
     update?: NexusGenInputs['ChannelUpdateWithoutProductListsInput'] | null; // ChannelUpdateWithoutProductListsInput
     upsert?: NexusGenInputs['ChannelUpsertWithoutProductListsInput'] | null; // ChannelUpsertWithoutProductListsInput
   }
-  ChannelUpdateWithoutDistributionInput: { // input type
+  ChannelUpdateWithoutDistributionsInput: { // input type
     name?: NexusGenInputs['StringFieldUpdateOperationsInput'] | null; // StringFieldUpdateOperationsInput
     productLists?: NexusGenInputs['ChannelInProductListUpdateManyWithoutChannelInput'] | null; // ChannelInProductListUpdateManyWithoutChannelInput
   }
   ChannelUpdateWithoutProductListsInput: { // input type
-    Distribution?: NexusGenInputs['DistributionUpdateManyWithoutChannelInput'] | null; // DistributionUpdateManyWithoutChannelInput
+    distributions?: NexusGenInputs['DistributionUpdateManyWithoutChannelInput'] | null; // DistributionUpdateManyWithoutChannelInput
     name?: NexusGenInputs['StringFieldUpdateOperationsInput'] | null; // StringFieldUpdateOperationsInput
   }
-  ChannelUpsertWithoutDistributionInput: { // input type
-    create: NexusGenInputs['ChannelCreateWithoutDistributionInput']; // ChannelCreateWithoutDistributionInput!
-    update: NexusGenInputs['ChannelUpdateWithoutDistributionInput']; // ChannelUpdateWithoutDistributionInput!
+  ChannelUpsertWithoutDistributionsInput: { // input type
+    create: NexusGenInputs['ChannelCreateWithoutDistributionsInput']; // ChannelCreateWithoutDistributionsInput!
+    update: NexusGenInputs['ChannelUpdateWithoutDistributionsInput']; // ChannelUpdateWithoutDistributionsInput!
   }
   ChannelUpsertWithoutProductListsInput: { // input type
     create: NexusGenInputs['ChannelCreateWithoutProductListsInput']; // ChannelCreateWithoutProductListsInput!
@@ -224,9 +224,9 @@ export interface NexusGenInputs {
   }
   ChannelWhereInput: { // input type
     AND?: NexusGenInputs['ChannelWhereInput'][] | null; // [ChannelWhereInput!]
-    Distribution?: NexusGenInputs['DistributionListRelationFilter'] | null; // DistributionListRelationFilter
     NOT?: NexusGenInputs['ChannelWhereInput'][] | null; // [ChannelWhereInput!]
     OR?: NexusGenInputs['ChannelWhereInput'][] | null; // [ChannelWhereInput!]
+    distributions?: NexusGenInputs['DistributionListRelationFilter'] | null; // DistributionListRelationFilter
     id?: NexusGenInputs['IntFilter'] | null; // IntFilter
     name?: NexusGenInputs['StringFilter'] | null; // StringFilter
     productLists?: NexusGenInputs['ChannelInProductListListRelationFilter'] | null; // ChannelInProductListListRelationFilter
@@ -267,7 +267,7 @@ export interface NexusGenInputs {
     productInProductLists?: NexusGenInputs['DistributionForProductInProductListCreateNestedManyWithoutDistributionInput'] | null; // DistributionForProductInProductListCreateNestedManyWithoutDistributionInput
   }
   DistributionCreateWithoutProductInProductListsInput: { // input type
-    channel: NexusGenInputs['ChannelCreateNestedOneWithoutDistributionInput']; // ChannelCreateNestedOneWithoutDistributionInput!
+    channel: NexusGenInputs['ChannelCreateNestedOneWithoutDistributionsInput']; // ChannelCreateNestedOneWithoutDistributionsInput!
     name: string; // String!
   }
   DistributionForProductInProductListCreateManyDistributionInput: { // input type
@@ -457,7 +457,7 @@ export interface NexusGenInputs {
     productInProductLists?: NexusGenInputs['DistributionForProductInProductListUpdateManyWithoutDistributionInput'] | null; // DistributionForProductInProductListUpdateManyWithoutDistributionInput
   }
   DistributionUpdateWithoutProductInProductListsInput: { // input type
-    channel?: NexusGenInputs['ChannelUpdateOneRequiredWithoutDistributionInput'] | null; // ChannelUpdateOneRequiredWithoutDistributionInput
+    channel?: NexusGenInputs['ChannelUpdateOneRequiredWithoutDistributionsInput'] | null; // ChannelUpdateOneRequiredWithoutDistributionsInput
     name?: NexusGenInputs['StringFieldUpdateOperationsInput'] | null; // StringFieldUpdateOperationsInput
   }
   DistributionUpsertWithWhereUniqueWithoutChannelInput: { // input type
@@ -1028,6 +1028,7 @@ export interface NexusGenFieldTypes {
     ownId: number; // Int!
     productListProductConnection: NexusGenRootTypes['ProductListProductConnection']; // ProductListProductConnection!
     title: string; // String!
+    validDistributions: NexusGenRootTypes['Distribution'][]; // [Distribution!]!
   }
   ProductListProduct: { // field return type
     id: string; // ID!
@@ -1109,6 +1110,7 @@ export interface NexusGenFieldTypeNames {
     ownId: 'Int'
     productListProductConnection: 'ProductListProductConnection'
     title: 'String'
+    validDistributions: 'Distribution'
   }
   ProductListProduct: { // field return type name
     id: 'ID'

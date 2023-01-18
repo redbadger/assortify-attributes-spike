@@ -79,6 +79,9 @@ const lookupValuesFragment = graphql`
 
 const tableDataFragment = graphql`
   fragment TableDataFragment on ProductList {
+    validDistributions {
+      name
+    }
     productListProductConnection(first: 10) {
       edges {
         node {
@@ -116,6 +119,7 @@ const Table = ({
   const lookupValues = useFragment(lookupValuesFragment, root);
 
   const {
+    validDistributions,
     productListProductConnection: { edges },
   } = useFragment(tableDataFragment, productList);
 
@@ -190,9 +194,15 @@ const Table = ({
               values: ["", ...options.map((_) => _.displayName)],
             };
           }
+
+          if (col.field === "distributions") {
+            col.cellEditorParams = {
+              values: validDistributions.map((_) => _.name),
+            };
+          }
         }
       }),
-    [lookupValues]
+    [lookupValues, validDistributions]
   );
 
   const handleCancel = useCallback(

@@ -49,10 +49,10 @@ model ProductLifecycleGroup {
 }
 
 model Channel {
-  id           Int                    @id @default(autoincrement())
-  name         String                 @unique
-  productLists ChannelInProductList[]
-  Distribution Distribution[]
+  id            Int                    @id @default(autoincrement())
+  name          String                 @unique
+  productLists  ChannelInProductList[]
+  distributions Distribution[]
 }
 
 model ChannelInProductList {

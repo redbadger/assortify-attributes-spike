@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<c10edb5c18a9b0664a90fe37c3f046de>>
+ * @generated SignedSource<<e063d935caaef6ccd8a5d6dc537c61bc>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -35,6 +35,9 @@ export type TableDataFragment$data = {
       };
     }>;
   };
+  readonly validDistributions: ReadonlyArray<{
+    readonly name: string;
+  }>;
   readonly " $fragmentType": "TableDataFragment";
 };
 export type TableDataFragment$key = {
@@ -42,12 +45,32 @@ export type TableDataFragment$key = {
   readonly " $fragmentSpreads": FragmentRefs<"TableDataFragment">;
 };
 
-const node: ReaderFragment = {
+const node: ReaderFragment = (function(){
+var v0 = [
+  {
+    "alias": null,
+    "args": null,
+    "kind": "ScalarField",
+    "name": "name",
+    "storageKey": null
+  }
+];
+return {
   "argumentDefinitions": [],
   "kind": "Fragment",
   "metadata": null,
   "name": "TableDataFragment",
   "selections": [
+    {
+      "alias": null,
+      "args": null,
+      "concreteType": "Distribution",
+      "kind": "LinkedField",
+      "name": "validDistributions",
+      "plural": true,
+      "selections": (v0/*: any*/),
+      "storageKey": null
+    },
     {
       "alias": null,
       "args": [
@@ -172,15 +195,7 @@ const node: ReaderFragment = {
                           "kind": "LinkedField",
                           "name": "distribution",
                           "plural": false,
-                          "selections": [
-                            {
-                              "alias": null,
-                              "args": null,
-                              "kind": "ScalarField",
-                              "name": "name",
-                              "storageKey": null
-                            }
-                          ],
+                          "selections": (v0/*: any*/),
                           "storageKey": null
                         }
                       ],
@@ -202,7 +217,8 @@ const node: ReaderFragment = {
   "type": "ProductList",
   "abstractKey": null
 };
+})();
 
-(node as any).hash = "b3080e37e022b516fb68f07b91e55602";
+(node as any).hash = "eac5ba4b9efab3602c7ed0d820707bdd";
 
 export default node;

@@ -44,7 +44,7 @@ interface NexusPrismaInputs {
       ordering: 'name' | 'displayName'
     }
     channels: {
-      filtering: 'AND' | 'OR' | 'NOT' | 'id' | 'name' | 'productLists' | 'Distribution'
+      filtering: 'AND' | 'OR' | 'NOT' | 'id' | 'name' | 'productLists' | 'distributions'
       ordering: 'id' | 'name'
     }
     channelInProductLists: {
@@ -93,7 +93,7 @@ interface NexusPrismaInputs {
       filtering: 'AND' | 'OR' | 'NOT' | 'id' | 'channel' | 'channelId' | 'productList' | 'productListId'
       ordering: 'id' | 'channelId' | 'productListId'
     }
-    Distribution: {
+    distributions: {
       filtering: 'AND' | 'OR' | 'NOT' | 'id' | 'name' | 'channel' | 'channelId' | 'productInProductLists'
       ordering: 'id' | 'name' | 'channelId'
     }
@@ -216,7 +216,7 @@ interface NexusPrismaOutputs {
     id: 'Int'
     name: 'String'
     productLists: 'ChannelInProductList'
-    Distribution: 'Distribution'
+    distributions: 'Distribution'
   }
   ChannelInProductList: {
     id: 'Int'

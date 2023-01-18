@@ -135,6 +135,24 @@ export const ProductList = objectType({
     t.model.title();
     t.model.channels();
 
+    t.field("validDistributions", {
+      type: nonNull(list(nonNull(Distribution))),
+      resolve: async ({ id }: any, _args, { prisma }) => {
+        const result = await prisma.productList.findUnique({
+          where: { id },
+          select: {
+            channels: {
+              select: { channel: { select: { distributions: true } } },
+            },
+          },
+        });
+
+        return (
+          result?.channels.map((_) => _.channel.distributions).flat() ?? []
+        );
+      },
+    });
+
     t.connectionField("productListProductConnection", {
       type: ProductListProduct,
       nodes: async ({ id }: any, _args, { prisma }, info) => {

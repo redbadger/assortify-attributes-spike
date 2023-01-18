@@ -8,10 +8,10 @@ type Channel {
   ownId: Int!
 }
 
-input ChannelCreateNestedOneWithoutDistributionInput {
+input ChannelCreateNestedOneWithoutDistributionsInput {
   connect: ChannelWhereUniqueInput
-  connectOrCreate: ChannelCreateOrConnectWithoutDistributionInput
-  create: ChannelCreateWithoutDistributionInput
+  connectOrCreate: ChannelCreateOrConnectWithoutDistributionsInput
+  create: ChannelCreateWithoutDistributionsInput
 }
 
 input ChannelCreateNestedOneWithoutProductListsInput {
@@ -20,8 +20,8 @@ input ChannelCreateNestedOneWithoutProductListsInput {
   create: ChannelCreateWithoutProductListsInput
 }
 
-input ChannelCreateOrConnectWithoutDistributionInput {
-  create: ChannelCreateWithoutDistributionInput!
+input ChannelCreateOrConnectWithoutDistributionsInput {
+  create: ChannelCreateWithoutDistributionsInput!
   where: ChannelWhereUniqueInput!
 }
 
@@ -30,13 +30,13 @@ input ChannelCreateOrConnectWithoutProductListsInput {
   where: ChannelWhereUniqueInput!
 }
 
-input ChannelCreateWithoutDistributionInput {
+input ChannelCreateWithoutDistributionsInput {
   name: String!
   productLists: ChannelInProductListCreateNestedManyWithoutChannelInput
 }
 
 input ChannelCreateWithoutProductListsInput {
-  Distribution: DistributionCreateNestedManyWithoutChannelInput
+  distributions: DistributionCreateNestedManyWithoutChannelInput
   name: String!
 }
 
@@ -207,12 +207,12 @@ input ChannelInProductListWhereUniqueInput {
   id: Int
 }
 
-input ChannelUpdateOneRequiredWithoutDistributionInput {
+input ChannelUpdateOneRequiredWithoutDistributionsInput {
   connect: ChannelWhereUniqueInput
-  connectOrCreate: ChannelCreateOrConnectWithoutDistributionInput
-  create: ChannelCreateWithoutDistributionInput
-  update: ChannelUpdateWithoutDistributionInput
-  upsert: ChannelUpsertWithoutDistributionInput
+  connectOrCreate: ChannelCreateOrConnectWithoutDistributionsInput
+  create: ChannelCreateWithoutDistributionsInput
+  update: ChannelUpdateWithoutDistributionsInput
+  upsert: ChannelUpsertWithoutDistributionsInput
 }
 
 input ChannelUpdateOneRequiredWithoutProductListsInput {
@@ -223,19 +223,19 @@ input ChannelUpdateOneRequiredWithoutProductListsInput {
   upsert: ChannelUpsertWithoutProductListsInput
 }
 
-input ChannelUpdateWithoutDistributionInput {
+input ChannelUpdateWithoutDistributionsInput {
   name: StringFieldUpdateOperationsInput
   productLists: ChannelInProductListUpdateManyWithoutChannelInput
 }
 
 input ChannelUpdateWithoutProductListsInput {
-  Distribution: DistributionUpdateManyWithoutChannelInput
+  distributions: DistributionUpdateManyWithoutChannelInput
   name: StringFieldUpdateOperationsInput
 }
 
-input ChannelUpsertWithoutDistributionInput {
-  create: ChannelCreateWithoutDistributionInput!
-  update: ChannelUpdateWithoutDistributionInput!
+input ChannelUpsertWithoutDistributionsInput {
+  create: ChannelCreateWithoutDistributionsInput!
+  update: ChannelUpdateWithoutDistributionsInput!
 }
 
 input ChannelUpsertWithoutProductListsInput {
@@ -245,9 +245,9 @@ input ChannelUpsertWithoutProductListsInput {
 
 input ChannelWhereInput {
   AND: [ChannelWhereInput!]
-  Distribution: DistributionListRelationFilter
   NOT: [ChannelWhereInput!]
   OR: [ChannelWhereInput!]
+  distributions: DistributionListRelationFilter
   id: IntFilter
   name: StringFilter
   productLists: ChannelInProductListListRelationFilter
@@ -304,7 +304,7 @@ input DistributionCreateWithoutChannelInput {
 }
 
 input DistributionCreateWithoutProductInProductListsInput {
-  channel: ChannelCreateNestedOneWithoutDistributionInput!
+  channel: ChannelCreateNestedOneWithoutDistributionsInput!
   name: String!
 }
 
@@ -537,7 +537,7 @@ input DistributionUpdateWithoutChannelInput {
 }
 
 input DistributionUpdateWithoutProductInProductListsInput {
-  channel: ChannelUpdateOneRequiredWithoutDistributionInput
+  channel: ChannelUpdateOneRequiredWithoutDistributionsInput
   name: StringFieldUpdateOperationsInput
 }
 
@@ -972,6 +972,7 @@ type ProductList {
     last: Int
   ): ProductListProductConnection!
   title: String!
+  validDistributions: [Distribution!]!
 }
 
 input ProductListCreateNestedOneWithoutChannelsInput {

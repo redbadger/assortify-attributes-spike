@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<eb52c3318abd524df8ec2b64b318259b>>
+ * @generated SignedSource<<df7fdf4038136d86725bd73b2ea9172d>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -71,23 +71,23 @@ export type DistributionCreateOrConnectWithoutProductInProductListsInput = {
   where: DistributionWhereUniqueInput;
 };
 export type DistributionCreateWithoutProductInProductListsInput = {
-  channel: ChannelCreateNestedOneWithoutDistributionInput;
+  channel: ChannelCreateNestedOneWithoutDistributionsInput;
   name: string;
 };
-export type ChannelCreateNestedOneWithoutDistributionInput = {
+export type ChannelCreateNestedOneWithoutDistributionsInput = {
   connect?: ChannelWhereUniqueInput | null;
-  connectOrCreate?: ChannelCreateOrConnectWithoutDistributionInput | null;
-  create?: ChannelCreateWithoutDistributionInput | null;
+  connectOrCreate?: ChannelCreateOrConnectWithoutDistributionsInput | null;
+  create?: ChannelCreateWithoutDistributionsInput | null;
 };
 export type ChannelWhereUniqueInput = {
   id?: number | null;
   name?: string | null;
 };
-export type ChannelCreateOrConnectWithoutDistributionInput = {
-  create: ChannelCreateWithoutDistributionInput;
+export type ChannelCreateOrConnectWithoutDistributionsInput = {
+  create: ChannelCreateWithoutDistributionsInput;
   where: ChannelWhereUniqueInput;
 };
-export type ChannelCreateWithoutDistributionInput = {
+export type ChannelCreateWithoutDistributionsInput = {
   name: string;
   productLists?: ChannelInProductListCreateNestedManyWithoutChannelInput | null;
 };
@@ -264,17 +264,17 @@ export type DistributionUpdateOneRequiredWithoutProductInProductListsInput = {
   upsert?: DistributionUpsertWithoutProductInProductListsInput | null;
 };
 export type DistributionUpdateWithoutProductInProductListsInput = {
-  channel?: ChannelUpdateOneRequiredWithoutDistributionInput | null;
+  channel?: ChannelUpdateOneRequiredWithoutDistributionsInput | null;
   name?: StringFieldUpdateOperationsInput | null;
 };
-export type ChannelUpdateOneRequiredWithoutDistributionInput = {
+export type ChannelUpdateOneRequiredWithoutDistributionsInput = {
   connect?: ChannelWhereUniqueInput | null;
-  connectOrCreate?: ChannelCreateOrConnectWithoutDistributionInput | null;
-  create?: ChannelCreateWithoutDistributionInput | null;
-  update?: ChannelUpdateWithoutDistributionInput | null;
-  upsert?: ChannelUpsertWithoutDistributionInput | null;
+  connectOrCreate?: ChannelCreateOrConnectWithoutDistributionsInput | null;
+  create?: ChannelCreateWithoutDistributionsInput | null;
+  update?: ChannelUpdateWithoutDistributionsInput | null;
+  upsert?: ChannelUpsertWithoutDistributionsInput | null;
 };
-export type ChannelUpdateWithoutDistributionInput = {
+export type ChannelUpdateWithoutDistributionsInput = {
   name?: StringFieldUpdateOperationsInput | null;
   productLists?: ChannelInProductListUpdateManyWithoutChannelInput | null;
 };
@@ -476,9 +476,9 @@ export type ChannelInProductListUpsertWithWhereUniqueWithoutChannelInput = {
   update: ChannelInProductListUpdateWithoutChannelInput;
   where: ChannelInProductListWhereUniqueInput;
 };
-export type ChannelUpsertWithoutDistributionInput = {
-  create: ChannelCreateWithoutDistributionInput;
-  update: ChannelUpdateWithoutDistributionInput;
+export type ChannelUpsertWithoutDistributionsInput = {
+  create: ChannelCreateWithoutDistributionsInput;
+  update: ChannelUpdateWithoutDistributionsInput;
 };
 export type DistributionUpsertWithoutProductInProductListsInput = {
   create: DistributionCreateWithoutProductInProductListsInput;
@@ -534,7 +534,7 @@ export type ChannelCreateOrConnectWithoutProductListsInput = {
   where: ChannelWhereUniqueInput;
 };
 export type ChannelCreateWithoutProductListsInput = {
-  Distribution?: DistributionCreateNestedManyWithoutChannelInput | null;
+  distributions?: DistributionCreateNestedManyWithoutChannelInput | null;
   name: string;
 };
 export type DistributionCreateNestedManyWithoutChannelInput = {
@@ -642,7 +642,7 @@ export type ChannelUpdateOneRequiredWithoutProductListsInput = {
   upsert?: ChannelUpsertWithoutProductListsInput | null;
 };
 export type ChannelUpdateWithoutProductListsInput = {
-  Distribution?: DistributionUpdateManyWithoutChannelInput | null;
+  distributions?: DistributionUpdateManyWithoutChannelInput | null;
   name?: StringFieldUpdateOperationsInput | null;
 };
 export type DistributionUpdateManyWithoutChannelInput = {
