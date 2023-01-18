@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<5457b77b846d63a32204ce9f9d7b3326>>
+ * @generated SignedSource<<15069376cdbe2dfa9d36c8206f715b21>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -195,7 +195,17 @@ return {
             "kind": "LinkedField",
             "name": "validDistributions",
             "plural": true,
-            "selections": (v6/*: any*/),
+            "selections": [
+              (v3/*: any*/),
+              {
+                "alias": null,
+                "args": null,
+                "kind": "ScalarField",
+                "name": "doorCount",
+                "storageKey": null
+              },
+              (v5/*: any*/)
+            ],
             "storageKey": null
           },
           {
@@ -343,12 +353,12 @@ return {
     ]
   },
   "params": {
-    "cacheID": "a57fa2b63e1f7938186123e1d582a716",
+    "cacheID": "61881fbc5c70d3315afd5920ebe2cf80",
     "id": null,
     "metadata": {},
     "name": "ProductListQuery",
     "operationKind": "query",
-    "text": "query ProductListQuery(\n  $id: Int\n) {\n  ...TableLookupValuesFragment\n  productList(where: {id: $id}) {\n    title\n    channels {\n      channel {\n        name\n        id\n      }\n      id\n    }\n    ...TableDataFragment\n    id\n  }\n}\n\nfragment TableDataFragment on ProductList {\n  validDistributions {\n    name\n    id\n  }\n  productListProductConnection(first: 10) {\n    edges {\n      node {\n        product {\n          pc9\n          colorwayName\n          id\n        }\n        productInProductList {\n          ownId\n          exclusive\n          exclusiveComments\n          minimumOrderQuantity\n          productLifecycleGroup {\n            displayName\n          }\n          distributions {\n            distribution {\n              name\n              id\n            }\n            id\n          }\n          id\n        }\n        id\n      }\n    }\n  }\n}\n\nfragment TableLookupValuesFragment on Query {\n  productLifecycleGroups {\n    displayName\n  }\n}\n"
+    "text": "query ProductListQuery(\n  $id: Int\n) {\n  ...TableLookupValuesFragment\n  productList(where: {id: $id}) {\n    title\n    channels {\n      channel {\n        name\n        id\n      }\n      id\n    }\n    ...TableDataFragment\n    id\n  }\n}\n\nfragment TableDataFragment on ProductList {\n  validDistributions {\n    name\n    doorCount\n    id\n  }\n  productListProductConnection(first: 10) {\n    edges {\n      node {\n        product {\n          pc9\n          colorwayName\n          id\n        }\n        productInProductList {\n          ownId\n          exclusive\n          exclusiveComments\n          minimumOrderQuantity\n          productLifecycleGroup {\n            displayName\n          }\n          distributions {\n            distribution {\n              name\n              id\n            }\n            id\n          }\n          id\n        }\n        id\n      }\n    }\n  }\n}\n\nfragment TableLookupValuesFragment on Query {\n  productLifecycleGroups {\n    displayName\n  }\n}\n"
   }
 };
 })();

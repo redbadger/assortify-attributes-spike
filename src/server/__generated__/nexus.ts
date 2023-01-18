@@ -236,6 +236,7 @@ export interface NexusGenInputs {
     name?: string | null; // String
   }
   DistributionCreateManyChannelInput: { // input type
+    doorCount: number; // Int!
     id?: number | null; // Int
     name: string; // String!
   }
@@ -263,11 +264,13 @@ export interface NexusGenInputs {
     where: NexusGenInputs['DistributionWhereUniqueInput']; // DistributionWhereUniqueInput!
   }
   DistributionCreateWithoutChannelInput: { // input type
+    doorCount: number; // Int!
     name: string; // String!
     productInProductLists?: NexusGenInputs['DistributionForProductInProductListCreateNestedManyWithoutDistributionInput'] | null; // DistributionForProductInProductListCreateNestedManyWithoutDistributionInput
   }
   DistributionCreateWithoutProductInProductListsInput: { // input type
     channel: NexusGenInputs['ChannelCreateNestedOneWithoutDistributionsInput']; // ChannelCreateNestedOneWithoutDistributionsInput!
+    doorCount: number; // Int!
     name: string; // String!
   }
   DistributionForProductInProductListCreateManyDistributionInput: { // input type
@@ -418,10 +421,12 @@ export interface NexusGenInputs {
     NOT?: NexusGenInputs['DistributionScalarWhereInput'][] | null; // [DistributionScalarWhereInput!]
     OR?: NexusGenInputs['DistributionScalarWhereInput'][] | null; // [DistributionScalarWhereInput!]
     channelId?: NexusGenInputs['IntFilter'] | null; // IntFilter
+    doorCount?: NexusGenInputs['IntFilter'] | null; // IntFilter
     id?: NexusGenInputs['IntFilter'] | null; // IntFilter
     name?: NexusGenInputs['StringFilter'] | null; // StringFilter
   }
   DistributionUpdateManyMutationInput: { // input type
+    doorCount?: NexusGenInputs['IntFieldUpdateOperationsInput'] | null; // IntFieldUpdateOperationsInput
     name?: NexusGenInputs['StringFieldUpdateOperationsInput'] | null; // StringFieldUpdateOperationsInput
   }
   DistributionUpdateManyWithWhereWithoutChannelInput: { // input type
@@ -453,11 +458,13 @@ export interface NexusGenInputs {
     where: NexusGenInputs['DistributionWhereUniqueInput']; // DistributionWhereUniqueInput!
   }
   DistributionUpdateWithoutChannelInput: { // input type
+    doorCount?: NexusGenInputs['IntFieldUpdateOperationsInput'] | null; // IntFieldUpdateOperationsInput
     name?: NexusGenInputs['StringFieldUpdateOperationsInput'] | null; // StringFieldUpdateOperationsInput
     productInProductLists?: NexusGenInputs['DistributionForProductInProductListUpdateManyWithoutDistributionInput'] | null; // DistributionForProductInProductListUpdateManyWithoutDistributionInput
   }
   DistributionUpdateWithoutProductInProductListsInput: { // input type
     channel?: NexusGenInputs['ChannelUpdateOneRequiredWithoutDistributionsInput'] | null; // ChannelUpdateOneRequiredWithoutDistributionsInput
+    doorCount?: NexusGenInputs['IntFieldUpdateOperationsInput'] | null; // IntFieldUpdateOperationsInput
     name?: NexusGenInputs['StringFieldUpdateOperationsInput'] | null; // StringFieldUpdateOperationsInput
   }
   DistributionUpsertWithWhereUniqueWithoutChannelInput: { // input type
@@ -475,6 +482,7 @@ export interface NexusGenInputs {
     OR?: NexusGenInputs['DistributionWhereInput'][] | null; // [DistributionWhereInput!]
     channel?: NexusGenInputs['ChannelWhereInput'] | null; // ChannelWhereInput
     channelId?: NexusGenInputs['IntFilter'] | null; // IntFilter
+    doorCount?: NexusGenInputs['IntFilter'] | null; // IntFilter
     id?: NexusGenInputs['IntFilter'] | null; // IntFilter
     name?: NexusGenInputs['StringFilter'] | null; // StringFilter
     productInProductLists?: NexusGenInputs['DistributionForProductInProductListListRelationFilter'] | null; // DistributionForProductInProductListListRelationFilter
@@ -483,6 +491,13 @@ export interface NexusGenInputs {
     id?: number | null; // Int
     name?: string | null; // String
     name_channelId?: NexusGenInputs['DistributionNameChannelIdCompoundUniqueInput'] | null; // DistributionNameChannelIdCompoundUniqueInput
+  }
+  IntFieldUpdateOperationsInput: { // input type
+    decrement?: number | null; // Int
+    divide?: number | null; // Int
+    increment?: number | null; // Int
+    multiply?: number | null; // Int
+    set?: number | null; // Int
   }
   IntFilter: { // input type
     equals?: number | null; // Int
@@ -920,6 +935,7 @@ export interface NexusGenObjects {
   }
   ChannelInProductList: {};
   Distribution: { // root type
+    doorCount: number; // Int!
     name: string; // String!
   }
   DistributionForProductInProductList: {};
@@ -984,6 +1000,7 @@ export interface NexusGenFieldTypes {
   }
   Distribution: { // field return type
     channel: NexusGenRootTypes['Channel']; // Channel!
+    doorCount: number; // Int!
     id: string; // ID!
     name: string; // String!
     ownId: number; // Int!
@@ -1066,6 +1083,7 @@ export interface NexusGenFieldTypeNames {
   }
   Distribution: { // field return type name
     channel: 'Channel'
+    doorCount: 'Int'
     id: 'ID'
     name: 'String'
     ownId: 'Int'

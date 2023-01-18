@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<df7fdf4038136d86725bd73b2ea9172d>>
+ * @generated SignedSource<<ce54e6752a642deb9245682a8fbb9766>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -72,6 +72,7 @@ export type DistributionCreateOrConnectWithoutProductInProductListsInput = {
 };
 export type DistributionCreateWithoutProductInProductListsInput = {
   channel: ChannelCreateNestedOneWithoutDistributionsInput;
+  doorCount: number;
   name: string;
 };
 export type ChannelCreateNestedOneWithoutDistributionsInput = {
@@ -265,6 +266,7 @@ export type DistributionUpdateOneRequiredWithoutProductInProductListsInput = {
 };
 export type DistributionUpdateWithoutProductInProductListsInput = {
   channel?: ChannelUpdateOneRequiredWithoutDistributionsInput | null;
+  doorCount?: IntFieldUpdateOperationsInput | null;
   name?: StringFieldUpdateOperationsInput | null;
 };
 export type ChannelUpdateOneRequiredWithoutDistributionsInput = {
@@ -480,6 +482,13 @@ export type ChannelUpsertWithoutDistributionsInput = {
   create: ChannelCreateWithoutDistributionsInput;
   update: ChannelUpdateWithoutDistributionsInput;
 };
+export type IntFieldUpdateOperationsInput = {
+  decrement?: number | null;
+  divide?: number | null;
+  increment?: number | null;
+  multiply?: number | null;
+  set?: number | null;
+};
 export type DistributionUpsertWithoutProductInProductListsInput = {
   create: DistributionCreateWithoutProductInProductListsInput;
   update: DistributionUpdateWithoutProductInProductListsInput;
@@ -548,6 +557,7 @@ export type DistributionCreateOrConnectWithoutChannelInput = {
   where: DistributionWhereUniqueInput;
 };
 export type DistributionCreateWithoutChannelInput = {
+  doorCount: number;
   name: string;
   productInProductLists?: DistributionForProductInProductListCreateNestedManyWithoutDistributionInput | null;
 };
@@ -599,6 +609,7 @@ export type DistributionCreateManyChannelInputEnvelope = {
   skipDuplicates?: boolean | null;
 };
 export type DistributionCreateManyChannelInput = {
+  doorCount: number;
   id?: number | null;
   name: string;
 };
@@ -663,6 +674,7 @@ export type DistributionScalarWhereInput = {
   NOT?: ReadonlyArray<DistributionScalarWhereInput> | null;
   OR?: ReadonlyArray<DistributionScalarWhereInput> | null;
   channelId?: IntFilter | null;
+  doorCount?: IntFilter | null;
   id?: IntFilter | null;
   name?: StringFilter | null;
 };
@@ -698,6 +710,7 @@ export type DistributionUpdateWithWhereUniqueWithoutChannelInput = {
   where: DistributionWhereUniqueInput;
 };
 export type DistributionUpdateWithoutChannelInput = {
+  doorCount?: IntFieldUpdateOperationsInput | null;
   name?: StringFieldUpdateOperationsInput | null;
   productInProductLists?: DistributionForProductInProductListUpdateManyWithoutDistributionInput | null;
 };
@@ -754,6 +767,7 @@ export type DistributionUpdateManyWithWhereWithoutChannelInput = {
   where: DistributionScalarWhereInput;
 };
 export type DistributionUpdateManyMutationInput = {
+  doorCount?: IntFieldUpdateOperationsInput | null;
   name?: StringFieldUpdateOperationsInput | null;
 };
 export type DistributionUpsertWithWhereUniqueWithoutChannelInput = {

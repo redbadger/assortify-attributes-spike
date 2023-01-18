@@ -42,6 +42,7 @@ erDiagram
   Distribution {
     Int id PK 
     String name  
+    Int doorCount  
     }
   
 

@@ -60,6 +60,7 @@ export const Distribution = objectType({
     });
     t.model.id({ alias: "ownId" });
     t.model.name();
+    t.model.doorCount();
     t.model.channel();
   },
 });

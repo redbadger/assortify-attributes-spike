@@ -52,8 +52,8 @@ interface NexusPrismaInputs {
       ordering: 'id' | 'channelId' | 'productListId'
     }
     distributions: {
-      filtering: 'AND' | 'OR' | 'NOT' | 'id' | 'name' | 'channel' | 'channelId' | 'productInProductLists'
-      ordering: 'id' | 'name' | 'channelId'
+      filtering: 'AND' | 'OR' | 'NOT' | 'id' | 'name' | 'doorCount' | 'channel' | 'channelId' | 'productInProductLists'
+      ordering: 'id' | 'name' | 'doorCount' | 'channelId'
     }
     distributionForProductInProductLists: {
       filtering: 'AND' | 'OR' | 'NOT' | 'id' | 'distribution' | 'distributionId' | 'productInProductList' | 'productInProductListId'
@@ -94,8 +94,8 @@ interface NexusPrismaInputs {
       ordering: 'id' | 'channelId' | 'productListId'
     }
     distributions: {
-      filtering: 'AND' | 'OR' | 'NOT' | 'id' | 'name' | 'channel' | 'channelId' | 'productInProductLists'
-      ordering: 'id' | 'name' | 'channelId'
+      filtering: 'AND' | 'OR' | 'NOT' | 'id' | 'name' | 'doorCount' | 'channel' | 'channelId' | 'productInProductLists'
+      ordering: 'id' | 'name' | 'doorCount' | 'channelId'
     }
   }
   ChannelInProductList: {
@@ -228,6 +228,7 @@ interface NexusPrismaOutputs {
   Distribution: {
     id: 'Int'
     name: 'String'
+    doorCount: 'Int'
     channel: 'Channel'
     channelId: 'Int'
     productInProductLists: 'DistributionForProductInProductList'

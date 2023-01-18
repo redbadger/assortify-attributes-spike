@@ -58,6 +58,7 @@ const columnDefsStatic: ColDef<any>[] = [
             .join(", ")
         : null,
   },
+  { headerName: "Door Count", type: "rightAligned" },
   {
     field: "minimumOrderQuantity",
     headerName: "MOQ",
@@ -81,6 +82,7 @@ const tableDataFragment = graphql`
   fragment TableDataFragment on ProductList {
     validDistributions {
       name
+      doorCount
     }
     productListProductConnection(first: 10) {
       edges {
@@ -200,9 +202,20 @@ const Table = ({
               values: validDistributions.map((_) => _.name),
             };
           }
+
+          if (col.headerName === "Door Count") {
+            col.valueGetter = (_) => {
+              return JSON.parse(_.data.distributions).reduce(
+                (count, { distribution: { name } }) =>
+                  count +
+                  validDistributions.find((_) => _.name === name)?.doorCount,
+                0
+              );
+            };
+          }
         }
       }),
-    [lookupValues, validDistributions]
+    [lookupValues]
   );
 
   const handleCancel = useCallback(

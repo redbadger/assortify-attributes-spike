@@ -85,17 +85,23 @@ const main = async () => {
 
   await Promise.all([
     prisma.distribution.create({
-      data: { name: "HOT_V1", channel: { connect: { name: "Mainline" } } },
+      data: {
+        name: "HOT_V1",
+        doorCount: 10,
+        channel: { connect: { name: "Mainline" } },
+      },
     }),
     prisma.distribution.create({
       data: {
         name: "MENS_CORE_V1",
+        doorCount: 15,
         channel: { connect: { name: "Mainline" } },
       },
     }),
     prisma.distribution.create({
       data: {
         name: "WOMENS_CORE_PLUS_V1",
+        doorCount: 20,
         channel: { connect: { name: "Outlet" } },
       },
     }),

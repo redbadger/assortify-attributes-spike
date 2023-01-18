@@ -260,12 +260,14 @@ input ChannelWhereUniqueInput {
 
 type Distribution {
   channel: Channel!
+  doorCount: Int!
   id: ID!
   name: String!
   ownId: Int!
 }
 
 input DistributionCreateManyChannelInput {
+  doorCount: Int!
   id: Int
   name: String!
 }
@@ -299,12 +301,14 @@ input DistributionCreateOrConnectWithoutProductInProductListsInput {
 }
 
 input DistributionCreateWithoutChannelInput {
+  doorCount: Int!
   name: String!
   productInProductLists: DistributionForProductInProductListCreateNestedManyWithoutDistributionInput
 }
 
 input DistributionCreateWithoutProductInProductListsInput {
   channel: ChannelCreateNestedOneWithoutDistributionsInput!
+  doorCount: Int!
   name: String!
 }
 
@@ -491,11 +495,13 @@ input DistributionScalarWhereInput {
   NOT: [DistributionScalarWhereInput!]
   OR: [DistributionScalarWhereInput!]
   channelId: IntFilter
+  doorCount: IntFilter
   id: IntFilter
   name: StringFilter
 }
 
 input DistributionUpdateManyMutationInput {
+  doorCount: IntFieldUpdateOperationsInput
   name: StringFieldUpdateOperationsInput
 }
 
@@ -532,12 +538,14 @@ input DistributionUpdateWithWhereUniqueWithoutChannelInput {
 }
 
 input DistributionUpdateWithoutChannelInput {
+  doorCount: IntFieldUpdateOperationsInput
   name: StringFieldUpdateOperationsInput
   productInProductLists: DistributionForProductInProductListUpdateManyWithoutDistributionInput
 }
 
 input DistributionUpdateWithoutProductInProductListsInput {
   channel: ChannelUpdateOneRequiredWithoutDistributionsInput
+  doorCount: IntFieldUpdateOperationsInput
   name: StringFieldUpdateOperationsInput
 }
 
@@ -558,6 +566,7 @@ input DistributionWhereInput {
   OR: [DistributionWhereInput!]
   channel: ChannelWhereInput
   channelId: IntFilter
+  doorCount: IntFilter
   id: IntFilter
   name: StringFilter
   productInProductLists: DistributionForProductInProductListListRelationFilter
@@ -567,6 +576,14 @@ input DistributionWhereUniqueInput {
   id: Int
   name: String
   name_channelId: DistributionNameChannelIdCompoundUniqueInput
+}
+
+input IntFieldUpdateOperationsInput {
+  decrement: Int
+  divide: Int
+  increment: Int
+  multiply: Int
+  set: Int
 }
 
 input IntFilter {

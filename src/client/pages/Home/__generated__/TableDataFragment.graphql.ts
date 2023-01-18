@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<e063d935caaef6ccd8a5d6dc537c61bc>>
+ * @generated SignedSource<<d36441cf821d38e074224af0d913c529>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -36,6 +36,7 @@ export type TableDataFragment$data = {
     }>;
   };
   readonly validDistributions: ReadonlyArray<{
+    readonly doorCount: number;
     readonly name: string;
   }>;
   readonly " $fragmentType": "TableDataFragment";
@@ -46,15 +47,13 @@ export type TableDataFragment$key = {
 };
 
 const node: ReaderFragment = (function(){
-var v0 = [
-  {
-    "alias": null,
-    "args": null,
-    "kind": "ScalarField",
-    "name": "name",
-    "storageKey": null
-  }
-];
+var v0 = {
+  "alias": null,
+  "args": null,
+  "kind": "ScalarField",
+  "name": "name",
+  "storageKey": null
+};
 return {
   "argumentDefinitions": [],
   "kind": "Fragment",
@@ -68,7 +67,16 @@ return {
       "kind": "LinkedField",
       "name": "validDistributions",
       "plural": true,
-      "selections": (v0/*: any*/),
+      "selections": [
+        (v0/*: any*/),
+        {
+          "alias": null,
+          "args": null,
+          "kind": "ScalarField",
+          "name": "doorCount",
+          "storageKey": null
+        }
+      ],
       "storageKey": null
     },
     {
@@ -195,7 +203,9 @@ return {
                           "kind": "LinkedField",
                           "name": "distribution",
                           "plural": false,
-                          "selections": (v0/*: any*/),
+                          "selections": [
+                            (v0/*: any*/)
+                          ],
                           "storageKey": null
                         }
                       ],
@@ -219,6 +229,6 @@ return {
 };
 })();
 
-(node as any).hash = "eac5ba4b9efab3602c7ed0d820707bdd";
+(node as any).hash = "e530fe7f51c35e243836fa069159ab5b";
 
 export default node;

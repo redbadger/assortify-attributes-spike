@@ -68,6 +68,7 @@ model ChannelInProductList {
 model Distribution {
   id                    Int                                   @id @default(autoincrement())
   name                  String                                @unique
+  doorCount             Int
   channel               Channel                               @relation(fields: [channelId], references: [id])
   channelId             Int
   productInProductLists DistributionForProductInProductList[]
