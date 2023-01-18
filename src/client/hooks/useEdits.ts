@@ -3,6 +3,7 @@ import produce from "immer";
 import { isEqual } from "lodash-es";
 import { useCallback, useState } from "react";
 import flattenLookups from "../utils/flattenLookups";
+import splitAndTrim from "../utils/splitAndTrim";
 
 const useEdits = <
   TRowData extends { ownId: number; [key: string]: any },
@@ -55,8 +56,8 @@ const useEdits = <
                     ) {
                       const singular = colDef?.field.slice(0, -1);
 
-                      const create = value.split(",").map((_) => ({
-                        [singular]: { connect: { name: _.trim() } },
+                      const create = splitAndTrim(value).map((name) => ({
+                        [singular]: { connect: { name } },
                       }));
 
                       edits[ownId][key].create = create;

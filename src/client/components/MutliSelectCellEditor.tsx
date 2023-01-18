@@ -3,6 +3,7 @@ import { ICellEditorParams } from "ag-grid-community";
 import { useCombobox, useMultipleSelection } from "downshift";
 import { forwardRef, useEffect, useImperativeHandle, useState } from "react";
 import "twin.macro";
+import splitAndTrim from "../utils/splitAndTrim";
 
 const MultiSelectCellEditor = forwardRef(
   (props: ICellEditorParams & { values: string[] }, ref) => {
@@ -18,9 +19,7 @@ const MultiSelectCellEditor = forwardRef(
       setSelectedItems,
       selectedItems,
     } = useMultipleSelection({
-      initialSelectedItems: props.value
-        ? (props.value.split(",").map((_) => _.trim()) as string[])
-        : [],
+      initialSelectedItems: splitAndTrim(props.value),
     });
 
     const getFilteredItems = (items: string[]) =>

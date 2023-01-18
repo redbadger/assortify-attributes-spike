@@ -11,6 +11,7 @@ import "twin.macro";
 import MultiSelectCellEditor from "../../components/MutliSelectCellEditor";
 import useEdits from "../../hooks/useEdits";
 import flattenLookups from "../../utils/flattenLookups";
+import splitAndTrim from "../../utils/splitAndTrim";
 import { TableDataFragment$key } from "./__generated__/TableDataFragment.graphql";
 import { TableLookupValuesFragment$key } from "./__generated__/TableLookupValuesFragment.graphql";
 
@@ -198,18 +199,13 @@ const Table = ({
 
           if (col.headerName === "Door Count") {
             col.valueGetter = ({ data: { distributions } }) => {
-              return distributions
-                ? distributions
-                    .split(",")
-                    .map((_) => _.trim())
-                    .reduce(
-                      (count, name) =>
-                        count +
-                        validDistributions.find((_) => _.name === name)
-                          ?.doorCount,
-                      0
-                    )
-                : 0;
+              return splitAndTrim(distributions).reduce(
+                (count, name) =>
+                  count +
+                  (validDistributions.find((_) => _.name === name)?.doorCount ??
+                    0),
+                0
+              );
             };
           }
         }
