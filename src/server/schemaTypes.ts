@@ -1,7 +1,7 @@
 import { PrismaSelect } from "@paljs/plugins";
 import { Prisma } from "@prisma/client";
 import { toGlobalId } from "graphql-relay";
-import { pick } from "lodash-es";
+import { omit, pick } from "lodash-es";
 import {
   inputObjectType,
   list,
@@ -157,34 +157,18 @@ export const ProductList = objectType({
     t.connectionField("productListProductConnection", {
       type: ProductListProduct,
       nodes: async ({ id }: any, _args, { prisma }, info) => {
-        const nodeSelect = new PrismaSelect(info).value.select.edges.select.node
-          .select;
+        const select = new PrismaSelect(info).value.select.edges.select.node
+          .select.productInProductList.select;
 
-        const productFieldNames = Object.keys(nodeSelect.product.select);
-        const productInProductListFieldNames = Object.keys(
-          nodeSelect.productInProductList.select
-        );
-
-        const result = await prisma.$queryRaw`
-          SELECT
-            pipl.id piplid,
-            p.id pid,
-            *
-          FROM
-            "ProductInProductList" pipl
-          INNER JOIN "Product" p
-            ON p.id = pipl."productId"
-          WHERE "productListId" = ${id}
-          ORDER BY p.id
-        `;
+        const result = (await prisma.productInProductList.findMany({
+          where: { productListId: { equals: id } },
+          select: { ...omit(select, "ownId"), product: true, id: true },
+        })) as any;
 
         const output = result.map((_) => ({
-          id: _.piplid,
-          product: { ...pick(_, productFieldNames), id: _.pid },
-          productInProductList: {
-            ...pick(_, productInProductListFieldNames),
-            id: _.piplid,
-          },
+          id: _.id,
+          product: _.product,
+          productInProductList: omit(_, "product"),
         }));
 
         return output;
