@@ -61,7 +61,15 @@ const columnDefsStatic: ColDef<any>[] = [
     valueParser: (_) => Number(_.newValue),
   },
   { field: "exclusive", editable: true },
-  { field: "exclusiveComments", editable: true },
+  {
+    field: "exclusiveComments",
+    editable: true,
+    cellEditor: "agLargeTextCellEditor",
+    cellEditorPopup: true,
+    cellEditorParams: {
+      maxLength: 1000,
+    },
+  },
 ];
 
 const lookupValuesFragment = graphql`
