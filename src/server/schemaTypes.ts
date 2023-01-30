@@ -1,7 +1,7 @@
 import { PrismaSelect } from "@paljs/plugins";
 import { Prisma } from "@prisma/client";
 import { toGlobalId } from "graphql-relay";
-import { omit, pick } from "lodash-es";
+import { omit } from "lodash-es";
 import {
   inputObjectType,
   list,

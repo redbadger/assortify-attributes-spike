@@ -18,6 +18,7 @@ const MultiSelectCellEditor = forwardRef(
       removeSelectedItem,
       setSelectedItems,
       selectedItems,
+      getDropdownProps,
     } = useMultipleSelection({
       initialSelectedItems: splitAndTrim(props.value),
     });
@@ -29,7 +30,7 @@ const MultiSelectCellEditor = forwardRef(
           item.toLowerCase().includes(inputValue.toLowerCase())
         );
 
-    const { getInputProps, getItemProps } = useCombobox({
+    const { getInputProps, getItemProps, getMenuProps } = useCombobox({
       inputValue,
       items: getFilteredItems(items),
       onStateChange: ({ inputValue = "", type }) => {
@@ -73,12 +74,13 @@ const MultiSelectCellEditor = forwardRef(
         <div tw="px-4 flex-none mb-2">
           <Input
             tw="w-full"
-            {...getInputProps()}
+            {...getInputProps({}, { suppressRefError: true })}
+            {...getDropdownProps()}
             placeholder="Search for options"
             autoFocus
           />
         </div>
-        <ul tw="list-none px-0 flex-1 my-0 overflow-y-auto">
+        <ul tw="list-none px-0 flex-1 my-0 overflow-y-auto" {...getMenuProps()}>
           {!inputValue && (
             <li tw="px-4 truncate">
               <FormControlLabel
